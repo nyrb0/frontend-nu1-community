@@ -1,22 +1,36 @@
 import styled from "styled-components";
 
-const StyledPrimaryButton = styled.button`
-  color: black;
+interface IStyles {
+  background: string;
+  color: string;
+}
+
+const StyledPrimaryButton = styled.button<IStyles>`
+  color: ${({ color }) => color};
   border-radius: 18px;
-  width: 89px;
-  height: 48px;
+  width: 100%;
+  height: 100%;
+  background: ${({ background }) => background};
 `;
 
 interface IStyledPrimaryButton
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  chidlren: string;
+  children: React.ReactNode;
+  background: string;
+  color?: string;
 }
 
-const PrimeryButton: React.FC<IStyledPrimaryButton> = ({
-  chidlren,
+const PrimaryButton: React.FC<IStyledPrimaryButton> = ({
+  children,
+  background,
+  color = "#fff",
   ...props
 }) => {
-  return <StyledPrimaryButton {...props}>{chidlren}</StyledPrimaryButton>;
+  return (
+    <StyledPrimaryButton background={background} color={color} {...props}>
+      {children}
+    </StyledPrimaryButton>
+  );
 };
 
-export default PrimeryButton;
+export default PrimaryButton;

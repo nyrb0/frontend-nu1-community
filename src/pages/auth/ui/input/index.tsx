@@ -5,17 +5,19 @@ interface IAuthInput extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const StyledAuthInput = styled.input`
-  border: 1px solid #e4e4e4;
   border-radius: 4px;
   width: 100%;
   height: 40px;
-  background: #e4e4e4;
+  background: #333232;
+  margin-top: 6px;
+  padding: 0 10px;
+  box-sizing: border-box;
 `;
 
 const StyledAuthLabel = styled.label`
   font-weight: 400;
   font-size: 14px;
-  color: #7b7b7b;
+  color: #fff;
 `;
 
 const AuthInput: React.FC<IAuthInput> = ({ label, ...props }) => {
