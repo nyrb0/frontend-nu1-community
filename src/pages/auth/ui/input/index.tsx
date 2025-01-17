@@ -1,7 +1,9 @@
+import { forwardRef } from "react";
 import styled from "styled-components";
 
 interface IAuthInput extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
+  error?: string;
 }
 
 const StyledAuthInput = styled.input`
@@ -20,13 +22,16 @@ const StyledAuthLabel = styled.label`
   color: #fff;
 `;
 
-const AuthInput: React.FC<IAuthInput> = ({ label, ...props }) => {
-  return (
-    <>
-      <StyledAuthLabel>{label}</StyledAuthLabel>
-      <StyledAuthInput {...props} />
-    </>
-  );
-};
+const AuthInput = forwardRef<HTMLInputElement, IAuthInput>(
+  ({ label, error, ...props }, ref) => {
+    return (
+      <>
+        <StyledAuthLabel>{label}</StyledAuthLabel>
+        <StyledAuthInput {...props} ref={ref} />
+        <p>{error}</p>
+      </>
+    );
+  }
+);
 
 export default AuthInput;
