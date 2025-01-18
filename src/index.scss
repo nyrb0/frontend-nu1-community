@@ -79,12 +79,12 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -98,93 +98,119 @@ hgroup,
 menu,
 nav,
 section {
-  display: block;
+    display: block;
 }
 body {
-  line-height: 1;
-  color: #ffff;
+    line-height: 1;
+    color: #ffff;
 }
 ol,
 ul {
-  list-style: none;
+    list-style: none;
 }
 blockquote,
 q {
-  quotes: none;
+    quotes: none;
 }
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
-  content: none;
+    content: '';
+    content: none;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 a {
-  text-decoration: none;
-  color: #ffff;
+    text-decoration: none;
+    color: #ffff;
 }
 
 :root {
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    --background-color1: #242424;
+    --white-color: #fff;
+    --background-color2: #181818;
+    --gray1:#a9a9a9;
+
+  --light: #fde7f7;
+	--light-:hover: #fcdbf3;
+	--light-:active: #fab5e7;
+	--normal: #ee10b0;
+	--normal-:hover: #d60e9e;
+	--normal-:active: #be0d8d;
+	--dark: #b30c84;
+	--dark-:hover: #8f0a6a;
+	--dark-:active: #6b074f;
+	--darker: #53063e;
+	--light: #e7f5fd;
+	--light-:hover: #dbf0fd;
+	--light-:active: #b4e1fa;
+	// --normal: #0e9eef;
+	// --normal-:hover: #0d8ed7;
+	// --normal-:active: #0b7ebf;
+	// --dark: #0b77b3;
+	// --dark-:hover: #085f8f;
+	// --dark-:active: #06476c;
+	// --darker: #053754;
 }
 
 input {
-  outline: none;
-  border: none;
-  background-color: transparent;
+    outline: none;
+    border: none;
+    background-color: transparent;
 }
 button {
-  border: none;
-  outline: non;
-  background-color: transparent;
+    border: none;
+    outline: non;
+    background-color: transparent;
 }
 
 @font-face {
-  font-family: "Rubik";
-  src: url("./assets/fonts/Rubik-Light.woff2") format("woff2");
-  font-weight: 300;
+    font-family: 'Rubik';
+    src: url('./assets/fonts/Rubik-Light.woff2') format('woff2');
+    font-weight: 300;
 }
 @font-face {
-  font-family: "Rubik";
-  src: url("./assets/fonts/Rubik-Regular.woff2") format("woff2");
-  font-weight: 400;
+    font-family: 'Rubik';
+    src: url('./assets/fonts/Rubik-Regular.woff2') format('woff2');
+    font-weight: 400;
 }
 @font-face {
-  font-family: "Rubik";
-  src: url("./assets/fonts/Rubik-Medium.woff2") format("woff2");
-  font-weight: 500;
+    font-family: 'Rubik';
+    src: url('./assets/fonts/Rubik-Medium.woff2') format('woff2');
+    font-weight: 500;
 }
 @font-face {
-  font-family: "Rubik";
-  src: url("./assets/fonts/Rubik-SemiBold.woff2") format("woff2");
-  font-weight: 600;
+    font-family: 'Rubik';
+    src: url('./assets/fonts/Rubik-SemiBold.woff2') format('woff2');
+    font-weight: 600;
 }
 @font-face {
-  font-family: "Rubik";
-  src: url("./assets/fonts/Rubik-Bold.woff2") format("woff2");
-  font-weight: 700;
+    font-family: 'Rubik';
+    src: url('./assets/fonts/Rubik-Bold.woff2') format('woff2');
+    font-weight: 700;
 }
 
 body {
-  font-family: "Rubik", sans-serif;
-  font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    background-color: var(--background-color2);
 }
 
 .df {
-  display: flex;
+    display: flex;
 }
 .jcc {
-  justify-content: center;
+    justify-content: center;
 }
 .aic {
-  align-items: center;
+    align-items: center;
 }
 .jce {
-  justify-content: flex-end;
+    justify-content: flex-end;
+}
+.fdc {
+    flex-direction: column;
 }

@@ -1,44 +1,45 @@
 .auth {
-  .right {
-    h1 {
-      font-weight: 700;
-      font-size: 26px;
-      color: #fff;
-      margin-bottom: 29px;
-    }
-    .input {
-      width: 320px;
-      margin-bottom: 15px;
-    }
-    width: 50vw;
-    .button {
-      width: 89px;
-      height: 48px;
-    }
-    .forgetPassword {
-      cursor: pointer;
-      font-size: 14px;
-      text-decoration: underline;
-      text-decoration-skip-ink: none;
-      color: #7b7b7b;
-    }
-    .isHaveAcc {
-      margin-top: 33px;
-      font-size: 14px;
-      color: #fff;
-      & span {
-        a {
-          cursor: pointer;
-          font-weight: 600;
-          color: #150aa1;
+    .right {
+        h1 {
+            font-weight: 700;
+            font-size: 26px;
+            color: var(--white-color);
+            margin-bottom: 29px;
         }
-      }
+        .input {
+            width: 320px;
+            margin-bottom: 15px;
+        }
+        width: 50vw;
+        .button {
+            width: 89px;
+            height: 48px;
+        }
+        .forgetPassword {
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: underline;
+            text-decoration-skip-ink: none;
+            color: #7b7b7b;
+        }
+        .isHaveAcc {
+            margin-top: 33px;
+            font-size: 14px;
+            color: var(--white-color);
+            & span {
+                a {
+                    cursor: pointer;
+                    font-weight: 600;
+                    color: var(--normal);
+                }
+            }
+        }
     }
-  }
 }
 
 .left {
-  background: #5858fa;
-  height: 100vh;
-  width: 50vw;
+    background: var(--dark);
+    box-shadow: 8px 0 24px 0 rgba(238, 16, 176, 0.15);
+    height: 100vh;
+    width: 50vw;
 }
