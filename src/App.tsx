@@ -1,13 +1,10 @@
-import AppRouter from "./shared/routes/AppRouter";
-import Cookies from "js-cookie";
-
+import AppRouter from './shared/routes/AppRouter';
 function App() {
-  console.log(Cookies.get("refreshToken"), "token");
-  return (
-    <>
-      <AppRouter />
-    </>
-  );
+    return (
+        <>
+            <AppRouter />
+        </>
+    );
 }
 
 export default App;

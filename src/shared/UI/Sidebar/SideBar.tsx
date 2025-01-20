@@ -1,60 +1,17 @@
-import HomeIcon from './icons/icon-home.svg';
-import NotificationIcon from './icons/icon-home.svg';
-import SavesIcon from './icons/icon-save.svg';
-import GroupIcon from './icons/icon-group.svg';
-import SubsIcon from './icons/icon-sobscription.svg';
-import ProfileIcon from './icons/icon-profile.svg';
-import MoreIcon from './icons/icon-more.svg';
-import MessageIcon from './icons/icon-message.svg';
-
 import { StyledSidebar, StyledSidebarAvatar, StyledSidebarContent, StyledSidebarList, StyledTitleSocial } from './sidebar.styled';
-import { PAGES } from '@/shared/routes/router.const';
 
-const lists: { label: string; icon: string; link: string }[] = [
-    {
-        label: 'Дом',
-        icon: HomeIcon,
-        link: PAGES.HOME,
-    },
-    {
-        label: 'Уведомления',
-        icon: NotificationIcon,
-        link: PAGES.NOTIFICATION,
-    },
-    {
-        label: 'Сообщение',
-        icon: MessageIcon,
-        link: PAGES.MESSAGE,
-    },
-    {
-        label: 'Сохраненные',
-        icon: SavesIcon,
-        link: PAGES.SAVES,
-    },
-    {
-        label: 'Сообщество',
-        icon: GroupIcon,
-        link: PAGES.GROUPS,
-    },
-    {
-        label: 'Подписки',
-        icon: SubsIcon,
-        link: PAGES.SUBSCRIPTIONS,
-    },
-    {
-        label: 'Профиль',
-        icon: ProfileIcon,
-        link: PAGES.PROFILE,
-    },
-    {
-        label: 'Другие',
-        icon: MoreIcon,
-        link: PAGES.OTHER,
-    },
-];
+import { Link, useLocation } from 'react-router-dom';
+import { userService } from '@/shared/services/user.service';
+import { useProfileQuery } from '@/feature/user/user';
+import { urlAvatar } from '@/shared/constants/urlAvatar';
+import { sidebarLists } from './lists.const';
 
 const SideBar = () => {
-    const username = 'ny1bo';
+    const route = useLocation();
+    console.log(userService.getProfileUser(), 'profile');
+
+    const { data: user } = useProfileQuery();
+
     return (
         <StyledSidebar className={''}>
             <div className='df fdc aic'>
@@ -64,14 +21,15 @@ const SideBar = () => {
             <div className='df jcc'>
                 <StyledSidebarContent className='df fdc '>
                     <StyledSidebarAvatar className={'df aic'}>
-                        <img src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6Osj5vIVYajemQWR3P0Ux6Zh6kI-HqtuSmQ&s'} />{' '}
-                        <span>{username}</span>
+                        <img src={urlAvatar} /> <span>{user?.username}</span>
                     </StyledSidebarAvatar>
-                    {lists.map(list => (
-                        <StyledSidebarList className='df aic'>
-                            <img src={list.icon} alt={list.label} />
-                            {list.label}
-                        </StyledSidebarList>
+                    {sidebarLists.map(list => (
+                        <Link to={list.link} key={list.label}>
+                            <StyledSidebarList className='df aic' isRoute={route.pathname === list.link}>
+                                <img src={list.icon} alt={list.label} />
+                                {list.label}
+                            </StyledSidebarList>
+                        </Link>
                     ))}
                 </StyledSidebarContent>
             </div>

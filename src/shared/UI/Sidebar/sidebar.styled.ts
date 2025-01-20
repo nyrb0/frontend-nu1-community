@@ -48,16 +48,16 @@ export const StyledSidebarAvatar = styled.div`
     }
 `;
 
-export const StyledSidebarList = styled.div`
+export const StyledSidebarList = styled.div<{ isRoute: boolean }>`
     transition: color 0.3s ease;
     transition: background 0.6s ease-in-out;
+    background-color: ${({ isRoute }) => (isRoute ? 'var(--normal)' : '')};
     gap: 18px;
     cursor: pointer;
     padding: 10px;
     box-sizing: border-box;
     border-radius: 5px;
     &:hover {
-        background-color: var(--normal);
         color: #686868;
     }
 `;
