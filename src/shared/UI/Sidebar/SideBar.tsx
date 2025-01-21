@@ -9,7 +9,6 @@ import { sidebarLists } from './lists.const';
 const SideBar = () => {
     const route = useLocation();
     console.log(userService.getProfileUser(), 'profile');
-
     const { data: user } = useProfileQuery();
 
     return (

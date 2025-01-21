@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledSidebar = styled.div`
+export const StyledSidebar = styled.aside`
     font-weight: 500;
     font-size: 16px;
     color: var(--gray1);

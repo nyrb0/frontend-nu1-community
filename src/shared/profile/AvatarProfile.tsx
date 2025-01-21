@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 interface IAvatarProfile extends React.ImgHTMLAttributes<HTMLImageElement> {
-    width?: string;
-    height?: string;
+    width?: number;
+    height?: number;
 }
 const StyledHeaderAvatar = styled.img<IAvatarProfile>`
     border-radius: 50%;
