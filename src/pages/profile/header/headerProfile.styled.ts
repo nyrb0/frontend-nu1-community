@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const StyledHeaderImage = styled.div`
     margin-top: 10px;
-
     height: 280px;
     position: relative;
     border: 0.6px dashed #f1f1ff;
