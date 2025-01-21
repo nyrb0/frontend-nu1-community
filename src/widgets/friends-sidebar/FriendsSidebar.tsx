@@ -1,6 +1,7 @@
 import { StyledFriendsRecomend, StyledFriendsSidebar } from './friendsSidebar.styled';
 import FriendBlock from './ui/FriendBlock';
-import ArrowUp from './icon/arrow-up-icon.svg';
+import ArrowUpIcon from './icon/ArrowUpIcon';
+import { COLORS } from '@/shared/constants/colors';
 
 const FriendsSidebar = () => {
     return (
@@ -8,7 +9,7 @@ const FriendsSidebar = () => {
             <StyledFriendsRecomend className={'df aic jcsb'}>
                 <p>Рекемендуемые</p>
                 <button className='df'>
-                    Больше <img src={ArrowUp} alt='arrow-up icon' />
+                    Больше <ArrowUpIcon fill={COLORS.NORMAL} />
                 </button>
             </StyledFriendsRecomend>
             <FriendBlock />

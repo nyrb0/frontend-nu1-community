@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const StyledPost = styled.img`
-    border-radius: 7px;
+    border-radius: 3px;
     width: 100%;
     max-height: 412px;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 `;
 
 export const StyledPostProfile = styled.div`

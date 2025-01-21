@@ -32,7 +32,7 @@ const Post: React.FC<IPost> = ({ data }) => {
                     onHashtagClick={(hashTags: string) => alert(hashTags)}
                 />
             </StyledPostsDescription>
-            <StyledPost src={'https://static1.srcdn.com/wordpress/wp-content/uploads/2024/03/avatarkorra.jpg'} />
+            <StyledPost src={'https://i.ibb.co/Fs00jC9/IMG-20231126-004712-076.webp'} />
 
             <StyledPostDo className='df jcsb'>
                 <ul className='df'>

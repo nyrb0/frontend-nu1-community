@@ -18,9 +18,11 @@ export const StyledFriendsRecomend = styled.div`
 export const StyledFriendsSidebar = styled.div`
     padding: 0 15px;
     box-sizing: border-box;
-    box-shadow: -10px 0px 24px 0px rgba(238, 16, 176, 0.15);
+    box-shadow: 0px 0 50px 0 var(--normal);
     border-radius: 10px;
     background-color: var(--background-color1);
     width: 300px;
     height: 500px;
 `;
+
+// rgba(238, 16, 176, 0.15)

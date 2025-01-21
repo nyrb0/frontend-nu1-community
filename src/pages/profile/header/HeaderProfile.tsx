@@ -1,5 +1,5 @@
 import AvatarProfile from '@/shared/profile/AvatarProfile';
-import { StyledHeaderEdits, StyledHeaderImage, StyledHeaderUsername } from './headerProfile.styled';
+import { StyledHeaderEdits, StyledHeaderImage, StyledHeaderUsername, StyledProfileHeaderButtons } from './headerProfile.styled';
 import { urlAvatar } from '@/shared/constants/urlAvatar';
 import { useProfileQuery } from '@/feature/user/user';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
@@ -21,7 +21,7 @@ const HeaderProfile = () => {
                         <p>@{user?.username}</p>
                     </StyledHeaderUsername>
                 </div>
-                <div className='df' style={{ gap: 15, height: 40 }}>
+                <StyledProfileHeaderButtons className='df'>
                     <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL} type='submit' className='df aic' style={{ gap: 14 }}>
                         <img src={EditIcon} alt='edit icon' />
                         Редактировать
@@ -30,7 +30,7 @@ const HeaderProfile = () => {
                         <img src={ShareIcon} alt='share icon' />
                         Поделиться
                     </PrimaryButton>
-                </div>
+                </StyledProfileHeaderButtons>
             </StyledHeaderEdits>
         </div>
     );
