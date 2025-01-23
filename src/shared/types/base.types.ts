@@ -1,4 +1,4 @@
 export interface BaseI {
-  createdDate: string;
-  updatedDate: string;
+    created_date: string;
+    updated_date: string;
 }

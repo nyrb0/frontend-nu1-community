@@ -18,7 +18,7 @@ export const StyledFriendsRecomend = styled.div`
 export const StyledFriendsSidebar = styled.div`
     padding: 0 15px;
     box-sizing: border-box;
-    box-shadow: 0px 0 50px 0 var(--normal);
+    /* box-shadow: 0px 0 50px 0 var(--normal); */
     border-radius: 10px;
     background-color: var(--background-color1);
     width: 300px;

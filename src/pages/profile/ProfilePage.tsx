@@ -3,10 +3,11 @@ import HeaderProfile from './header/HeaderProfile';
 import FilterPosts from '@/shared/profile/FilterPosts';
 import { useState } from 'react';
 import { listsFilterPosts } from '@/shared/profile/ListFilter';
-import Post from '@/shared/profile/post/Post';
+import Posts from '@/shared/profile/post/Posts';
 
 const ProfilePage = () => {
     const [postsType, setPostsType] = useState(listsFilterPosts[0].name);
+
     return (
         <div style={{ height: 1200 }}>
             <div>
@@ -17,7 +18,7 @@ const ProfilePage = () => {
                 <FilterPosts data={postsType} onChange={(value: string) => setPostsType(value)} />
             </div>
             <div>
-                <Post />
+                <Posts />
             </div>
         </div>
     );

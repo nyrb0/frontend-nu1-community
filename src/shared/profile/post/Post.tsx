@@ -27,10 +27,7 @@ const Post: React.FC<IPost> = ({ data }) => {
                 <img src={ThreePoints} alt={'three points'} />
             </StyledPostProfile>
             <StyledPostsDescription>
-                <HashtagText
-                    data={'всем привет меня зову  нурболот это мой первый пост. #firstpost #hi #nu1'}
-                    onHashtagClick={(hashTags: string) => alert(hashTags)}
-                />
+                <HashtagText data={data.description} onHashtagClick={(hashTags: string) => alert(hashTags)} />
             </StyledPostsDescription>
             <StyledPost src={'https://i.ibb.co/Fs00jC9/IMG-20231126-004712-076.webp'} />
 

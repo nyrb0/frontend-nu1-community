@@ -2,6 +2,11 @@ import { BaseI } from './base.types';
 
 export interface PulicationUserI extends BaseI {
     id: string;
-    title: string;
+    title?: string;
+    description?: string;
+}
+
+export interface PostUserI {
+    title?: string;
     description?: string;
 }

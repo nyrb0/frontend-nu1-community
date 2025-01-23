@@ -7,7 +7,7 @@ export const StyledSidebar = styled.aside`
     background-color: var(--background-color1);
     width: 300px;
     border-radius: 10px;
-    box-shadow: 0px 0 50px 0 var(--normal);
+    /* box-shadow: 0px 0 50px 0 var(--normal); */
     padding: 32px 0;
 `;
 
