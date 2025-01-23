@@ -1,7 +1,7 @@
 import TextAreaPost from '../UI/TextAreaPost';
+import IconPerson from '../UI/icon/IconPerson';
+import IconPicture from '../UI/icon/IconPicture';
 import { StyledPostButtons, StyledPostEditBackgroundInner, StyledPostEditBackgroundOut, StyledPostEditTextArea } from './postEdit.styled';
-import PersonIcon from '../UI/icon/person.svg';
-import PictureIcon from '../UI/icon/picture-icon.svg';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import { COLORS } from '@/shared/constants/colors';
 
@@ -13,8 +13,8 @@ const PostEdit = () => {
                     <TextAreaPost placeholder={'Пишите что-нибудь'} />
                 </div>
                 <StyledPostEditTextArea className='df aic'>
-                    <img src={PersonIcon} alt='person-icon' />
-                    <img src={PictureIcon} alt='person-icon' />
+                    <IconPerson />
+                    <IconPicture />
                 </StyledPostEditTextArea>
             </StyledPostEditBackgroundInner>
 
