@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledPost = styled.img`
+    margin: 14px 0 16px 0;
     border-radius: 3px;
     width: 100%;
     max-height: 412px;
@@ -32,11 +33,10 @@ export const StyledPostProfile = styled.div`
 `;
 
 export const StyledPostsDescription = styled.div`
-    padding-bottom: 16px;
+    padding-bottom: 5px;
 `;
 
 export const StyledPostDo = styled.ul`
-    margin-top: 16px;
     font-size: 14px;
     & ul {
         gap: 24px;

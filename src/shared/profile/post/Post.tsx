@@ -39,11 +39,11 @@ const Post: React.FC<IPost> = ({ data }) => {
                 <ul className='df'>
                     <li>
                         <IconLike />
-                        <span>{32} лайки</span>
+                        <span>{data.countLike} лайки</span>
                     </li>
                     <li>
                         <IconComment />
-                        <span>{1} комментарии</span>
+                        <span>{data.commentsCount} комментарии</span>
                     </li>
                     <li>
                         <IconShare />

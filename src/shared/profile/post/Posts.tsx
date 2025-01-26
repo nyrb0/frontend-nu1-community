@@ -19,7 +19,7 @@ const Posts = () => {
     return (
         <div className='df fdc'>
             {posts.map(post => (
-                <Post data={post} />
+                <Post data={post} key={post.id} />
             ))}
         </div>
     );
