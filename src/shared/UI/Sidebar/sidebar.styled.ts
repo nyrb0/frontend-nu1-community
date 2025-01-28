@@ -36,14 +36,14 @@ export const StyledSidebarAvatar = styled.div`
         height: 50px;
         transition: box-shadow 0.6s ease-in-out;
         &:hover {
-            box-shadow: 0px 0 49px 0 rgba(238, 16, 176, 0.4);
+            box-shadow: 0px 0 49px 0 var(--normal);
         }
     }
     & span {
         transition: text-shadow 0.6s ease-in-out;
         font-size: 20px;
         &:hover {
-            text-shadow: 0px 0px 20px rgba(238, 16, 176, 0.4);
+            text-shadow: 0px 0px 20px var(--normal);
         }
     }
 `;

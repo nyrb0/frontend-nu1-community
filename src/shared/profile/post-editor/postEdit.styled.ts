@@ -10,6 +10,13 @@ export const StyledPostEditBackgroundOut = styled.div`
     border-radius: 7px;
 `;
 
+export const StyledPostSelectImage = styled.img`
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 7px;
+`;
+
 export const StyledPostEditBackgroundInner = styled.div`
     background-color: var(--background-color3);
     border-radius: 7px;

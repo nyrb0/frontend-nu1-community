@@ -2,17 +2,35 @@ import React, { useState } from 'react';
 import TextAreaPost from '../UI/TextAreaPost';
 import IconPerson from '../UI/icon/IconPerson';
 import IconPicture from '../UI/icon/IconPicture';
-import { StyledPostButtons, StyledPostEditBackgroundInner, StyledPostEditBackgroundOut, StyledPostEditTextArea } from './postEdit.styled';
+import {
+    StyledPostButtons,
+    StyledPostEditBackgroundInner,
+    StyledPostEditBackgroundOut,
+    StyledPostEditTextArea,
+    StyledPostSelectImage,
+} from './postEdit.styled';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import { COLORS } from '@/shared/constants/colors';
 import { postService } from '@/shared/services/post.service';
 
 const PostEdit = () => {
     const [value, setValue] = useState('');
+    const [files, setFiles] = useState<File | null>(null);
 
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files[0]) {
+            setFiles(event.target.files[0]); // Сохраняем выбранный файл
+        }
+    };
     const addPost = async (e: any) => {
         e.preventDefault();
-        await postService.create({ description: value });
+
+        try {
+            await postService.create({ description: value, imageUrl: files });
+            location.reload();
+        } catch (err) {
+            console.error(err);
+        }
     };
     return (
         <StyledPostEditBackgroundOut>
@@ -27,10 +45,13 @@ const PostEdit = () => {
                     </div>
                     <StyledPostEditTextArea className='df aic'>
                         <IconPerson />
-                        <IconPicture />
+                        <label htmlFor='files'>
+                            <IconPicture />
+                        </label>
+                        <input id='files' type='file' onChange={handleFileChange} style={{ display: 'none' }} />
                     </StyledPostEditTextArea>
                 </StyledPostEditBackgroundInner>
-
+                <div style={{ marginTop: 10 }}>{files ? <StyledPostSelectImage src={URL.createObjectURL(files)} alt='' /> : null}</div>
                 <StyledPostButtons className={'df jce'}>
                     <span className='df'>
                         <PrimaryButton color={COLORS.WHITE} background={COLORS.TRANSPARENT}>

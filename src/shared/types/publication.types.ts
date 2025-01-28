@@ -1,3 +1,4 @@
+import { IUser } from './auth.types';
 import { BaseI } from './base.types';
 
 export interface PulicationUserI extends BaseI {
@@ -8,10 +9,14 @@ export interface PulicationUserI extends BaseI {
     imageUrl: string;
     commentsCount: number;
     countLike: number;
+
+    user: Omit<IUser, 'email'>;
 }
+
+export interface IPublicationUser {}
 
 export interface PostUserI {
     title?: string;
     description?: string;
-    imageUrl?: string;
+    imageUrl?: File | null;
 }

@@ -1,5 +1,5 @@
-import { urlAvatar } from '@/shared/constants/urlAvatar';
-import AvatarProfile from '../AvatarProfile';
+import { baseUrlAws } from '@/shared/constants/baseUrlAws';
+import AvatarProfile from '../profile/AvatarProfile';
 import { StyledPost, StyledPostDo, StyledPostProfile, StyledPostsDescription } from './posts.styled';
 import { PulicationUserI } from '@/shared/types/publication.types';
 // import LikeIcon from './UI/icon/like-icon.svg';
@@ -18,14 +18,19 @@ interface IPost {
 }
 
 const Post: React.FC<IPost> = ({ data }) => {
+    const isFullName = data.user.lastName || data.user.name;
     return (
         <div style={{ paddingBottom: 50 }}>
             <StyledPostProfile className='df aic jcsb'>
                 <div className='df aic'>
-                    <AvatarProfile width={60} height={60} src={urlAvatar} />
+                    <AvatarProfile width={60} height={60} src={data.user.avatarUrl ? `${baseUrlAws}/${data?.user.avatarUrl}` : ''} />
                     <div>
-                        <p>{'Nurbolot Nurbolotovich'}</p>
-                        <p>{'@ny1boo'}</p>
+                        {!isFullName ? null : (
+                            <p>
+                                {data.user.lastName} {data.user.name}
+                            </p>
+                        )}
+                        <p style={!isFullName ? { color: 'var(--white-color)', fontWeight: 600, fontSize: 16 } : {}}>@{data.user.username}</p>
                     </div>
                 </div>
                 <IconComment />
@@ -33,7 +38,7 @@ const Post: React.FC<IPost> = ({ data }) => {
             <StyledPostsDescription>
                 <HashtagText data={data.description} onHashtagClick={(hashTags: string) => alert(hashTags)} />
             </StyledPostsDescription>
-            <StyledPost src={'https://i.ibb.co/Fs00jC9/IMG-20231126-004712-076.webp'} />
+            <StyledPost src={data.imageUrl ? `${baseUrlAws}/${data?.imageUrl}` : ''} />
 
             <StyledPostDo className='df jcsb'>
                 <ul className='df'>
@@ -50,9 +55,7 @@ const Post: React.FC<IPost> = ({ data }) => {
                         <span>{12} поделились</span>
                     </li>
                 </ul>
-                <div>
-                    <IconSave />
-                </div>
+                <IconSave />
             </StyledPostDo>
         </div>
     );

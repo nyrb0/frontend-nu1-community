@@ -3,8 +3,9 @@ import { StyledSidebar, StyledSidebarAvatar, StyledSidebarContent, StyledSidebar
 import { Link, useLocation } from 'react-router-dom';
 import { userService } from '@/shared/services/user.service';
 import { useProfileQuery } from '@/feature/user/user';
-import { urlAvatar } from '@/shared/constants/urlAvatar';
+import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import { sidebarLists } from './lists.const';
+import NoNameImage from '@/assets/user_noname.png';
 
 const SideBar = () => {
     const route = useLocation();
@@ -20,8 +21,9 @@ const SideBar = () => {
             <div className='df jcc'>
                 <StyledSidebarContent className='df fdc '>
                     <StyledSidebarAvatar className={'df aic'}>
-                        <img src={urlAvatar} /> <span>{user?.username}</span>
+                        <img src={user?.avatarUrl ? `${baseUrlAws}/${user?.avatarUrl}` : NoNameImage} /> <span>{user?.username}</span>
                     </StyledSidebarAvatar>
+
                     {sidebarLists.map(list => (
                         <Link to={list.link} key={list.label}>
                             <StyledSidebarList className='df aic' isRoute={route.pathname === list.link}>

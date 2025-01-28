@@ -3,7 +3,7 @@ import HeaderProfile from './header/HeaderProfile';
 import FilterPosts from '@/shared/profile/FilterPosts';
 import { useState } from 'react';
 import { listsFilterPosts } from '@/shared/profile/ListFilter';
-import Posts from '@/shared/profile/post/Posts';
+import Posts from '@/shared/post/Posts';
 
 const ProfilePage = () => {
     const [postsType, setPostsType] = useState(listsFilterPosts[0].name);

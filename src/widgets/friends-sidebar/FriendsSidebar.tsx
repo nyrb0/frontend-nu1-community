@@ -13,6 +13,12 @@ const FriendsSidebar = () => {
                 </button>
             </StyledFriendsRecomend>
             <FriendBlock />
+            <FriendBlock />
+            <FriendBlock />
+            <FriendBlock />
+            <FriendBlock />
+            <FriendBlock />
+            <FriendBlock />
         </StyledFriendsSidebar>
     );
 };

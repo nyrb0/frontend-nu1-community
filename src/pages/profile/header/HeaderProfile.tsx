@@ -1,6 +1,6 @@
 import AvatarProfile from '@/shared/profile/AvatarProfile';
 import { StyledHeaderEdits, StyledHeaderImage, StyledHeaderUsername, StyledProfileHeaderButtons } from './headerProfile.styled';
-import { urlAvatar } from '@/shared/constants/urlAvatar';
+import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import { useProfileQuery } from '@/feature/user/user';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import { COLORS } from '@/shared/constants/colors';
@@ -15,9 +15,9 @@ const HeaderProfile = () => {
             <StyledHeaderImage></StyledHeaderImage>
             <StyledHeaderEdits className={'df aic jcsb'}>
                 <div className={'df aic'}>
-                    <AvatarProfile src={urlAvatar} alt='avatar' />
+                    <AvatarProfile src={user?.avatarUrl ? `${baseUrlAws}/${user?.avatarUrl}` : ''} alt='avatar' />
                     <StyledHeaderUsername>
-                        <p>Нурболот</p>
+                        <p>{user?.name && user.lastName ? `${user?.name} ${user?.lastName}` : 'Неизвестно'}</p>
                         <p>@{user?.username}</p>
                     </StyledHeaderUsername>
                 </div>

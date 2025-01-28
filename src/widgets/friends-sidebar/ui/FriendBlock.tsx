@@ -1,4 +1,3 @@
-import { urlAvatar } from '@/shared/constants/urlAvatar';
 import AvatarProfile from '@/shared/profile/AvatarProfile';
 
 import PlusIcon from '../icon/icon.svg';
@@ -26,37 +25,7 @@ const FriendBlock = () => {
     return (
         <>
             <StyledBlockFriends className='df aic jcsb'>
-                <AvatarProfile src={urlAvatar} width={40} height={40} alt='avatar' />
-                <StyledUsernameAndName>
-                    <p>Name Names</p>
-                    <p>@username</p>
-                </StyledUsernameAndName>
-                <button>
-                    <img src={PlusIcon} alt='plus-icon' />
-                </button>
-            </StyledBlockFriends>
-            <StyledBlockFriends className='df aic jcsb'>
-                <AvatarProfile src={urlAvatar} width={40} height={40} alt='avatar' />
-                <StyledUsernameAndName>
-                    <p>Name Names</p>
-                    <p>@username</p>
-                </StyledUsernameAndName>
-                <button>
-                    <img src={PlusIcon} alt='plus-icon' />
-                </button>
-            </StyledBlockFriends>
-            <StyledBlockFriends className='df aic jcsb'>
-                <AvatarProfile src={urlAvatar} width={40} height={40} alt='avatar' />
-                <StyledUsernameAndName>
-                    <p>Name Names</p>
-                    <p>@username</p>
-                </StyledUsernameAndName>
-                <button>
-                    <img src={PlusIcon} alt='plus-icon' />
-                </button>
-            </StyledBlockFriends>
-            <StyledBlockFriends className='df aic jcsb'>
-                <AvatarProfile src={urlAvatar} width={40} height={40} alt='avatar' />
+                <AvatarProfile src={``} width={40} height={40} alt='avatar' />
                 <StyledUsernameAndName>
                     <p>Name Names</p>
                     <p>@username</p>
