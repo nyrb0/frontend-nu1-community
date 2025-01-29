@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledPost = styled.img`
     margin: 14px 0 16px 0;
-    border-radius: 3px;
+    border-radius: 3 px;
     width: 100%;
     max-height: 412px;
     height: 100%;

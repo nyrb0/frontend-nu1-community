@@ -1,6 +1,14 @@
-const IconPerson = () => {
+const IconPerson = ({ onClick }: { onClick: () => void }) => {
     return (
-        <svg width='22' height='17' viewBox='0 0 22 17' fill='none' xmlns='http://www.w3.org/2000/svg' xlinkHref='http://www.w3.org/1999/xlink'>
+        <svg
+            onClick={onClick}
+            width='22'
+            height='17'
+            viewBox='0 0 22 17'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+            xlinkHref='http://www.w3.org/1999/xlink'
+        >
             <mask id='mask0_82_1570' style={{ maskType: 'alpha' }} maskUnits='userSpaceOnUse' x='0' y='0' width='22' height='17'>
                 <rect width='22' height='17' fill='url(#pattern0_82_1570)' />
             </mask>

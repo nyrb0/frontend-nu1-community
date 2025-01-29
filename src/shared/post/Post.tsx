@@ -38,6 +38,7 @@ const Post: React.FC<IPost> = ({ data }) => {
             <StyledPostsDescription>
                 <HashtagText data={data.description} onHashtagClick={(hashTags: string) => alert(hashTags)} />
             </StyledPostsDescription>
+
             <StyledPost src={data.imageUrl ? `${baseUrlAws}/${data?.imageUrl}` : ''} />
 
             <StyledPostDo className='df jcsb'>

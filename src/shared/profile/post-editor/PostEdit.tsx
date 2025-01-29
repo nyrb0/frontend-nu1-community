@@ -12,19 +12,23 @@ import {
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import { COLORS } from '@/shared/constants/colors';
 import { postService } from '@/shared/services/post.service';
+import TagPeople from './tag-people/TagPeople';
+import TagUserBlock from './TagUserBlock';
 
 const PostEdit = () => {
     const [value, setValue] = useState('');
     const [files, setFiles] = useState<File | null>(null);
+    const [isVisibleTagPeople, setIsVisibleTagPeople] = useState(false);
+    const [tagArrayUsername, setTagArrayUsername] = useState<string[]>([]);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
-            setFiles(event.target.files[0]); // Сохраняем выбранный файл
+            setFiles(event.target.files[0]);
         }
     };
+
     const addPost = async (e: any) => {
         e.preventDefault();
-
         try {
             await postService.create({ description: value, imageUrl: files });
             location.reload();
@@ -32,6 +36,7 @@ const PostEdit = () => {
             console.error(err);
         }
     };
+
     return (
         <StyledPostEditBackgroundOut>
             <form onSubmit={addPost}>
@@ -44,7 +49,7 @@ const PostEdit = () => {
                         />
                     </div>
                     <StyledPostEditTextArea className='df aic'>
-                        <IconPerson />
+                        <IconPerson onClick={() => setIsVisibleTagPeople(true)} />
                         <label htmlFor='files'>
                             <IconPicture />
                         </label>
@@ -52,6 +57,11 @@ const PostEdit = () => {
                     </StyledPostEditTextArea>
                 </StyledPostEditBackgroundInner>
                 <div style={{ marginTop: 10 }}>{files ? <StyledPostSelectImage src={URL.createObjectURL(files)} alt='' /> : null}</div>
+                <div className='df' style={{ gap: 10, marginTop: 5 }}>
+                    {tagArrayUsername.map(username => (
+                        <TagUserBlock data={username} onDelete={() => setTagArrayUsername(prev => prev.filter(tag => tag !== username))} />
+                    ))}
+                </div>
                 <StyledPostButtons className={'df jce'}>
                     <span className='df'>
                         <PrimaryButton color={COLORS.WHITE} background={COLORS.TRANSPARENT}>
@@ -63,6 +73,10 @@ const PostEdit = () => {
                     </span>
                 </StyledPostButtons>
             </form>
+
+            {isVisibleTagPeople && (
+                <TagPeople onClose={() => setIsVisibleTagPeople(false)} onChange={username => setTagArrayUsername(prev => [username, ...prev])} />
+            )}
         </StyledPostEditBackgroundOut>
     );
 };
