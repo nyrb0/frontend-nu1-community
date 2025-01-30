@@ -2,7 +2,7 @@ import AuthInput from './ui/input';
 import styles from './auth.module.scss';
 
 import { COLORS } from '@/shared/constants/colors';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { IAuth } from '@/shared/types/auth.types';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
@@ -10,11 +10,15 @@ import { authService } from '@/shared/services/auth.service';
 
 const Regis = () => {
     const { handleSubmit, control } = useForm<IAuth>();
+    const toRoute = useNavigate();
 
     const regisHandler: SubmitHandler<IAuth> = async data => {
         try {
             if (data) {
-                authService.auth('regis', data);
+                const response = await authService.auth('regis', data);
+                if (response.status === 200) {
+                    toRoute('/');
+                }
             }
         } catch (err) {
             console.log(err);

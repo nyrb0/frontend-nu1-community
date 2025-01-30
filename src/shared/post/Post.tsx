@@ -2,16 +2,13 @@ import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import AvatarProfile from '../profile/AvatarProfile';
 import { StyledPost, StyledPostDo, StyledPostProfile, StyledPostsDescription } from './posts.styled';
 import { PulicationUserI } from '@/shared/types/publication.types';
-// import LikeIcon from './UI/icon/like-icon.svg';
-// import ShareIcon from './UI/icon/share-icon.svg';
-// import CommentIcon from './UI/icon/comment-icon.svg';
-// import SaveIcon from './UI/icon/save-icon.svg';
-// import ThreePoints from './UI/icon/three-points.svg';
 import HashtagText from './HashTags';
 import IconComment from './UI/icon/IconComment';
 import IconLike from './UI/icon/IconLike';
 import IconShare from './UI/icon/IconShare';
 import IconSave from './UI/icon/IconSave';
+import { useEffect, useState } from 'react';
+import { likePostService } from './service/likePost.service';
 
 interface IPost {
     data: PulicationUserI;
@@ -19,6 +16,25 @@ interface IPost {
 
 const Post: React.FC<IPost> = ({ data }) => {
     const isFullName = data.user.lastName || data.user.name;
+    const [count, setCount] = useState<{ like: number; comment: number; share: number }>({ like: data.countLike, comment: 0, share: 0 });
+
+    const handleLike = async () => {
+        const postId = data.id;
+        const isLiked = await likePostService.checkLiked(postId);
+        if (isLiked) {
+            likePostService.unLiked(postId);
+            setCount(prev => ({ ...prev, like: prev.like - 1 }));
+            data.liked = false;
+            // setCount();
+        } else {
+            likePostService.liked(postId);
+            setCount(prev => ({ ...prev, like: prev.like + 1 }));
+            data.liked = true;
+        }
+    };
+
+    useEffect(() => {}, []);
+
     return (
         <div style={{ paddingBottom: 50 }}>
             <StyledPostProfile className='df aic jcsb'>
@@ -44,16 +60,16 @@ const Post: React.FC<IPost> = ({ data }) => {
             <StyledPostDo className='df jcsb'>
                 <ul className='df'>
                     <li>
-                        <IconLike />
-                        <span>{data.countLike} лайки</span>
+                        <IconLike isLiked={data.liked} onClick={handleLike} />
+                        <span>{count.like} лайки</span>
                     </li>
                     <li>
                         <IconComment />
-                        <span>{data.commentsCount} комментарии</span>
+                        <span>{count.comment} комментарии</span>
                     </li>
                     <li>
                         <IconShare />
-                        <span>{12} поделились</span>
+                        <span>{count.share} поделились</span>
                     </li>
                 </ul>
                 <IconSave />

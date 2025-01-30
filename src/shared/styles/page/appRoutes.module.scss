@@ -12,11 +12,14 @@
 }
 
 .routes {
-    max-width: 850px;
     height: 100vh;
 
     overflow-y: scroll;
     &::-webkit-scrollbar {
         display: none;
     }
+}
+
+.maxWith {
+    max-width: 850px;
 }

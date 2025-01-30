@@ -1,7 +1,7 @@
 import AuthInput from './ui/input';
 import styles from './auth.module.scss';
 import { COLORS } from '@/shared/constants/colors';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { IAuth } from '@/shared/types/auth.types';
 import { authService } from '@/shared/services/auth.service';
@@ -10,16 +10,21 @@ import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 const LogIn = () => {
     const { handleSubmit, control } = useForm<IAuth>();
 
+    const toRoute = useNavigate();
+
     const loginHandler: SubmitHandler<IAuth> = async data => {
         try {
-            authService.auth('login', data);
+            const response = await authService.auth('login', data);
+            if (response.status === 200) {
+                toRoute('/');
+            }
         } catch (err) {
             console.log(err);
         }
     };
     return (
         <div className={`${styles.auth}`}>
-            <div className={`${styles.right} df jcc`}>
+            <div className={`df jcc`}>
                 <div>
                     <h1>Войти</h1>
                     <form onSubmit={handleSubmit(loginHandler)}>
@@ -32,7 +37,6 @@ const LogIn = () => {
                                 render={({ field }) => <AuthInput label='Имя пользователя' {...field} />}
                             />
                         </div>
-
                         <div className={styles.input}>
                             <Controller
                                 name='password'
@@ -42,9 +46,7 @@ const LogIn = () => {
                                 render={({ field }) => <AuthInput label={'Пароль'} type='password' {...field} />}
                             />
                         </div>
-
                         <div className={`${styles.forgetPassword} df jce`}>Забыли пароль?</div>
-
                         <div className={styles.button}>
                             <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL} type='submit'>
                                 Войти
