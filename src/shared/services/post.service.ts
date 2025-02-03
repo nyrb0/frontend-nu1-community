@@ -21,6 +21,11 @@ export const postService = {
         return response.data;
     },
 
+    async getAllLikeUser(): Promise<PulicationUserI[]> {
+        const response = await axiosServiceAuth.get('/posts/likes');
+        return response.data;
+    },
+
     async deletePost(postId: string): Promise<PulicationUserI> {
         const response = await axiosServiceAuth.delete(`/posts/${postId}`);
         return response.data;

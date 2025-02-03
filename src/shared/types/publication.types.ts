@@ -10,6 +10,7 @@ export interface PulicationUserI extends BaseI {
     commentsCount: number;
     countLike: number;
     liked: boolean;
+    saved: boolean;
 
     user: Omit<IUser, 'email'>;
 }

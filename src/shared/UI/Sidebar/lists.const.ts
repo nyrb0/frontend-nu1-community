@@ -34,6 +34,11 @@ export const sidebarLists: { label: string; icon: string; link: string }[] = [
         link: PAGES.GROUPS,
     },
     {
+        label: 'Вакансии',
+        icon: GroupIcon,
+        link: PAGES.VACANCY,
+    },
+    {
         label: 'Подписки',
         icon: SubsIcon,
         link: PAGES.SUBSCRIPTIONS,

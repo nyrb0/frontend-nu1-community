@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { listsFilterPosts } from './ListFilter';
+import { Link } from 'react-router-dom';
 
 const StyledPostFilter = styled.li<{ isSelected: boolean }>`
     padding-bottom: 8px;
@@ -27,7 +28,7 @@ const FilterPosts: React.FC<IFilterPosts> = ({ data, onChange }) => {
             <ul className='df jcsb'>
                 {listsFilterPosts.map(list => (
                     <StyledPostFilter onClick={() => onChange(list.name)} key={list.name} isSelected={list.name === data}>
-                        {list.name}
+                        <Link to={`${list.path}`}>{list.name}</Link>
                     </StyledPostFilter>
                 ))}
             </ul>

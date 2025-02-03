@@ -15,6 +15,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ru';
 import OptionsPost from './options/OptionsPost';
+import { savePostService } from './service/savePost.service';
 
 dayjs.locale('ru');
 dayjs.extend(relativeTime);
@@ -24,7 +25,12 @@ interface IPost {
 
 const Post: React.FC<IPost> = ({ data }) => {
     const isFullName = data.user.lastName || data.user.name;
-    const [count, setCount] = useState<{ like: number; comment: number; share: number }>({ like: data.countLike, comment: 0, share: 0 });
+    const [count, setCount] = useState<{ like: number; comment: number; share: number; save: number }>({
+        like: data.countLike,
+        comment: 0,
+        share: 0,
+        save: 0,
+    });
     const [isVisibleOptions, setIsVisibleOptions] = useState(false);
     const handleLike = async () => {
         const postId = data.id;
@@ -37,6 +43,20 @@ const Post: React.FC<IPost> = ({ data }) => {
             likePostService.liked(postId);
             setCount(prev => ({ ...prev, like: prev.like + 1 }));
             data.liked = true;
+        }
+    };
+
+    const handleSave = async () => {
+        const postId = data.id;
+        const isSaved = await savePostService.checkSaved(postId);
+        if (isSaved) {
+            savePostService.unSaved(postId);
+            setCount(prev => ({ ...prev, save: prev.save - 1 }));
+            data.saved = false;
+        } else {
+            savePostService.saved(postId);
+            setCount(prev => ({ ...prev, save: prev.save + 1 }));
+            data.saved = true;
         }
     };
 
@@ -97,7 +117,7 @@ const Post: React.FC<IPost> = ({ data }) => {
                     </li>
                 </ul>
 
-                <IconSave />
+                <IconSave isSave={data.saved} onClick={handleSave} />
             </StyledPostDo>
         </div>
     );
