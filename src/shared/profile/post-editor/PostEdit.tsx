@@ -13,7 +13,7 @@ import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import { COLORS } from '@/shared/constants/colors';
 import { postService } from '@/shared/services/post.service';
 import TagPeople from './tag-people/TagPeople';
-import TagUserBlock from './TagUserBlock';
+import TagUserBlock from './tag-people/TagUserBlock';
 
 const PostEdit = () => {
     const [value, setValue] = useState('');

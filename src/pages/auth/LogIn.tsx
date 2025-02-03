@@ -17,6 +17,7 @@ const LogIn = () => {
             const response = await authService.auth('login', data);
             if (response.status === 200) {
                 toRoute('/');
+                location.reload();
             }
         } catch (err) {
             console.log(err);

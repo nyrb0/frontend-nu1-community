@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AppRouter from './shared/routes/AppRouter';
 import { authService } from './shared/services/auth.service';
 import AuthRoutes from './shared/routes/AuthRoutes';
@@ -9,6 +9,7 @@ import { EnumTokens } from './shared/services/auth-token.service';
 function App() {
     const [isAuthChecked, setIsAuthChecked] = useState(false);
     const navigate = useNavigate();
+    const route = useLocation();
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -17,12 +18,14 @@ function App() {
             if (!isAuth || cookie.length <= 0) {
                 navigate('/auth/login');
             } else {
+                const isAuthRoute = await route.pathname.includes('/auth');
+                if (isAuthRoute) navigate('/');
                 setIsAuthChecked(true);
             }
         };
 
         checkAuth();
-    }, [navigate]);
+    }, []);
 
     if (!isAuthChecked) {
         return <AuthRoutes />;

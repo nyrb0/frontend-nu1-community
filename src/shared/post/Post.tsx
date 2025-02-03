@@ -4,12 +4,20 @@ import { StyledPost, StyledPostDo, StyledPostProfile, StyledPostsDescription } f
 import { PulicationUserI } from '@/shared/types/publication.types';
 import HashtagText from './HashTags';
 import IconComment from './UI/icon/IconComment';
+import IconThreePoints from './UI/icon/IconThreePoints';
 import IconLike from './UI/icon/IconLike';
 import IconShare from './UI/icon/IconShare';
 import IconSave from './UI/icon/IconSave';
 import { useEffect, useState } from 'react';
 import { likePostService } from './service/likePost.service';
 
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/ru';
+import OptionsPost from './options/OptionsPost';
+
+dayjs.locale('ru');
+dayjs.extend(relativeTime);
 interface IPost {
     data: PulicationUserI;
 }
@@ -17,7 +25,7 @@ interface IPost {
 const Post: React.FC<IPost> = ({ data }) => {
     const isFullName = data.user.lastName || data.user.name;
     const [count, setCount] = useState<{ like: number; comment: number; share: number }>({ like: data.countLike, comment: 0, share: 0 });
-
+    const [isVisibleOptions, setIsVisibleOptions] = useState(false);
     const handleLike = async () => {
         const postId = data.id;
         const isLiked = await likePostService.checkLiked(postId);
@@ -25,7 +33,6 @@ const Post: React.FC<IPost> = ({ data }) => {
             likePostService.unLiked(postId);
             setCount(prev => ({ ...prev, like: prev.like - 1 }));
             data.liked = false;
-            // setCount();
         } else {
             likePostService.liked(postId);
             setCount(prev => ({ ...prev, like: prev.like + 1 }));
@@ -33,10 +40,14 @@ const Post: React.FC<IPost> = ({ data }) => {
         }
     };
 
+    const timeAgo = dayjs(data.createdAt).fromNow();
+
     useEffect(() => {}, []);
 
     return (
-        <div style={{ paddingBottom: 50 }}>
+        <div style={{ paddingBottom: 50, position: 'relative' }}>
+            {isVisibleOptions && <OptionsPost postId={data.id} cancellation={() => setIsVisibleOptions(false)} />}
+
             <StyledPostProfile className='df aic jcsb'>
                 <div className='df aic'>
                     <AvatarProfile width={60} height={60} src={data.user.avatarUrl ? `${baseUrlAws}/${data?.user.avatarUrl}` : ''} />
@@ -49,10 +60,23 @@ const Post: React.FC<IPost> = ({ data }) => {
                         <p style={!isFullName ? { color: 'var(--white-color)', fontWeight: 600, fontSize: 16 } : {}}>@{data.user.username}</p>
                     </div>
                 </div>
-                <IconComment />
+                <div>
+                    <div className='df jce'>
+                        <IconThreePoints
+                            onClick={() => (isVisibleOptions ? setIsVisibleOptions(false) : setIsVisibleOptions(true))}
+                            style={{ marginBottom: 5 }}
+                        />
+                    </div>
+                    <p>{timeAgo}</p>
+                </div>
             </StyledPostProfile>
+
             <StyledPostsDescription>
-                <HashtagText data={data.description} onHashtagClick={(hashTags: string) => alert(hashTags)} />
+                <HashtagText
+                    onMentionClick={mention => alert(mention)}
+                    data={data.description}
+                    onHashtagClick={(hashTags: string) => alert(hashTags)}
+                />
             </StyledPostsDescription>
 
             <StyledPost src={data.imageUrl ? `${baseUrlAws}/${data?.imageUrl}` : ''} />
@@ -72,6 +96,7 @@ const Post: React.FC<IPost> = ({ data }) => {
                         <span>{count.share} поделились</span>
                     </li>
                 </ul>
+
                 <IconSave />
             </StyledPostDo>
         </div>

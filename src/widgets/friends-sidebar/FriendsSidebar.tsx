@@ -7,7 +7,7 @@ const FriendsSidebar = () => {
     return (
         <StyledFriendsSidebar>
             <StyledFriendsRecomend className={'df aic jcsb'}>
-                <p>Рекемендуемые</p>
+                <p>Рекомендуемые</p>
                 <button className='df'>
                     Больше <ArrowUpIcon fill={COLORS.NORMAL} />
                 </button>

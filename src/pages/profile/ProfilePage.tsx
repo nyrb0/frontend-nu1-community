@@ -5,12 +5,15 @@ import { useState } from 'react';
 import { listsFilterPosts } from '@/shared/profile/ListFilter';
 import Posts from '@/shared/post/Posts';
 import { authService } from '@/shared/services/auth.service';
+import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
     const [postsType, setPostsType] = useState(listsFilterPosts[0].name);
+    const navigate = useNavigate();
 
     const logout = () => {
         authService.logout();
+        navigate('/auth/login');
     };
 
     return (

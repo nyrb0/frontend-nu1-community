@@ -20,4 +20,13 @@ export const postService = {
         const response = await axiosServiceAuth.get('/posts');
         return response.data;
     },
+
+    async deletePost(postId: string): Promise<PulicationUserI> {
+        const response = await axiosServiceAuth.delete(`/posts/${postId}`);
+        return response.data;
+    },
+    async updatePost(postId: string): Promise<PulicationUserI> {
+        const response = await axiosServiceAuth.patch(`/posts/${postId}`, {});
+        return response.data;
+    },
 };

@@ -14,7 +14,7 @@ export const StyledHeaderImage = styled.div`
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: url('https://static1.cbrimages.com/wordpress/wp-content/uploads/2024/10/10-things-korra-objectively-does-better-than-avatar-the-last-airbender.jpg');
+        background-image: url('https://ru-wotp.lesta.ru/dcont/fb/image/moon_rose_light.jpg');
         background-size: cover;
         background-position: center;
         filter: blur(5px);

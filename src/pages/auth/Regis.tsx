@@ -18,6 +18,7 @@ const Regis = () => {
                 const response = await authService.auth('regis', data);
                 if (response.status === 200) {
                     toRoute('/');
+                    location.reload();
                 }
             }
         } catch (err) {
