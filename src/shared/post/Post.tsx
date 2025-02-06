@@ -25,6 +25,7 @@ interface IPost {
 
 const Post: React.FC<IPost> = ({ data }) => {
     const isFullName = data.user.lastName || data.user.name;
+
     const [count, setCount] = useState<{ like: number; comment: number; share: number; save: number }>({
         like: data.countLike,
         comment: 0,

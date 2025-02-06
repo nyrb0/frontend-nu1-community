@@ -7,7 +7,6 @@ export const postService = {
         if (body.title) formData.append('title', body.title);
         if (body.description) formData.append('description', body.description);
         if (body.imageUrl) formData.append('imageUrl', body.imageUrl);
-
         const response = await axiosServiceAuth.post('/posts', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -23,6 +22,10 @@ export const postService = {
 
     async getAllLikeUser(): Promise<PulicationUserI[]> {
         const response = await axiosServiceAuth.get('/posts/likes');
+        return response.data;
+    },
+    async getAllSavedUser(): Promise<PulicationUserI[]> {
+        const response = await axiosServiceAuth.get('/posts/saves');
         return response.data;
     },
 
