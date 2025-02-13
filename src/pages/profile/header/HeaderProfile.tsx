@@ -7,9 +7,13 @@ import { COLORS } from '@/shared/constants/colors';
 
 import EditIcon from './icons/edit-icon.svg';
 import ShareIcon from './icons/share-icon.svg';
+import { useParams } from 'react-router-dom';
 
 const HeaderProfile = () => {
-    const { data: user } = useProfileQuery();
+    const { username } = useParams<{ username: string }>();
+
+    if (!username) throw new Error('not param username');
+    const { data: user } = useProfileQuery({ username });
     return (
         <div>
             <StyledHeaderImage></StyledHeaderImage>

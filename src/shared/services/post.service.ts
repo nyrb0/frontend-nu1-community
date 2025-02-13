@@ -15,8 +15,8 @@ export const postService = {
         return response.data;
     },
 
-    async getAllUser(): Promise<PulicationUserI[]> {
-        const response = await axiosServiceAuth.get('/posts');
+    async getAllUser(username: string): Promise<PulicationUserI[]> {
+        const response = await axiosServiceAuth.get(`/posts/${username}`);
         return response.data;
     },
 

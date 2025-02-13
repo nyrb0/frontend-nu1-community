@@ -17,6 +17,7 @@ const LogIn = () => {
             const response = await authService.auth('login', data);
             if (response.status === 200) {
                 toRoute('/');
+                localStorage.setItem('username', data.username);
                 location.reload();
             }
         } catch (err) {

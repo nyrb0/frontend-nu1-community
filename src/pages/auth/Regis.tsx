@@ -17,6 +17,7 @@ const Regis = () => {
             if (data) {
                 const response = await authService.auth('regis', data);
                 if (response.status === 200) {
+                    localStorage.setItem('username', data.username);
                     toRoute('/');
                     location.reload();
                 }

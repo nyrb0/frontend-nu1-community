@@ -8,6 +8,7 @@ import FriendsSidebar from '@/widgets/friends-sidebar/FriendsSidebar';
 import Posts from '../post/Posts';
 import LikesPage from '@/pages/profile/route-page/LikesPage';
 import SavePage from '@/pages/save/SavePage';
+import NotificationPage from '@/pages/notification';
 
 const AppRouter = () => {
     const route = useLocation();
@@ -19,6 +20,7 @@ const AppRouter = () => {
             <div className={`${styles.routes} ${isAuthRoute ? styles.maxWidth : ''}`}>
                 <Routes>
                     <Route path={PAGES.HOME} element={<HomePage />} />
+                    <Route path={PAGES.NOTIFICATION} element={<NotificationPage />} />
                     <Route path={PAGES.PROFILE} element={<ProfilePage />}>
                         <Route path={ROUTES_PROFILE.POSTS} element={<Posts />} />
                         <Route path={ROUTES_PROFILE.SAVES} element={<SavePage />} />

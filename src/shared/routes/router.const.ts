@@ -5,7 +5,7 @@ class Routes {
     HOME = this.BASE;
     REGIS = `${this.AUTH}/regis`;
     LOGIN = `${this.AUTH}/login`;
-    PROFILE = '/profile';
+    PROFILE = `/profile/:username`;
     NOTIFICATION = '/notification';
     MESSAGE = '/message';
     SAVES = '/saves';

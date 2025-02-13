@@ -7,6 +7,7 @@ import ProfileIcon from './icons/icon-profile.svg';
 import MoreIcon from './icons/icon-more.svg';
 import MessageIcon from './icons/icon-message.svg';
 import { PAGES } from '@/shared/routes/router.const';
+import { localUsername } from '@/pages/auth/username-local';
 export const sidebarLists: { label: string; icon: string; link: string }[] = [
     {
         label: 'Дом',
@@ -46,7 +47,7 @@ export const sidebarLists: { label: string; icon: string; link: string }[] = [
     {
         label: 'Профиль',
         icon: ProfileIcon,
-        link: PAGES.PROFILE,
+        link: `/profile/${localUsername.get()}`,
     },
     {
         label: 'Другие',

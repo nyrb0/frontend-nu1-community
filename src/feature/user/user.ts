@@ -6,9 +6,9 @@ export const userApi = createApi({
     reducerPath: 'userApi',
     baseQuery: axiosBaseQuery(),
     endpoints: builder => ({
-        profile: builder.query<IUser, void>({
-            query: () => ({
-                url: '/user',
+        profile: builder.query<IUser, { username: string }>({
+            query: ({ username }) => ({
+                url: `/user/${username}`,
                 method: 'GET',
             }),
         }),
