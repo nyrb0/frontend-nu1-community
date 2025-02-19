@@ -24,12 +24,6 @@ const StyledPerson = styled.div`
         color: #d3d3d3;
     }
     width: 100%;
-    & hr {
-        border: none;
-        height: 1px;
-        background-color: #f2f2f2;
-        transform: scaleY(0.5);
-    }
 `;
 
 interface INotificationPersons {

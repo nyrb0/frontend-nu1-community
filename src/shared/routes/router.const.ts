@@ -25,5 +25,12 @@ class RoutesProfile {
     LIKES = `${this.BASE}/likes`;
     VIDEOS = `${this.BASE}/saves`;
 }
-
 export const ROUTES_PROFILE = new RoutesProfile();
+
+class RoutesNotification {
+    private BASE: string = PAGES.NOTIFICATION;
+
+    SETTINGS = `${this.BASE}/settings`;
+}
+
+export const ROUTES_NOTIFICATION = new RoutesNotification();

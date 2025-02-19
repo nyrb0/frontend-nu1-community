@@ -135,7 +135,7 @@ a {
     --background-color3: #181818;
     --gray1:#a9a9a9;
 
-  --light: #fde7f7;
+    --light: #fde7f7;
 	--light-:hover: #fcdbf3;
 	--light-:active: #fab5e7;
 	--normal: #F59E0B;
@@ -167,6 +167,13 @@ button {
     border: none;
     outline: none;
     background-color: transparent;
+    padding: 0;
+}
+hr {
+    border: none;
+    height: 1px;
+    background-color: #f2f2f2;
+    transform: scaleY(0.1);
 }
 
 @font-face {
@@ -200,6 +207,12 @@ body {
     font-weight: 400;
     background-color: var(--background-color2);
 }
+
+.upperPadding{
+    margin-top: 25px;
+}
+
+
 
 .df {
     display: flex;
