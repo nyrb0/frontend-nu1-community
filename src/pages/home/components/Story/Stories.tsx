@@ -10,27 +10,22 @@ import 'swiper/css/pagination';
 
 const Stories = () => {
     return (
-        <div className='df' style={{ gap: 9, overflow: 'hidden' }}>
+        <div className='df' style={{ gap: 9, overflowX: 'auto' }}>
             <AddStory />
 
-            <div className='df' style={{ gap: 9, flex: 1 }}>
-                <Swiper
-                    slidesPerView={8}
-                    spaceBetween={4} // Уменьшил расстояние между слайдами
-                    freeMode={true}
-                    pagination={{ clickable: true }}
-                    modules={[FreeMode]}
-                    className='mySwiper'
-                >
-                    {Array(30)
-                        .fill(0)
-                        .map((_, i) => (
-                            <SwiperSlide key={i} style={{ width: '100%', maxWidth: 80 }}>
-                                <StoryBlock src='https://cs13.pikabu.ru/post_img/big/2023/02/13/8/1676296366191520185.png' username='nu1bo' />
-                            </SwiperSlide>
-                        ))}
-                </Swiper>
-            </div>
+            <Swiper
+                slidesPerView='auto'
+                spaceBetween={4} // Уменьшил расстояние между слайдами
+                freeMode={true}
+                modules={[FreeMode]}
+                className='mySwiper'
+            >
+                {Array.from({ length: 30 }, (_, i) => (
+                    <SwiperSlide key={i} style={{ maxWidth: 80 }}>
+                        <StoryBlock src='https://cs13.pikabu.ru/post_img/big/2023/02/13/8/1676296366191520185.png' username='nu1bo' />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
         </div>
     );
 };
