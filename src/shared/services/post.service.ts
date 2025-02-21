@@ -14,6 +14,10 @@ export const postService = {
         });
         return response.data;
     },
+    async getAllPost(skip: number, take: number): Promise<PulicationUserI[]> {
+        const response = await axiosServiceAuth.get(`posts/getall?skip=${skip}&take=${take}`);
+        return response.data;
+    },
 
     async getAllUser(username: string): Promise<PulicationUserI[]> {
         const response = await axiosServiceAuth.get(`/posts/${username}`);

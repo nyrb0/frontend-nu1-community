@@ -1,15 +1,32 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const StyledPost = styled.img`
+const paddingContent = css`
+    padding: 0 20px;
+`;
+
+export const StyledPostBackground = styled.div`
+    position: relative;
+    margin-bottom: 50px;
+    padding: 20px 0;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background-color: var(--background-color1);
+`;
+
+export const StyledPostImage = styled.img`
+    ${paddingContent}
+    box-sizing: border-box;
     margin: 14px 0 16px 0;
-    border-radius: 3 px;
+    height: 260px;
+    border-radius: 15px;
     width: 100%;
-    max-height: 412px;
+    max-height: 260px;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 `;
 
 export const StyledPostProfile = styled.div`
+    ${paddingContent}
     & div {
         gap: 12px;
         & p:first-child {
@@ -33,10 +50,12 @@ export const StyledPostProfile = styled.div`
 `;
 
 export const StyledPostsDescription = styled.div`
+    ${paddingContent}
     padding-bottom: 5px;
 `;
 
 export const StyledPostDo = styled.ul`
+    ${paddingContent}
     font-size: 14px;
     & ul {
         gap: 24px;
@@ -46,4 +65,9 @@ export const StyledPostDo = styled.ul`
         gap: 8px;
         align-items: center;
     }
+`;
+
+export const StyledPostComment = styled.div`
+    margin-top: 20px;
+    ${paddingContent}
 `;

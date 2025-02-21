@@ -1,6 +1,6 @@
 import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import AvatarProfile from '../profile/AvatarProfile';
-import { StyledPost, StyledPostDo, StyledPostProfile, StyledPostsDescription } from './posts.styled';
+import { StyledPostImage, StyledPostDo, StyledPostProfile, StyledPostsDescription, StyledPostBackground, StyledPostComment } from './posts.styled';
 import { PulicationUserI } from '@/shared/types/publication.types';
 import HashtagText from './HashTags';
 import IconComment from './UI/icon/IconComment';
@@ -16,6 +16,8 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ru';
 import OptionsPost from './options/OptionsPost';
 import { savePostService } from './service/savePost.service';
+import { useNavigate } from 'react-router-dom';
+import PostComment from './comment/PostComment';
 
 dayjs.locale('ru');
 dayjs.extend(relativeTime);
@@ -25,6 +27,8 @@ interface IPost {
 
 const Post: React.FC<IPost> = ({ data }) => {
     const isFullName = data.user.lastName || data.user.name;
+
+    const navigate = useNavigate();
 
     const [count, setCount] = useState<{ like: number; comment: number; share: number; save: number }>({
         like: data.countLike,
@@ -66,11 +70,11 @@ const Post: React.FC<IPost> = ({ data }) => {
     useEffect(() => {}, []);
 
     return (
-        <div style={{ paddingBottom: 50, position: 'relative' }}>
-            {isVisibleOptions && <OptionsPost postId={data.id} cancellation={() => setIsVisibleOptions(false)} />}
+        <StyledPostBackground>
+            {isVisibleOptions && <OptionsPost isOwner={true} postId={data.id} cancellation={() => setIsVisibleOptions(false)} />}
 
             <StyledPostProfile className='df aic jcsb'>
-                <div className='df aic'>
+                <div className='df aic' onClick={() => navigate(`profile/${data.user.username}`)}>
                     <AvatarProfile width={60} height={60} src={data.user.avatarUrl ? `${baseUrlAws}/${data?.user.avatarUrl}` : ''} />
                     <div>
                         {!isFullName ? null : (
@@ -92,6 +96,8 @@ const Post: React.FC<IPost> = ({ data }) => {
                 </div>
             </StyledPostProfile>
 
+            <hr />
+
             <StyledPostsDescription>
                 <HashtagText
                     onMentionClick={mention => alert(mention)}
@@ -100,7 +106,7 @@ const Post: React.FC<IPost> = ({ data }) => {
                 />
             </StyledPostsDescription>
 
-            <StyledPost src={data.imageUrl ? `${baseUrlAws}/${data?.imageUrl}` : ''} />
+            <StyledPostImage src={data.imageUrl ? `${baseUrlAws}/${data?.imageUrl}` : ''} />
 
             <StyledPostDo className='df jcsb'>
                 <ul className='df'>
@@ -120,7 +126,13 @@ const Post: React.FC<IPost> = ({ data }) => {
 
                 <IconSave isSave={data.saved} onClick={handleSave} />
             </StyledPostDo>
-        </div>
+
+            <hr />
+
+            <StyledPostComment>
+                <PostComment />
+            </StyledPostComment>
+        </StyledPostBackground>
     );
 };
 

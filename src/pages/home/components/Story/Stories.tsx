@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 
 const Stories = () => {
     return (
-        <div className='df' style={{ gap: 9, overflowX: 'auto' }}>
+        <div className='df' style={{ gap: 9 }}>
             <AddStory />
 
             <Swiper
