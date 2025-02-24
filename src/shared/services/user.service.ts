@@ -2,8 +2,8 @@ import { axiosServiceAuth } from './api/http';
 
 class UserService {
     BASE_URL = '/user';
-    async getProfileUser() {
-        const response = await axiosServiceAuth.get(this.BASE_URL);
+    async getProfileUser(username: string) {
+        const response = await axiosServiceAuth.get(`${this.BASE_URL}/${username}`);
         return response.data;
     }
 }

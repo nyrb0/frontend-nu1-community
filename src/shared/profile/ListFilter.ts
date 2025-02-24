@@ -1,9 +1,9 @@
-import { ROUTES_PROFILE } from '../routes/router.const';
+import { PAGES, ROUTES_PROFILE } from '../routes/router.const';
 
 export const listsFilterPosts = [
-    { name: 'Посты', path: ROUTES_PROFILE.POSTS },
-    { name: 'Подписки', path: ROUTES_PROFILE.CLOSE },
-    { name: 'Закрытые', path: ROUTES_PROFILE.CLOSE },
-    { name: 'Лайки', path: ROUTES_PROFILE.LIKES },
-    { name: 'Видео', path: ROUTES_PROFILE.VIDEOS },
+    { name: 'Посты', path: (s: string) => `${PAGES.PROFILE_LINK}/${s}` },
+    { name: 'Подписки', path: (s: string) => `${PAGES.PROFILE_LINK}/${s}/subs` },
+    { name: 'Закрытые', path: (s: string) => `${PAGES.PROFILE_LINK}/${s}/close` },
+    { name: 'Лайки', path: (s: string) => `${PAGES.PROFILE_LINK}/${s}/likes` },
+    { name: 'Видео', path: (s: string) => `${PAGES.PROFILE_LINK}/${s}/videos` },
 ];

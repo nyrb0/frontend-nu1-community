@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { listsFilterPosts } from './ListFilter';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const StyledPostFilter = styled.li<{ isSelected: boolean }>`
     padding-bottom: 8px;
@@ -23,12 +23,14 @@ interface IFilterPosts {
 }
 
 const FilterPosts: React.FC<IFilterPosts> = ({ data, onChange }) => {
+    const { username } = useParams<{ username: string }>();
+    if (!username) throw 'usernane not invalid';
     return (
         <>
             <ul className='df jcsb'>
                 {listsFilterPosts.map(list => (
                     <StyledPostFilter onClick={() => onChange(list.name)} key={list.name} isSelected={list.name === data}>
-                        <Link to={`${list.path}`}>{list.name}</Link>
+                        <Link to={`${list.path(username)}`}>{list.name}</Link>
                     </StyledPostFilter>
                 ))}
             </ul>

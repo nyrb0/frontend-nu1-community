@@ -37,6 +37,8 @@ const Post: React.FC<IPost> = ({ data }) => {
         save: 0,
     });
     const [isVisibleOptions, setIsVisibleOptions] = useState(false);
+    const [isVisiblePostOption, setIsVisiblePostOption] = useState({ comment: true, countLike: true });
+
     const handleLike = async () => {
         const postId = data.id;
         const isLiked = await likePostService.checkLiked(postId);
@@ -71,7 +73,15 @@ const Post: React.FC<IPost> = ({ data }) => {
 
     return (
         <StyledPostBackground>
-            {isVisibleOptions && <OptionsPost isOwner={true} postId={data.id} cancellation={() => setIsVisibleOptions(false)} />}
+            {isVisibleOptions && (
+                <OptionsPost
+                    setIsVisible={option => setIsVisiblePostOption(option)}
+                    isVisible={isVisiblePostOption}
+                    isOwner={data.isOwner}
+                    postId={data.id}
+                    cancellation={() => setIsVisibleOptions(false)}
+                />
+            )}
 
             <StyledPostProfile className='df aic jcsb'>
                 <div className='df aic' onClick={() => navigate(`profile/${data.user.username}`)}>
@@ -106,18 +116,21 @@ const Post: React.FC<IPost> = ({ data }) => {
                 />
             </StyledPostsDescription>
 
-            <StyledPostImage src={data.imageUrl ? `${baseUrlAws}/${data?.imageUrl}` : ''} />
+            {data.imageUrl && <StyledPostImage src={data.imageUrl ? `${baseUrlAws}/${data.imageUrl}` : ''} />}
 
             <StyledPostDo className='df jcsb'>
                 <ul className='df'>
                     <li>
                         <IconLike isLiked={data.liked} onClick={handleLike} />
-                        <span>{count.like} лайки</span>
+                        {isVisiblePostOption.countLike && <span>{count.like} лайки</span>}
                     </li>
-                    <li>
-                        <IconComment />
-                        <span>{count.comment} комментарии</span>
-                    </li>
+
+                    {isVisiblePostOption.comment && (
+                        <li>
+                            <IconComment />
+                            <span>{count.comment} комментарии</span>
+                        </li>
+                    )}
                     <li>
                         <IconShare />
                         <span>{count.share} поделились</span>

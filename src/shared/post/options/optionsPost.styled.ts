@@ -4,7 +4,7 @@ export const StyledOptionsPost = styled.ul`
     position: absolute;
     top: 10px;
     right: 20px;
-    background-color: var(--background-color1);
+    background-color: var(--background-color2);
     padding: 20px 0;
     width: 250px;
     height: auto;

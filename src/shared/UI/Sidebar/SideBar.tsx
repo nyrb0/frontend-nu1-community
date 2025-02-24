@@ -1,16 +1,16 @@
 import { StyledSidebar, StyledSidebarAvatar, StyledSidebarContent, StyledSidebarList, StyledTitleSocial } from './sidebar.styled';
 
 import { Link, useLocation } from 'react-router-dom';
-import { userService } from '@/shared/services/user.service';
-import { useProfileQuery } from '@/feature/user/user';
 import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import { sidebarLists } from './lists.const';
 import NoNameImage from '@/assets/user_noname.png';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
 
 const SideBar = () => {
     const route = useLocation();
-    console.log(userService.getProfileUser(), 'profile');
-    const { data: user } = useProfileQuery();
+
+    const { user } = useSelector((state: RootState) => state.user);
 
     return (
         <StyledSidebar className={''}>

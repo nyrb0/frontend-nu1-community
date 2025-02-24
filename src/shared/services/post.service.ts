@@ -20,16 +20,16 @@ export const postService = {
     },
 
     async getAllUser(username: string): Promise<PulicationUserI[]> {
-        const response = await axiosServiceAuth.get(`/posts/${username}`);
+        const response = await axiosServiceAuth.get(`/posts/user/${username}`);
         return response.data;
     },
 
-    async getAllLikeUser(): Promise<PulicationUserI[]> {
-        const response = await axiosServiceAuth.get('/posts/likes');
+    async getAllLikeUser(username: string): Promise<PulicationUserI[]> {
+        const response = await axiosServiceAuth.get(`/posts/likes/${username}`);
         return response.data;
     },
-    async getAllSavedUser(): Promise<PulicationUserI[]> {
-        const response = await axiosServiceAuth.get('/posts/saves');
+    async getAllSavedUser(username: string): Promise<PulicationUserI[]> {
+        const response = await axiosServiceAuth.get(`/posts/saves/${username}`);
         return response.data;
     },
 

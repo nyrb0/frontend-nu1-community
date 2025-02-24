@@ -16,7 +16,6 @@ export const StyledPostBackground = styled.div`
 export const StyledPostImage = styled.img`
     ${paddingContent}
     box-sizing: border-box;
-    margin: 14px 0 16px 0;
     height: 260px;
     border-radius: 15px;
     width: 100%;
@@ -50,11 +49,15 @@ export const StyledPostProfile = styled.div`
 `;
 
 export const StyledPostsDescription = styled.div`
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
     ${paddingContent}
     padding-bottom: 5px;
 `;
 
 export const StyledPostDo = styled.ul`
+    margin-top: 16px;
     ${paddingContent}
     font-size: 14px;
     & ul {

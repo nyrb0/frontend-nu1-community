@@ -6,6 +6,7 @@ class Routes {
     REGIS = `${this.AUTH}/regis`;
     LOGIN = `${this.AUTH}/login`;
     PROFILE = `/profile/:username`;
+    PROFILE_LINK = `/profile`;
     NOTIFICATION = '/notification';
     MESSAGE = '/message';
     SAVES = '/saves';

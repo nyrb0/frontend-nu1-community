@@ -1,13 +1,19 @@
 import Post from '@/shared/post/Post';
 import { postService } from '@/shared/services/post.service';
 import { PulicationUserI } from '@/shared/types/publication.types';
+import { RootState } from '@/store';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 const SavePage = () => {
     const [posts, setPosts] = useState<PulicationUserI[]>([]);
+
+    const { user } = useSelector((state: RootState) => state.user);
+    if (!user) throw 'user not found';
     const getPosts = async () => {
         try {
-            const response = await postService.getAllSavedUser();
+            const response = await postService.getAllSavedUser(user.username);
 
             setPosts(response);
         } catch (err) {
@@ -18,13 +24,7 @@ const SavePage = () => {
         getPosts();
     }, []);
 
-    return (
-        <div className='df fdc'>
-            {posts.map(post => (
-                <Post data={post} key={post.id} />
-            ))}
-        </div>
-    );
+    return <div className='df fdc'>{Boolean(posts.length) && posts.map(post => <Post data={post} key={post.id} />)}</div>;
 };
 
 export default SavePage;

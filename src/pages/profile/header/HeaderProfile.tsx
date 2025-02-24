@@ -14,9 +14,10 @@ const HeaderProfile = () => {
 
     if (!username) throw new Error('not param username');
     const { data: user } = useProfileQuery({ username });
+
     return (
         <div>
-            <StyledHeaderImage></StyledHeaderImage>
+            <StyledHeaderImage />
             <StyledHeaderEdits className={'df aic jcsb'}>
                 <div className={'df aic'}>
                     <AvatarProfile src={user?.avatarUrl ? `${baseUrlAws}/${user?.avatarUrl}` : ''} alt='avatar' />

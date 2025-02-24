@@ -9,14 +9,16 @@ interface IOptionsPost {
     cancellation: () => void;
     postId: string;
     isOwner: boolean;
+    isVisible: { comment: boolean; countLike: boolean };
+    setIsVisible: (isVisible: { comment: boolean; countLike: boolean }) => void;
 }
 
-const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner }) => {
+const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, setIsVisible, isVisible }) => {
     const [isDeletePost, setIsDeletePost] = useState(false);
 
     return (
         <>
-            {!isOwner ? (
+            {isOwner ? (
                 !isDeletePost ? (
                     <StyledOptionsPost className={'df aic fdc'}>
                         <li
@@ -27,8 +29,12 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner }) 
                             Удалить
                         </li>
                         <li>Редактировать</li>
-                        <li>Выключить комментарии</li>
-                        <li>Скрывать количество лайков</li>
+                        <li onClick={() => setIsVisible({ ...isVisible, comment: !isVisible.comment })}>
+                            {isVisible.comment ? 'Выключить' : 'Включить'} комментарии
+                        </li>
+                        <li onClick={() => setIsVisible({ ...isVisible, countLike: !isVisible.countLike })}>
+                            {isVisible.countLike ? 'Скрывать' : 'Показать'} количество лайков
+                        </li>
                         <li onClick={cancellation}>Отмена</li>
                     </StyledOptionsPost>
                 ) : (

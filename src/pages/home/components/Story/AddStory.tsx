@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const StyledAdd = styled.button`
-    width: 76px;
+    max-width: 76px;
+    width: 100%;
     height: 91px;
     background-color: var(--background-color1);
     border-radius: 8px;

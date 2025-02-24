@@ -49,7 +49,6 @@ export const StyledProfileHeaderButtons = styled.div`
 `;
 
 export const StyledHeaderEdits = styled.div`
-    width: 770px;
     padding: 0 16px 0 58px;
     transform: translateY(-35px);
 `;

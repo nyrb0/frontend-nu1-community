@@ -12,6 +12,8 @@ export interface PulicationUserI extends BaseI {
     liked: boolean;
     saved: boolean;
 
+    isOwner: boolean;
+
     user: Omit<IUser, 'email'>;
 }
 
