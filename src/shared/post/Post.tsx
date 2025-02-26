@@ -145,7 +145,7 @@ const Post: React.FC<IPost> = ({ data }) => {
             <hr />
 
             <StyledPostComment>
-                <PostComment />
+                <PostComment disabled={isVisiblity.showComments} />
             </StyledPostComment>
         </StyledPostBackground>
     );

@@ -14,6 +14,8 @@ class Routes {
     SUBSCRIPTIONS = '/subscriptions';
     VACANCY = '/vacancy';
     OTHER = '/other';
+
+    POST_PAGE = '/post/:postId';
 }
 export const PAGES = new Routes();
 

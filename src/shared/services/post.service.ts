@@ -23,6 +23,10 @@ export const postService = {
         const response = await axiosServiceAuth.get(`/posts/user/${username}`);
         return response.data;
     },
+    async getPost(postId: string): Promise<PulicationUserI> {
+        const response = await axiosServiceAuth.get(`/posts/${postId}`);
+        return response.data;
+    },
 
     async getAllLikeUser(username: string): Promise<PulicationUserI[]> {
         const response = await axiosServiceAuth.get(`/posts/likes/${username}`);

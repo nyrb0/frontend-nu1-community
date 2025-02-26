@@ -51,7 +51,12 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, is
                             Удалить
                         </li>
                         <li>Редактировать</li>
-                        <li onClick={() => handleToggleVisibility('showComments')}>
+                        <li
+                            onClick={() => {
+                                handleToggleVisibility('showComments');
+                                cancellation();
+                            }}
+                        >
                             {isVisible.showComments ? 'Выключить' : 'Включить'} комментарии
                         </li>
                         <li onClick={() => handleToggleVisibility('showLikes')}>{isVisible.showLikes ? 'Скрывать' : 'Показать'} количество лайков</li>

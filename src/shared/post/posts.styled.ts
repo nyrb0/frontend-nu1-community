@@ -59,7 +59,7 @@ export const StyledPostsDescription = styled.div`
 export const StyledPostDo = styled.ul`
     margin-top: 16px;
     ${paddingContent}
-    font-size: 14px;
+    font-size: 13px;
     & ul {
         gap: 24px;
     }

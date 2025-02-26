@@ -10,6 +10,7 @@ import SavePage from '@/pages/save/SavePage';
 import NotificationPage from '@/pages/notification';
 import SettingsNotificationPage from '@/pages/notification/settings';
 import HomePage from '@/pages/home/HomePage';
+import PostPage from '@/pages/post/PostPage';
 
 const AppRouter = () => {
     const route = useLocation();
@@ -33,6 +34,7 @@ const AppRouter = () => {
                         <Route path={ROUTES_PROFILE.LIKES} element={<LikesPage />} />
                     </Route>
                     <Route path={PAGES.SAVES} element={<SavePage />} />
+                    <Route path={PAGES.POST_PAGE} element={<PostPage />} />
                 </Routes>
             </div>
             <div className={`${isAuthRoute ? styles.sidebar2 : ''}`}>{isAuthRoute && <FriendsSidebar />}</div>

@@ -16,8 +16,8 @@ const StyledInput = styled.input`
 
 interface ICommentInput extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const CommentInput: React.FC<ICommentInput> = ({ placeholder = 'Пишишите свой комментарии...', ...props }) => {
-    return <StyledInput {...props} type={'text'} placeholder={placeholder} />;
+const CommentInput: React.FC<ICommentInput> = ({ ...props }) => {
+    return <StyledInput {...props} type={'text'} />;
 };
 
 export default CommentInput;
