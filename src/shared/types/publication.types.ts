@@ -7,6 +7,8 @@ export interface PulicationUserI extends BaseI {
     description?: string;
     views: number;
     imageUrl: string;
+    showLikes: boolean;
+    showComments: boolean;
     commentsCount: number;
     countLike: number;
     liked: boolean;
@@ -17,7 +19,12 @@ export interface PulicationUserI extends BaseI {
     user: Omit<IUser, 'email'>;
 }
 
-export interface IPublicationUser {}
+export interface IUpdatePublication {
+    showLikes: boolean;
+    showComments: boolean;
+    title?: string;
+    description?: string;
+}
 
 export interface PostUserI {
     title?: string;

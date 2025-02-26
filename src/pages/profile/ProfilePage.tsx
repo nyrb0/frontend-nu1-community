@@ -17,7 +17,7 @@ const ProfilePage = () => {
     };
 
     return (
-        <div style={{ height: 1200 }}>
+        <div>
             <div>
                 <HeaderProfile />
             </div>

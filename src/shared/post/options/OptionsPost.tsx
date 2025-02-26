@@ -5,20 +5,42 @@ import { useState } from 'react';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import { COLORS } from '@/shared/constants/colors';
 
+type TypeisVisibility = { showComments: boolean; showLikes: boolean };
+
 interface IOptionsPost {
     cancellation: () => void;
     postId: string;
     isOwner: boolean;
-    isVisible: { comment: boolean; countLike: boolean };
-    setIsVisible: (isVisible: { comment: boolean; countLike: boolean }) => void;
+    isVisible: TypeisVisibility;
+    setIsVisiblity: (prev: TypeisVisibility) => void;
+    onSave: () => void;
+    isSaved: boolean;
 }
 
-const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, setIsVisible, isVisible }) => {
+const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, isVisible, setIsVisiblity, onSave, isSaved }) => {
     const [isDeletePost, setIsDeletePost] = useState(false);
+
+    const sendServerVisible = async (body: TypeisVisibility) => {
+        try {
+            return await postService.updateVisibility(postId, body);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const handleToggleVisibility = (field: 'showComments' | 'showLikes') => {
+        setIsVisiblity({
+            ...isVisible,
+            [field]: !isVisible[field],
+        });
+
+        // Изменяем видемость поста
+        sendServerVisible(isVisible);
+    };
 
     return (
         <>
-            {isOwner ? (
+            {!isOwner ? (
                 !isDeletePost ? (
                     <StyledOptionsPost className={'df aic fdc'}>
                         <li
@@ -29,17 +51,15 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, se
                             Удалить
                         </li>
                         <li>Редактировать</li>
-                        <li onClick={() => setIsVisible({ ...isVisible, comment: !isVisible.comment })}>
-                            {isVisible.comment ? 'Выключить' : 'Включить'} комментарии
+                        <li onClick={() => handleToggleVisibility('showComments')}>
+                            {isVisible.showComments ? 'Выключить' : 'Включить'} комментарии
                         </li>
-                        <li onClick={() => setIsVisible({ ...isVisible, countLike: !isVisible.countLike })}>
-                            {isVisible.countLike ? 'Скрывать' : 'Показать'} количество лайков
-                        </li>
+                        <li onClick={() => handleToggleVisibility('showLikes')}>{isVisible.showLikes ? 'Скрывать' : 'Показать'} количество лайков</li>
                         <li onClick={cancellation}>Отмена</li>
                     </StyledOptionsPost>
                 ) : (
                     <Modal onClose={() => setIsDeletePost(false)}>
-                        <p>Дейвительно хотите удалить?</p>
+                        <p>Действительно хотите удалить?</p>
                         <div className='df jcsb' style={{ marginTop: 10 }}>
                             <PrimaryButton
                                 color={COLORS.WHITE}
@@ -68,9 +88,23 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, se
             ) : (
                 <StyledOptionsPost className={'df aic fdc'}>
                     <li>Пожаловаться</li>
+
                     <li>Поделиться</li>
-                    <li>Добавить в изранное</li>
-                    <li>Копировать ссылку</li>
+                    <li
+                        onClick={() => {
+                            onSave();
+                            cancellation();
+                        }}
+                    >
+                        {!isSaved ? 'Добавить в избранное' : 'Удалить из избранных'}
+                    </li>
+                    <li
+                        onClick={() => {
+                            cancellation();
+                        }}
+                    >
+                        Копировать ссылку
+                    </li>
                     <li>Перейти к публикации</li>
                     <li onClick={cancellation}>Отмена</li>
                 </StyledOptionsPost>

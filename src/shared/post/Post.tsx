@@ -29,15 +29,15 @@ const Post: React.FC<IPost> = ({ data }) => {
     const isFullName = data.user.lastName || data.user.name;
 
     const navigate = useNavigate();
-
     const [count, setCount] = useState<{ like: number; comment: number; share: number; save: number }>({
         like: data.countLike,
         comment: 0,
         share: 0,
         save: 0,
     });
+
     const [isVisibleOptions, setIsVisibleOptions] = useState(false);
-    const [isVisiblePostOption, setIsVisiblePostOption] = useState({ comment: true, countLike: true });
+    const [isVisiblity, setIsVisiblity] = useState({ showComments: data.showComments, showLikes: data.showLikes });
 
     const handleLike = async () => {
         const postId = data.id;
@@ -75,11 +75,13 @@ const Post: React.FC<IPost> = ({ data }) => {
         <StyledPostBackground>
             {isVisibleOptions && (
                 <OptionsPost
-                    setIsVisible={option => setIsVisiblePostOption(option)}
-                    isVisible={isVisiblePostOption}
+                    isSaved={data.saved}
+                    onSave={() => handleSave()}
                     isOwner={data.isOwner}
                     postId={data.id}
                     cancellation={() => setIsVisibleOptions(false)}
+                    isVisible={isVisiblity}
+                    setIsVisiblity={prev => setIsVisiblity(prev)}
                 />
             )}
 
@@ -122,10 +124,10 @@ const Post: React.FC<IPost> = ({ data }) => {
                 <ul className='df'>
                     <li>
                         <IconLike isLiked={data.liked} onClick={handleLike} />
-                        {isVisiblePostOption.countLike && <span>{count.like} лайки</span>}
+                        {isVisiblity.showLikes && <span>{count.like} лайки</span>}
                     </li>
 
-                    {isVisiblePostOption.comment && (
+                    {isVisiblity.showComments && (
                         <li>
                             <IconComment />
                             <span>{count.comment} комментарии</span>

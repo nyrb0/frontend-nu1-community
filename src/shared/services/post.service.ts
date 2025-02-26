@@ -1,4 +1,4 @@
-import { PostUserI, PulicationUserI } from '../types/publication.types';
+import { IUpdatePublication, PostUserI, PulicationUserI } from '../types/publication.types';
 import { axiosServiceAuth } from './api/http';
 
 export const postService = {
@@ -39,6 +39,10 @@ export const postService = {
     },
     async updatePost(postId: string): Promise<PulicationUserI> {
         const response = await axiosServiceAuth.patch(`/posts/${postId}`, {});
+        return response.data;
+    },
+    async updateVisibility(postId: string, body: IUpdatePublication): Promise<PulicationUserI> {
+        const response = await axiosServiceAuth.patch(`/posts/${postId}`, { ...body });
         return response.data;
     },
 };
