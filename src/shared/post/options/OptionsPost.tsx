@@ -38,9 +38,18 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, is
         sendServerVisible(isVisible);
     };
 
+    const copyLink = async () => {
+        const url = `${window.location.href}post/${postId}`;
+        try {
+            await navigator.clipboard.writeText(url);
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     return (
         <>
-            {!isOwner ? (
+            {isOwner ? (
                 !isDeletePost ? (
                     <StyledOptionsPost className={'df aic fdc'}>
                         <li
@@ -106,9 +115,10 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, is
                     <li
                         onClick={() => {
                             cancellation();
+                            copyLink();
                         }}
                     >
-                        Копировать ссылку
+                        Скопировать ссылку
                     </li>
                     <li>Перейти к публикации</li>
                     <li onClick={cancellation}>Отмена</li>
