@@ -59,7 +59,7 @@ const TagPeople: React.FC<ITagPeople> = ({ onChange, onClose }) => {
                     ))}
                 </div>
                 <div className='df jcc aie'>
-                    <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL} borderRadios='7px' type='submit'>
+                    <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL} radius='7px' type='submit'>
                         Готово
                     </PrimaryButton>
                 </div>

@@ -23,7 +23,7 @@ const PostComment: FC<IPostComment> = ({ disabled }) => {
     return (
         <div className='df aic jcsb'>
             <div className='df' style={{ gap: 8 }}>
-                <AvatarProfile src='https://klike.net/uploads/posts/2022-07/1657607283_6.jpg' width={40} height={40} />
+                <AvatarProfile src='' width={40} height={40} />
                 <CommentInput
                     placeholder={!disabled ? 'К сожелению комментрии временно отключен' : 'Пишишите свой комментарии...'}
                     disabled={!disabled}

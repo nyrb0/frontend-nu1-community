@@ -64,10 +64,10 @@ const PostEdit = () => {
                 </div>
                 <StyledPostButtons className={'df jce'}>
                     <span className='df'>
-                        <PrimaryButton color={COLORS.WHITE} background={COLORS.TRANSPARENT}>
+                        <PrimaryButton color={COLORS.WHITE} radius='18px' background={COLORS.TRANSPARENT}>
                             Позже
                         </PrimaryButton>
-                        <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL} borderRadios={'5px'} type='submit'>
+                        <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL} radius={'5px'} type='submit'>
                             Опубликавать
                         </PrimaryButton>
                     </span>

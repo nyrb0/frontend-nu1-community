@@ -7,7 +7,7 @@ export const StyledBlockFriends = styled.div`
     padding: 10px 0;
 `;
 
-export const StyledUsernameAndName = styled.p`
+export const StyledUsernameAndName = styled.div`
     text-align: center;
     & p:first-child {
         color: var(--color-white);

@@ -15,7 +15,7 @@ const SideBar = () => {
     return (
         <StyledSidebar className={''}>
             <div className='df fdc aic'>
-                <StyledTitleSocial>Nur-one</StyledTitleSocial>
+                <StyledTitleSocial>Nu1 one</StyledTitleSocial>
                 <span style={{ fontSize: 12, fontWeight: 300 }}>#community</span>
             </div>
             <div className='df jcc'>
@@ -26,7 +26,7 @@ const SideBar = () => {
 
                     {sidebarLists.map(list => (
                         <Link to={list.link} key={list.label}>
-                            <StyledSidebarList className='df aic' isRoute={route.pathname === list.link}>
+                            <StyledSidebarList className='df aic' isroute={route.pathname === list.link}>
                                 <img src={list.icon} alt={list.label} />
                                 {list.label}
                             </StyledSidebarList>

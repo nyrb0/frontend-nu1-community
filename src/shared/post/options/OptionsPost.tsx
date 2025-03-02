@@ -78,7 +78,7 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, is
                             <PrimaryButton
                                 color={COLORS.WHITE}
                                 background={'red'}
-                                borderRadios='7px'
+                                radius='7px'
                                 type='submit'
                                 onClick={() => {
                                     postService.deletePost(postId);
@@ -87,13 +87,7 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, is
                             >
                                 Да
                             </PrimaryButton>
-                            <PrimaryButton
-                                color={COLORS.WHITE}
-                                background={'transparent'}
-                                borderRadios='7px'
-                                type='submit'
-                                onClick={() => cancellation()}
-                            >
+                            <PrimaryButton color={COLORS.WHITE} background={'transparent'} radius='7px' type='submit' onClick={() => cancellation()}>
                                 Нет
                             </PrimaryButton>
                         </div>

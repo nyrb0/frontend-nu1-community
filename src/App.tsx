@@ -5,7 +5,6 @@ import { authService } from './shared/services/auth.service';
 import AuthRoutes from './shared/routes/AuthRoutes';
 import Cookies from 'js-cookie';
 import { EnumTokens } from './shared/services/auth-token.service';
-
 import { fetchUser } from './shared/redux/userSlice';
 import { useAppDispatch } from './shared/hooks/redux';
 
@@ -26,6 +25,7 @@ function App() {
             setIsAuthChecked(true);
         }
     };
+
     useEffect(() => {
         checkAuth();
         dispatch(fetchUser());

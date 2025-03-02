@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { listsFilterPosts } from './ListFilter';
 import { Link, useParams } from 'react-router-dom';
 
-const StyledPostFilter = styled.li<{ isSelected: boolean }>`
+const StyledPostFilter = styled.li<{ $isSelected?: boolean }>`
     padding-bottom: 8px;
-    border-bottom: 4px solid ${({ isSelected }) => (isSelected ? 'var(--normal)' : 'transparent')};
+    border-bottom: 4px solid ${({ $isSelected }) => ($isSelected ? 'var(--normal)' : 'transparent')};
     font-weight: 900;
     cursor: pointer;
 `;
@@ -29,7 +29,7 @@ const FilterPosts: React.FC<IFilterPosts> = ({ data, onChange }) => {
         <>
             <ul className='df jcsb'>
                 {listsFilterPosts.map(list => (
-                    <StyledPostFilter onClick={() => onChange(list.name)} key={list.name} isSelected={list.name === data}>
+                    <StyledPostFilter onClick={() => onChange(list.name)} key={list.name} $isSelected={list.name === data}>
                         <Link to={`${list.path(username)}`}>{list.name}</Link>
                     </StyledPostFilter>
                 ))}
