@@ -10,14 +10,20 @@ const StyledButton = styled.button`
 
 interface IComeBack {
     children: React.ReactNode;
+    toNavigate?: string;
 }
 
-const ComeBack: React.FC<IComeBack> = ({ children }) => {
+const ComeBack: React.FC<IComeBack> = ({ children, toNavigate }) => {
     const navigate = useNavigate();
     return (
-        <StyledButton className='df aic' style={{ gap: 14 }}>
-            <IconComeBack onClick={() => navigate(-1)} />
-            {children}
+        <StyledButton className='df aic' style={{ gap: 10 }}>
+            <IconComeBack
+                onClick={() => {
+                    if (toNavigate) navigate(toNavigate);
+                    else navigate(-1);
+                }}
+            />
+            <p>{children}</p>
         </StyledButton>
     );
 };

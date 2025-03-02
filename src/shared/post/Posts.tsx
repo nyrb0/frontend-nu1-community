@@ -23,7 +23,7 @@ const Posts = () => {
     return (
         <div className='df fdc'>
             {posts.map(post => (
-                <Post data={post} key={post.id} />
+                <Post data={post} key={post.id} optionOwner={true} />
             ))}
         </div>
     );

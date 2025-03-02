@@ -20,7 +20,7 @@ const Recommended = () => {
     return (
         <>
             {posts.map(item => (
-                <Post data={item} key={item.id} />
+                <Post data={item} key={item.id} optionOwner={false} />
             ))}
         </>
     );

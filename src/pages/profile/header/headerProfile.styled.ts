@@ -22,6 +22,16 @@ export const StyledHeaderImage = styled.div`
     }
 `;
 
+export const StyledProfileComeBack = styled.div`
+    margin: 23px 0 0 20px;
+    z-index: 20;
+    position: absolute;
+    & span {
+        margin-top: 3px;
+        font-size: 11px;
+    }
+`;
+
 export const StyledHeaderUsername = styled.p`
     margin-left: 20px;
     & p:first-child {

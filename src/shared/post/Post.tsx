@@ -23,9 +23,10 @@ dayjs.locale('ru');
 dayjs.extend(relativeTime);
 interface IPost {
     data: PulicationUserI;
+    optionOwner: boolean;
 }
 
-const Post: React.FC<IPost> = ({ data }) => {
+const Post: React.FC<IPost> = ({ data, optionOwner }) => {
     const isFullName = data.user.lastName || data.user.name;
 
     const navigate = useNavigate();
@@ -77,7 +78,7 @@ const Post: React.FC<IPost> = ({ data }) => {
                 <OptionsPost
                     isSaved={data.saved}
                     onSave={() => handleSave()}
-                    isOwner={data.isOwner}
+                    isOwner={optionOwner && data.isOwner}
                     postId={data.id}
                     cancellation={() => setIsVisibleOptions(false)}
                     isVisible={isVisiblity}
@@ -145,7 +146,7 @@ const Post: React.FC<IPost> = ({ data }) => {
             <hr />
 
             <StyledPostComment>
-                <PostComment disabled={isVisiblity.showComments} />
+                <PostComment disabled={isVisiblity.showComments} data={data} />
             </StyledPostComment>
         </StyledPostBackground>
     );

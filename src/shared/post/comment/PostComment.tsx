@@ -3,12 +3,15 @@ import CommentInput from '../UI/input/CommentInput';
 import IconSend from './icon/IconSend';
 import IconSmile from './icon/IconSmile';
 import AvatarProfile from '@/shared/profile/AvatarProfile';
+import { baseUrlAws } from '@/shared/constants/baseUrlAws';
+import { PulicationUserI } from '@/shared/types/publication.types';
 
 interface IPostComment {
     disabled: boolean;
+    data: PulicationUserI;
 }
 
-const PostComment: FC<IPostComment> = ({ disabled }) => {
+const PostComment: FC<IPostComment> = ({ disabled, data }) => {
     const [value, setValue] = useState('');
 
     const commentHandler = async () => {
@@ -20,10 +23,11 @@ const PostComment: FC<IPostComment> = ({ disabled }) => {
             console.log(err);
         }
     };
+
     return (
         <div className='df aic jcsb'>
             <div className='df' style={{ gap: 8 }}>
-                <AvatarProfile src='' width={40} height={40} />
+                <AvatarProfile src={data.user ? `${baseUrlAws}/${data.user?.avatarUrl}` : ''} width={40} height={40} />
                 <CommentInput
                     placeholder={!disabled ? 'К сожелению комментрии временно отключен' : 'Пишишите свой комментарии...'}
                     disabled={!disabled}
