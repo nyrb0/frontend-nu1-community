@@ -29,7 +29,7 @@ const PostComment: FC<IPostComment> = ({ disabled, data }) => {
             <div className='df' style={{ gap: 8 }}>
                 <AvatarProfile src={data.user ? `${baseUrlAws}/${data.user?.avatarUrl}` : ''} width={40} height={40} />
                 <CommentInput
-                    placeholder={!disabled ? 'К сожелению комментрии временно отключен' : 'Пишишите свой комментарии...'}
+                    placeholder={!disabled ? 'Автор отключил комментрии' : 'Пишишите свой комментарии...'}
                     disabled={!disabled}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => disabled && setValue(e.target.value)}
                 />

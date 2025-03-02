@@ -1,5 +1,5 @@
 import { postService } from '@/shared/services/post.service';
-import { StyledOptionsPost } from './optionsPost.styled';
+import { StyledOptionsPost, StyledWrapperOptionPost } from './optionsPost.styled';
 import Modal from '@/shared/UI/Modal/Modal';
 import { useState } from 'react';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
@@ -50,28 +50,7 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, is
     return (
         <>
             {isOwner ? (
-                !isDeletePost ? (
-                    <StyledOptionsPost className={'df aic fdc'}>
-                        <li
-                            onClick={() => {
-                                setIsDeletePost(true);
-                            }}
-                        >
-                            Удалить
-                        </li>
-                        <li>Редактировать</li>
-                        <li
-                            onClick={() => {
-                                handleToggleVisibility('showComments');
-                                cancellation();
-                            }}
-                        >
-                            {isVisible.showComments ? 'Выключить' : 'Включить'} комментарии
-                        </li>
-                        <li onClick={() => handleToggleVisibility('showLikes')}>{isVisible.showLikes ? 'Скрывать' : 'Показать'} количество лайков</li>
-                        <li onClick={cancellation}>Отмена</li>
-                    </StyledOptionsPost>
-                ) : (
+                isDeletePost ? (
                     <Modal onClose={() => setIsDeletePost(false)}>
                         <p>Действительно хотите удалить?</p>
                         <div className='df jcsb' style={{ marginTop: 10 }}>
@@ -92,31 +71,60 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, isOwner, is
                             </PrimaryButton>
                         </div>
                     </Modal>
+                ) : (
+                    <>
+                        <StyledOptionsPost className={'df aic fdc'}>
+                            <li
+                                onClick={() => {
+                                    setIsDeletePost(true);
+                                }}
+                            >
+                                Удалить
+                            </li>
+                            <li>Редактировать</li>
+                            <li
+                                onClick={() => {
+                                    handleToggleVisibility('showComments');
+                                    cancellation();
+                                }}
+                            >
+                                {isVisible.showComments ? 'Выключить' : 'Включить'} комментарии
+                            </li>
+                            <li onClick={() => handleToggleVisibility('showLikes')}>
+                                {isVisible.showLikes ? 'Скрывать' : 'Показать'} количество лайков
+                            </li>
+                            <li onClick={cancellation}>Отмена</li>
+                        </StyledOptionsPost>
+                        <StyledWrapperOptionPost onClick={cancellation} />
+                    </>
                 )
             ) : (
-                <StyledOptionsPost className={'df aic fdc'}>
-                    <li>Пожаловаться</li>
+                <>
+                    <StyledOptionsPost className={'df aic fdc'}>
+                        <li>Пожаловаться</li>
 
-                    <li>Поделиться</li>
-                    <li
-                        onClick={() => {
-                            onSave();
-                            cancellation();
-                        }}
-                    >
-                        {!isSaved ? 'Добавить в избранное' : 'Удалить из избранных'}
-                    </li>
-                    <li
-                        onClick={() => {
-                            cancellation();
-                            copyLink();
-                        }}
-                    >
-                        Скопировать ссылку
-                    </li>
-                    <li>Перейти к публикации</li>
-                    <li onClick={cancellation}>Отмена</li>
-                </StyledOptionsPost>
+                        <li>Поделиться</li>
+                        <li
+                            onClick={() => {
+                                onSave();
+                                cancellation();
+                            }}
+                        >
+                            {!isSaved ? 'Добавить в избранное' : 'Удалить из избранных'}
+                        </li>
+                        <li
+                            onClick={() => {
+                                cancellation();
+                                copyLink();
+                            }}
+                        >
+                            Скопировать ссылку
+                        </li>
+                        <li>Перейти к публикации</li>
+                        <li onClick={cancellation}>Отмена</li>
+                    </StyledOptionsPost>
+                    <StyledWrapperOptionPost onClick={cancellation} />
+                </>
             )}
         </>
     );

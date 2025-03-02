@@ -25,7 +25,7 @@ const LikesPage = () => {
     return (
         <div className='df fdc'>
             {likePosts.map(post => (
-                <Post data={post} />
+                <Post data={post} optionOwner />
             ))}
         </div>
     );

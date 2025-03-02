@@ -46,7 +46,7 @@ export const postService = {
         return response.data;
     },
     async updateVisibility(postId: string, body: IUpdatePublication): Promise<PulicationUserI> {
-        const response = await axiosServiceAuth.patch(`/posts/${postId}`, { ...body });
+        const response = await axiosServiceAuth.patch(`/posts/${postId}/visibility`, { ...body });
         return response.data;
     },
 };
