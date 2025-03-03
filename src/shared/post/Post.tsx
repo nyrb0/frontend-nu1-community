@@ -10,7 +10,6 @@ import IconShare from './UI/icon/IconShare';
 import IconSave from './UI/icon/IconSave';
 import { useEffect, useState } from 'react';
 import { likePostService } from './service/likePost.service';
-
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ru';
@@ -18,6 +17,7 @@ import OptionsPost from './options/OptionsPost';
 import { savePostService } from './service/savePost.service';
 import { useNavigate } from 'react-router-dom';
 import PostComment from './comment/PostComment';
+import { postService } from '../services/post.service';
 
 dayjs.locale('ru');
 dayjs.extend(relativeTime);
@@ -26,7 +26,8 @@ interface IPost {
     optionOwner: boolean;
 }
 
-const Post: React.FC<IPost> = ({ data, optionOwner }) => {
+const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
+    const [data, setData] = useState<PulicationUserI>(originalData);
     const isFullName = data.user.lastName || data.user.name;
 
     const navigate = useNavigate();
@@ -46,11 +47,11 @@ const Post: React.FC<IPost> = ({ data, optionOwner }) => {
         if (isLiked) {
             likePostService.unLiked(postId);
             setCount(prev => ({ ...prev, like: prev.like - 1 }));
-            data.liked = false;
+            setData(prev => ({ ...prev, liked: false }));
         } else {
             likePostService.liked(postId);
             setCount(prev => ({ ...prev, like: prev.like + 1 }));
-            data.liked = true;
+            setData(prev => ({ ...prev, liked: true }));
         }
     };
 
@@ -68,6 +69,15 @@ const Post: React.FC<IPost> = ({ data, optionOwner }) => {
         }
     };
 
+    const updatePost = async () => {
+        try {
+            const response = await postService.getPost(data.id);
+            if (response) setData(response);
+        } catch (error) {
+            console.error('Ошибка при обновлении поста:', error);
+        }
+    };
+
     const timeAgo = dayjs(data.createdAt).fromNow();
 
     useEffect(() => {}, []);
@@ -76,13 +86,14 @@ const Post: React.FC<IPost> = ({ data, optionOwner }) => {
         <StyledPostBackground>
             {isVisibleOptions && (
                 <OptionsPost
+                    update={updatePost}
                     isSaved={data.saved}
                     onSave={() => handleSave()}
                     isOwner={optionOwner && data.isOwner}
                     postId={data.id}
                     cancellation={() => setIsVisibleOptions(false)}
                     isVisible={isVisiblity}
-                    setIsVisiblity={prev => setIsVisiblity(prev)}
+                    setIsVisiblity={setIsVisiblity}
                 />
             )}
 

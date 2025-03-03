@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledWrapperOptionPost = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
     position: fixed;
     display: flex;
     justify-content: center;

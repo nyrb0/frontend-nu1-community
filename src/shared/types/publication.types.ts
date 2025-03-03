@@ -22,8 +22,8 @@ export interface PulicationUserI extends BaseI {
 export interface IUpdatePublication {
     showLikes: boolean;
     showComments: boolean;
-    title?: string;
-    description?: string;
+    title: string;
+    description: string;
 }
 
 export interface PostUserI {

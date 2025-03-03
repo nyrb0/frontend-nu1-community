@@ -41,11 +41,11 @@ export const postService = {
         const response = await axiosServiceAuth.delete(`/posts/${postId}`);
         return response.data;
     },
-    async updatePost(postId: string): Promise<PulicationUserI> {
-        const response = await axiosServiceAuth.patch(`/posts/${postId}`, {});
+    async updatePost(postId: string, body: Partial<IUpdatePublication>): Promise<PulicationUserI> {
+        const response = await axiosServiceAuth.patch(`/posts/${postId}`, body);
         return response.data;
     },
-    async updateVisibility(postId: string, body: IUpdatePublication): Promise<PulicationUserI> {
+    async updateVisibility(postId: string, body: { showComments: boolean; showLikes: boolean }): Promise<PulicationUserI> {
         const response = await axiosServiceAuth.patch(`/posts/${postId}/visibility`, { ...body });
         return response.data;
     },

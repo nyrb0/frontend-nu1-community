@@ -1,5 +1,5 @@
 import HomeIcon from './icons/icon-home.svg';
-import NotificationIcon from './icons/icon-home.svg';
+import NotificationIcon from './icons/icon-notification.svg';
 import SavesIcon from './icons/icon-save.svg';
 import GroupIcon from './icons/icon-group.svg';
 import SubsIcon from './icons/icon-sobscription.svg';

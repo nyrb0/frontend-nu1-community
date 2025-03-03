@@ -15,7 +15,7 @@ const SideBar = () => {
     return (
         <StyledSidebar className={''}>
             <div className='df fdc aic'>
-                <StyledTitleSocial>Nu1 one</StyledTitleSocial>
+                <StyledTitleSocial>Nu1</StyledTitleSocial>
                 <span style={{ fontSize: 12, fontWeight: 300 }}>#community</span>
             </div>
             <div className='df jcc'>

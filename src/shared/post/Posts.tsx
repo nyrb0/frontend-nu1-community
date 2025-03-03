@@ -20,6 +20,7 @@ const Posts = () => {
     useEffect(() => {
         getPosts();
     }, []);
+
     return (
         <div className='df fdc'>
             {posts.map(post => (

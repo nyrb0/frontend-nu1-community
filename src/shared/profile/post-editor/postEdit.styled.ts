@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 export const StyledPostEditBackgroundOut = styled.div`
+    & h2 {
+        font-size: 18px;
+        font-weight: 900;
+        padding-bottom: 10px;
+    }
     box-sizing: border-box;
     padding: 15px;
     position: relative;
@@ -37,4 +42,16 @@ export const StyledPostButtons = styled.div`
 export const StyledPostEditTextArea = styled.div`
     padding: 15px 10px;
     gap: 24px;
+`;
+
+export const StyledEditModalPost = styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 9;
 `;
