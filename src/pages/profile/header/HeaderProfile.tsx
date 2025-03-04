@@ -13,8 +13,9 @@ import { COLORS } from '@/shared/constants/colors';
 
 import EditIcon from './icons/edit-icon.svg';
 import ShareIcon from './icons/share-icon.svg';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ComeBack from '@/shared/come-back';
+import { PAGES } from '@/shared/routes/router.const';
 
 interface IHeaderProfile {
     isOwner?: boolean;
@@ -22,6 +23,7 @@ interface IHeaderProfile {
 
 const HeaderProfile: React.FC<IHeaderProfile> = ({ isOwner }) => {
     const { username } = useParams<{ username: string }>();
+    const navigate = useNavigate();
 
     if (!username) throw new Error('not param username');
     const { data: user } = useProfileQuery({ username });
@@ -44,7 +46,14 @@ const HeaderProfile: React.FC<IHeaderProfile> = ({ isOwner }) => {
                 </div>
                 {isOwner && (
                     <StyledProfileHeaderButtons className='df'>
-                        <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL} type='submit' className='df aic' style={{ gap: 14 }}>
+                        <PrimaryButton
+                            color={COLORS.WHITE}
+                            background={COLORS.NORMAL}
+                            onClick={() => navigate('edit')}
+                            type='submit'
+                            className='df aic'
+                            style={{ gap: 14 }}
+                        >
                             <img src={EditIcon} alt='edit icon' />
                             Редактировать
                         </PrimaryButton>

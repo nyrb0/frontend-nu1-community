@@ -7,8 +7,12 @@ export const StyledSidebar = styled.aside`
     background-color: var(--background-color1);
     width: 300px;
     border-radius: 10px;
-    /* box-shadow: 0px 0 50px 0 var(--normal); */
-    padding: 32px 0;
+    transition: box-shadow 0.5s ease-in-out;
+    &:hover {
+        box-shadow: 0px 0 8px 0 var(--normal);
+    }
+    padding-top: 32px;
+    padding-bottom: 10px;
 `;
 
 export const StyledSidebarContent = styled.div`
@@ -22,12 +26,12 @@ export const StyledTitleSocial = styled.p`
 `;
 
 export const StyledSidebarAvatar = styled.div`
-    transform: scale(0.9);
+    transform: scale(0.8);
     gap: 10px;
     transition: transform 0.4s ease-in-out;
 
     &:hover {
-        transform: scale(1);
+        transform: scale(0.9);
     }
     & img {
         object-fit: contain;
@@ -42,8 +46,15 @@ export const StyledSidebarAvatar = styled.div`
     & span {
         transition: text-shadow 0.6s ease-in-out;
         font-size: 20px;
-        &:hover {
-            text-shadow: 0px 0px 20px var(--normal);
+        & p:first-child {
+            color: var(--white-color);
+            &:hover {
+                text-shadow: 0px 0px 20px var(--normal);
+            }
+        }
+        & p:last-child {
+            margin-top: 7px;
+            font-size: 10px;
         }
     }
 `;

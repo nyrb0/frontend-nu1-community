@@ -5,28 +5,32 @@ import { useState } from 'react';
 import { listsFilterPosts } from '@/shared/profile/ListFilter';
 
 import { authService } from '@/shared/services/auth.service';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
+import { postService } from '@/shared/services/post.service';
 
 const ProfilePage = () => {
     const [postsType, setPostsType] = useState(listsFilterPosts[0].name);
     const navigate = useNavigate();
+    const location = useLocation();
     const { username } = useParams<{ username: string }>();
+
     const logout = () => {
         authService.logout();
         navigate('/auth/login');
     };
 
     const { user } = useSelector((store: RootState) => store.user);
-
+    const isIditProfileRoute = location.pathname.includes(`/${username}/edit`);
     const isOwner = user?.username === username;
+
     return (
         <div>
             <div>
                 <HeaderProfile isOwner={isOwner} />
             </div>
-            {isOwner && (
+            {isOwner && !isIditProfileRoute && (
                 <>
                     <PostEdit />
                     <div style={{ marginTop: 35 }}>

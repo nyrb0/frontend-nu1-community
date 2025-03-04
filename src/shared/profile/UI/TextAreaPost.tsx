@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
-interface ITextAreaPost extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+interface ITextAreaPost extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+    height?: string;
+    width?: string;
+}
 
 const StyledTextAreaPost = styled.textarea`
     background-color: transparent;
-    width: 100%;
+    width: ${props => (props.width ? props.width : '100%')};
     min-height: 120px;
+    height: ${props => (props.height ? props.height : '120px')};
     color: var(--white-color);
     font-weight: 500;
     border-radius: 7px;
@@ -22,7 +26,7 @@ const StyledTextAreaPost = styled.textarea`
     }
 `;
 
-const TextAreaPost: React.FC<ITextAreaPost> = ({ ...props }) => {
-    return <StyledTextAreaPost {...props} />;
+const TextAreaPost: React.FC<ITextAreaPost> = ({ height, width, ...props }) => {
+    return <StyledTextAreaPost {...props} height={height} width={width} />;
 };
 export default TextAreaPost;

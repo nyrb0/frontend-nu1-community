@@ -5,6 +5,8 @@ export interface IUser {
     name: string;
     email: string;
     identification: boolean;
+    description: string;
+    role: string;
 }
 
 export interface IUserWithBase extends IUser, BaseI {}

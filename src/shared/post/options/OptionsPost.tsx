@@ -9,14 +9,14 @@ import PostUpdateEdit from '@/shared/profile/post-editor/PostEditUpdate';
 type TypeisVisibility = { showComments: boolean; showLikes: boolean };
 
 interface IOptionsPost {
-    cancellation: () => void;
-    postId: string;
-    isOwner: boolean;
-    isVisible: TypeisVisibility;
+    cancellation: () => void; // отмена-закрытия расширении
+    postId: string; // id поста
+    isOwner: boolean; // владелец ли
+    isVisible: TypeisVisibility; // поля видемости
     setIsVisiblity: (prev: TypeisVisibility) => void;
-    onSave: () => void;
-    isSaved: boolean;
-    update: () => void;
+    onSave: () => void; // сохраниние
+    isSaved: boolean; // сохранен ли
+    update: () => void; // обновление поста
 }
 
 const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, update, isOwner, isVisible, setIsVisiblity, onSave, isSaved }) => {
@@ -24,6 +24,7 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, update, isO
 
     const [isEdit, setIsEdit] = useState(false);
 
+    // отправляет данные на сервер поста { showComments: boolean; showLikes: boolean }
     const sendServerVisible = async (body: TypeisVisibility) => {
         try {
             return await postService.updateVisibility(postId, body);
@@ -32,6 +33,7 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, update, isO
         }
     };
 
+    // передает в главный пост чтобы изменить поля видемости поста showLikes, showComments
     const handleToggleVisibility = (field: 'showComments' | 'showLikes') => {
         const updatedVisibility: TypeisVisibility = {
             ...isVisible,
@@ -41,6 +43,7 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, update, isO
         sendServerVisible(updatedVisibility);
     };
 
+    // копирует url поста
     const copyLink = () => navigator.clipboard.writeText(`${window.location.href}post/${postId}`).catch(console.error);
 
     return (

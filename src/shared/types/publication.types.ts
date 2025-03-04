@@ -13,6 +13,7 @@ export interface PulicationUserI extends BaseI {
     countLike: number;
     liked: boolean;
     saved: boolean;
+    isEdit: boolean;
 
     isOwner: boolean;
 

@@ -54,6 +54,13 @@ export const StyledPostsDescription = styled.div`
     margin-bottom: 16px;
     ${paddingContent}
     padding-bottom: 5px;
+
+    & .isEdit {
+        margin-bottom: 10px;
+        font-size: 9px;
+        opacity: 0.3;
+        font-weight: 400;
+    }
 `;
 
 export const StyledPostDo = styled.ul`

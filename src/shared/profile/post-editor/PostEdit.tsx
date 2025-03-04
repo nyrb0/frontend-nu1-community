@@ -15,7 +15,7 @@ import { postService } from '@/shared/services/post.service';
 import TagPeople from './tag-people/TagPeople';
 import TagUserBlock from './tag-people/TagUserBlock';
 
-const PostEdit = () => {
+const PostEdit: React.FC = () => {
     const [value, setValue] = useState('');
     const [files, setFiles] = useState<File | null>(null);
     const [isVisibleTagPeople, setIsVisibleTagPeople] = useState(false);

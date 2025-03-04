@@ -27,8 +27,20 @@ class RoutesProfile {
     SAVES = `${this.BASE}/saves`;
     LIKES = `${this.BASE}/likes`;
     VIDEOS = `${this.BASE}/saves`;
+    EDIT_PROFILE = `${this.BASE}/edit`;
 }
 export const ROUTES_PROFILE = new RoutesProfile();
+
+class RoutesEditProfile {
+    private BASE: string = `${PAGES.PROFILE}/edit`;
+
+    EDIT_PROFILE = `${this.BASE}`;
+    SICURITY = `${this.BASE}/sicurity`;
+    CONFIDEN = `${this.BASE}/confiden`;
+    ACCOUNT = `${this.BASE}/acccount`;
+    DETEILS = `${this.BASE}/details`;
+}
+export const ROUTES_PROFILE_EDIT = new RoutesEditProfile();
 
 class RoutesNotification {
     private BASE: string = PAGES.NOTIFICATION;

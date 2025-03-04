@@ -123,6 +123,7 @@ const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
             <hr />
 
             <StyledPostsDescription>
+                {data.isEdit && <p className='isEdit df jce'>{'редактировано'}</p>}
                 <HashtagText
                     onMentionClick={mention => alert(mention)}
                     data={data.description}
