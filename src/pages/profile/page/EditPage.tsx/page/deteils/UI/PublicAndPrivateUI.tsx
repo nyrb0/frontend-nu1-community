@@ -4,7 +4,7 @@ import IconPerson from '../../icon/IconPerson';
 const StyledBlock = styled.div`
     max-width: 520px;
     width: 100%;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 500;
     padding: 13px;
     box-sizing: border-box;
