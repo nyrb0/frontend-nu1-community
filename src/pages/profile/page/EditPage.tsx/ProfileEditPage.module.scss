@@ -1,21 +1,7 @@
 .page {
-    h2 .bio {
-        box-sizing: border-box;
-        padding: 15px;
-        background-color: var(--background-color1);
-        width: 100%;
-        min-height: 193px;
-        border-radius: 7px;
-
-        .btns {
-            height: 35px;
-            margin-top: 15px;
-            & span {
-                gap: 29px;
-                & button {
-                    font-weight: 700;
-                }
-            }
-        }
+    h2 {
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 18px;
     }
 }

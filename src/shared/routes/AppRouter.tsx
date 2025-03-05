@@ -14,14 +14,14 @@ import PostPage from '@/pages/post/PostPage';
 import ProfileEditPage from '@/pages/profile/page/EditPage.tsx/ProfileEditPage';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
-import DetailsPage from '@/pages/profile/page/EditPage.tsx/page/DetailsPage';
+import DetailsPage from '@/pages/profile/page/EditPage.tsx/page/deteils/DetailsPage';
 
 const AppRouter = () => {
     const route = useLocation();
 
     const { user } = useSelector((state: RootState) => state.user);
-    if (!user) throw new Error('user not loading');
-    const routes = ['/auth', `/profile/${user.username}/edit`];
+
+    const routes = ['/auth', `/profile/${user?.username}/edit`];
     const isRoutes = routes.every(state => !route.pathname.includes(state));
 
     const isAuthRoute = !route.pathname.includes(routes[0]);
@@ -33,7 +33,8 @@ const AppRouter = () => {
                     <SideBar />
                 </div>
             )}
-            <div className={`${styles.routes} `} style={isAuthRoute ? { maxWidth: 696, width: '100%' } : {}}>
+            <div className={`${styles.routes} `} style={{ width: '100%' }}>
+                {/* style={isAuthRoute ? { maxWidth: 696, width: '100%' } : {}} */}
                 <Routes>
                     <Route path={PAGES.HOME} element={<HomePage />} />
 
@@ -47,6 +48,7 @@ const AppRouter = () => {
                         <Route path={ROUTES_PROFILE.CLOSE} element />
                         <Route path={ROUTES_PROFILE.LIKES} element={<LikesPage />} />
                     </Route>
+
                     <Route path={ROUTES_PROFILE_EDIT.EDIT_PROFILE} element={<ProfileEditPage />}>
                         <Route path={ROUTES_PROFILE_EDIT.DETEILS} element={<DetailsPage />} />
                     </Route>

@@ -15,6 +15,7 @@ const ProfilePage = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { username } = useParams<{ username: string }>();
+    console.log(username, 'nvfjfbvh');
 
     const logout = () => {
         authService.logout();

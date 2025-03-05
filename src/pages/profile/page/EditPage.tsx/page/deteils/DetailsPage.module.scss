@@ -1,0 +1,25 @@
+.page {
+    & section {
+        margin-top: 32px;
+        font-size: 14px;
+        width: 812px;
+
+        .left {
+            width: 260px;
+            & h3 {
+                margin-bottom: 4px;
+                font-weight: 700;
+                color: var(--white-color);
+            }
+            & p {
+                opacity: 0.6;
+                font-weight: 300;
+            }
+            & p:last-child {
+                font-weight: 700;
+                color: #4e46e3;
+                margin-top: 12px;
+            }
+        }
+    }
+}

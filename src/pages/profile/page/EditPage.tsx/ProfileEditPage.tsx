@@ -7,6 +7,8 @@ import { RootState } from '@/store';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import { COLORS } from '@/shared/constants/colors';
 import { Outlet } from 'react-router-dom';
+import CategoryEditProfile from './CategoryEditProfile';
+import { listsLinkProfileEdit } from './category-filter-edit-profile';
 
 // Редактирование профиля
 const ProfileEditPage = () => {
@@ -18,8 +20,21 @@ const ProfileEditPage = () => {
     return (
         <div className={styles.page}>
             <h2>Редактирование профиля</h2>
+            <div className={styles.cagory}>
+                <CategoryEditProfile />
+            </div>
 
-            {/* <form className={styles.bio} onSubmit={handleSubmit}>
+            <div>
+                <Outlet />
+            </div>
+        </div>
+    );
+};
+
+export default ProfileEditPage;
+
+{
+    /* <form className={styles.bio} onSubmit={handleSubmit}>
                 <TextAreaPost
                     style={{ backgroundColor: 'var(--background-color3)' }}
                     placeholder={'Описание...'}
@@ -36,11 +51,5 @@ const ProfileEditPage = () => {
                         </PrimaryButton>
                     </span>
                 </div>
-            </form> */}
-
-            <Outlet />
-        </div>
-    );
-};
-
-export default ProfileEditPage;
+            </form> */
+}
