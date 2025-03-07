@@ -15,7 +15,6 @@ import EditIcon from './icons/edit-icon.svg';
 import ShareIcon from './icons/share-icon.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 import ComeBack from '@/shared/come-back';
-import { PAGES } from '@/shared/routes/router.const';
 
 interface IHeaderProfile {
     isOwner?: boolean;

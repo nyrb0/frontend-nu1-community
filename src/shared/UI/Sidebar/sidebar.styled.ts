@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const StyledSidebar = styled.aside`
     font-weight: 500;
     font-size: 16px;
+    box-sizing: border-box;
+    height: 98vh;
     color: var(--gray1);
     background-color: var(--background-color1);
     width: 300px;
@@ -11,8 +13,7 @@ export const StyledSidebar = styled.aside`
     &:hover {
         box-shadow: 0px 0 8px 0 var(--normal);
     }
-    padding-top: 32px;
-    padding-bottom: 10px;
+    padding: 32px 0;
 `;
 
 export const StyledSidebarContent = styled.div`

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import IconPerson from '../../icon/IconPerson';
+import IconPerson from '../../../../../shared/post/UI/input/icon/IconPerson';
 
 const StyledBlock = styled.div`
     max-width: 520px;

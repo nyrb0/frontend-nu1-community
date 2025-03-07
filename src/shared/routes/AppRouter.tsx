@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
-import { PAGES, ROUTES_NOTIFICATION, ROUTES_PROFILE, ROUTES_PROFILE_EDIT } from './router.const';
+import { PAGES, ROUTES_NOTIFICATION, ROUTES_PROFILE, ROUTES_SETTINGS } from './router.const';
 import SideBar from '../UI/Sidebar/SideBar';
 import styles from '@/shared/styles/page/appRoutes.module.scss';
 import ProfilePage from '@/pages/profile/ProfilePage';
@@ -14,16 +14,16 @@ import PostPage from '@/pages/post/PostPage';
 import ProfileEditPage from '@/pages/profile/page/EditPage.tsx/ProfileEditPage';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
-import DetailsPage from '@/pages/profile/page/EditPage.tsx/page/deteils/DetailsPage';
+import DetailsPage from '@/pages/settings/page/deteils/DetailsPage';
+import SettingsPage from '@/pages/settings/SettingsPage';
 
 const AppRouter = () => {
     const route = useLocation();
 
     const { user } = useSelector((state: RootState) => state.user);
 
-    const routes = ['/auth', `/profile/${user?.username}/edit`];
+    const routes = ['/auth', `/settings`, '/profile'];
     const isRoutes = routes.every(state => !route.pathname.includes(state));
-
     const isAuthRoute = !route.pathname.includes(routes[0]);
     const isEditProfileRoute = !route.pathname.includes(routes[1]);
     return (
@@ -47,13 +47,15 @@ const AppRouter = () => {
                         <Route path={ROUTES_PROFILE.VIDEOS} element />
                         <Route path={ROUTES_PROFILE.CLOSE} element />
                         <Route path={ROUTES_PROFILE.LIKES} element={<LikesPage />} />
+                        <Route path={ROUTES_PROFILE.EDIT_PROFILE} element={<ProfileEditPage />} />
                     </Route>
 
-                    <Route path={ROUTES_PROFILE_EDIT.EDIT_PROFILE} element={<ProfileEditPage />}>
-                        <Route path={ROUTES_PROFILE_EDIT.DETEILS} element={<DetailsPage />} />
-                    </Route>
                     <Route path={PAGES.SAVES} element={<SavePage />} />
                     <Route path={PAGES.POST_PAGE} element={<PostPage />} />
+
+                    <Route path={PAGES.SETTINGS} element={<SettingsPage />}>
+                        <Route path={ROUTES_SETTINGS.DETEILS} element={<DetailsPage />} />
+                    </Route>
                 </Routes>
             </div>
 

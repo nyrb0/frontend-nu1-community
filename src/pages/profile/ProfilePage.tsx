@@ -42,9 +42,6 @@ const ProfilePage = () => {
             <div>
                 <Outlet />
             </div>
-            <div>
-                <button onClick={logout}>выйти</button>
-            </div>
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import { axiosBaseQuery } from '@/shared/services/api/customAxiosBaseQuery';
-import { IUser } from '@/shared/types/auth.types';
+import { IUser } from '@/shared/types/user.types';
+
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 export const userApi = createApi({

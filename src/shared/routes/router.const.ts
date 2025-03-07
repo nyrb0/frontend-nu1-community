@@ -14,7 +14,7 @@ class Routes {
     SUBSCRIPTIONS = '/subscriptions';
     VACANCY = '/vacancy';
     OTHER = '/other';
-
+    SETTINGS = '/settings';
     POST_PAGE = '/post/:postId';
 }
 export const PAGES = new Routes();
@@ -31,16 +31,15 @@ class RoutesProfile {
 }
 export const ROUTES_PROFILE = new RoutesProfile();
 
-class RoutesEditProfile {
-    private BASE: string = `${PAGES.PROFILE}/edit`;
-
+class RoutesSettings {
+    private BASE: string = `${PAGES.SETTINGS}`;
     EDIT_PROFILE = `${this.BASE}`;
-    SICURITY = `${this.BASE}/sicurity`;
-    CONFIDEN = `${this.BASE}/confiden`;
-    ACCOUNT = `${this.BASE}/acccount`;
+    SICURITY = `${this.BASE}/security`;
+    CONFIDEN = `${this.BASE}/confidentiality`;
+    ACCOUNT = `${this.BASE}/account`;
     DETEILS = `${this.BASE}/details`;
 }
-export const ROUTES_PROFILE_EDIT = new RoutesEditProfile();
+export const ROUTES_SETTINGS = new RoutesSettings();
 
 class RoutesNotification {
     private BASE: string = PAGES.NOTIFICATION;

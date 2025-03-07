@@ -212,6 +212,18 @@ body {
     margin-top: 25px;
 }
 
+.react-tel-input {
+    .flag-dropdown {
+      &:hover {
+        background-color: transparent !important;
+        cursor: default !important;
+        box-shadow: none !important;
+      }
+    }
+  }
+  
+  
+
 
 
 .df {

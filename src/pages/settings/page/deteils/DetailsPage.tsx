@@ -1,7 +1,7 @@
 import styles from './DetailsPage.module.scss';
 import { useState } from 'react';
 import RegulationTextArea from './UI/RegulationTextArea';
-import SettingsHeading from './UI/SettingsHeading';
+import SettingsHeading from '../../../../shared/hending/SettingsHeading';
 import PublicAndPrivateUI from './UI/PublicAndPrivateUI';
 import FileDownloader from '@/shared/UI/file-ownloader/FileDownloader';
 import AvatarProfile from '@/shared/profile/AvatarProfile';
