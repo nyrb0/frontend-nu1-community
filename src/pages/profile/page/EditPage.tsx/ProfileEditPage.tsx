@@ -13,6 +13,7 @@ import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import { IUser } from '@/shared/types/user.types';
 import MainEditInfo from './components/MainEditInfo';
 import { EditUserProvider } from './context/EditUserContext';
+import Additionally from './components/Additionally';
 
 // Редактирование профиля
 const ProfileEditPage = () => {
@@ -21,6 +22,7 @@ const ProfileEditPage = () => {
             <div className={styles.page}>
                 <h2>Редактирование профиля</h2>
                 <MainEditInfo />
+                <Additionally />
 
                 <div className={`${styles.isSave} df jce`}>
                     <PrimaryButton radius='34px' background={'transparent'}>

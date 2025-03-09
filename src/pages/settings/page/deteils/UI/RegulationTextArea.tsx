@@ -29,14 +29,14 @@ const StyledLength = styled.p`
 interface IRegulationTextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
     maxWidth?: number;
     maxHeight?: number;
-    value: string;
+    value: string | undefined;
 }
 
 const RegulationTextArea: React.FC<IRegulationTextArea> = ({ value, maxWidth, maxHeight = 300, ...props }) => {
     return (
         <div style={{ position: 'relative', marginBottom: 20 }}>
             <StyledTextArea {...props} style={{ maxWidth, minWidth: maxWidth, maxHeight }} />
-            <StyledLength>{value.length}/300</StyledLength>
+            <StyledLength>{value?.length || 0}/300</StyledLength>
         </div>
     );
 };

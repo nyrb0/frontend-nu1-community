@@ -26,8 +26,8 @@ export const EditUserProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return <EditUserContext.Provider value={{ data, setData }}>{children}</EditUserContext.Provider>;
 };
 
-export const useEditContext = () => {
+export const useEditUserContext = () => {
     const context = useContext(EditUserContext);
     if (!context) throw new Error('EditUserContext должен быть внутри "EditUserProvider"');
-    return [context.data, context.setData];
+    return context;
 };

@@ -22,7 +22,6 @@ const StyledInne = styled.div`
 
 interface IPublicAndPrivateUI {
     data: boolean;
-
     onChange: (data: boolean) => void;
 }
 

@@ -20,6 +20,7 @@
     width: 100%;
 
     .left {
+        max-width: 772px;
         padding: 24px;
         box-sizing: border-box;
         border-radius: 32px;
@@ -35,5 +36,17 @@
         .files {
             gap: 32px;
         }
+    }
+}
+
+.add {
+    margin-top: 20px;
+    .left {
+        width: 100%;
+        max-width: 772px;
+        padding: 24px;
+        box-sizing: border-box;
+        border-radius: 32px;
+        background-color: var(--background-color1);
     }
 }

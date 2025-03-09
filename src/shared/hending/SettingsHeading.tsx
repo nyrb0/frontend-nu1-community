@@ -6,6 +6,8 @@ interface ISettingsHeading {
     heading: string;
     description: string;
     more?: boolean;
+
+    isVisibleAnswer?: boolean;
 }
 
 const StyledHending = styled.div`
@@ -27,12 +29,12 @@ const StyledHending = styled.div`
         margin-top: 12px;
     }
 `;
-const SettingsHeading: React.FC<ISettingsHeading> = ({ more = false, heading, description }) => {
+const SettingsHeading: React.FC<ISettingsHeading> = ({ more = false, heading, isVisibleAnswer = true, description }) => {
     return (
         <StyledHending>
             <div className={'df'} style={{ gap: 6 }}>
                 <h3>{heading}</h3>
-                <IconAnswer />
+                {isVisibleAnswer && <IconAnswer />}
             </div>
             <p>{description}</p>
             <p>{more && 'Узнать подробно'}</p>
