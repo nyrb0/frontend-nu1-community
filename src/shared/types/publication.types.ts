@@ -1,5 +1,5 @@
-import { IUser } from './auth.types';
 import { BaseI } from './base.types';
+import { IUser } from './user.types';
 
 export interface PulicationUserI extends BaseI {
     id: string;
