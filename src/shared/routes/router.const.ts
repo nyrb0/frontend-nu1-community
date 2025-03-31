@@ -15,6 +15,7 @@ class Routes {
     VACANCY = '/vacancy';
     OTHER = '/other';
     SETTINGS = '/settings';
+    CHATS = '/chats';
     POST_PAGE = '/post/:postId';
 }
 export const PAGES = new Routes();

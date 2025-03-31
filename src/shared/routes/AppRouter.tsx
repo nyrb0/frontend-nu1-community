@@ -12,15 +12,14 @@ import SettingsNotificationPage from '@/pages/notification/settings';
 import HomePage from '@/pages/home/HomePage';
 import PostPage from '@/pages/post/PostPage';
 import ProfileEditPage from '@/pages/profile/page/EditPage.tsx/ProfileEditPage';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
 import DetailsPage from '@/pages/settings/page/deteils/DetailsPage';
 import SettingsPage from '@/pages/settings/SettingsPage';
+import ChatPage from '@/chat/ChatPage';
 
 const AppRouter = () => {
     const route = useLocation();
 
-    const { user } = useSelector((state: RootState) => state.user);
+    // const { user } = useSelector((state: RootState) => state.user);
 
     const routes = ['/auth', `/settings`, '/profile'];
     const isRoutes = routes.every(state => !route.pathname.includes(state));

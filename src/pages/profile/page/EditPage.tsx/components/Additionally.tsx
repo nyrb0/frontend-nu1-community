@@ -4,17 +4,13 @@ import PublicAndPrivateUI from '@/pages/settings/page/deteils/UI/PublicAndPrivat
 import RegulationTextArea from '@/pages/settings/page/deteils/UI/RegulationTextArea';
 import { useEditUserContext } from '../context/EditUserContext';
 import { IUpdateUser } from '@/shared/types/user.types';
-import { RootState } from '@/store';
-import { useSelector } from 'react-redux';
 
 const Additionally = () => {
     const { data, setData } = useEditUserContext();
 
-    const { user } = useSelector((state: RootState) => state.user);
     const handleChange = (key: keyof IUpdateUser, value: string | boolean) => {
-        setData({ ...user, [key]: value });
+        setData(prev => (prev ? { ...prev, [key]: value } : null));
     };
-
     if (!data) return;
     return (
         <section className={`${styles.add} df jcsb`}>

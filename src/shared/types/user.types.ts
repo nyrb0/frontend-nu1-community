@@ -1,4 +1,3 @@
-import { extend } from 'dayjs';
 import { BaseI } from './base.types';
 
 export interface IUser extends BaseI {

@@ -1,19 +1,14 @@
 import styles from './ProfileEditPage.module.scss';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
-
 import { Outlet } from 'react-router-dom';
-import FieldsInput from '@/shared/post/UI/input/FieldsInput';
 import 'react-phone-input-2/lib/style.css';
-import SettingsHeading from '@/shared/hending/SettingsHeading';
-import FileDownloader from '@/shared/UI/file-ownloader/FileDownloader';
-import AvatarProfile from '@/shared/profile/AvatarProfile';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
-import { IUser } from '@/shared/types/user.types';
 import MainEditInfo from './components/MainEditInfo';
 import { EditUserProvider, useEditUserContext } from './context/EditUserContext';
 import Additionally from './components/Additionally';
+import { postService } from '@/shared/services/post.service';
 
 const Page = () => {
     const { data } = useEditUserContext();
@@ -29,7 +24,8 @@ const Page = () => {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (data && user) {
-            console.log(comparison(data, user));
+            const result = comparison(data, user);
+            postService.updatePost(user.username, result);
         }
     };
 

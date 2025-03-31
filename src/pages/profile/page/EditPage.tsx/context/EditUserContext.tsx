@@ -5,7 +5,7 @@ import React, { useContext, useEffect } from 'react';
 
 interface IUserEditContextType {
     data: IUpdateUser | null;
-    setData: (user: IUpdateUser | null) => void;
+    setData: React.Dispatch<React.SetStateAction<IUpdateUser | null>>;
 }
 
 const EditUserContext = React.createContext<IUserEditContextType | undefined>(undefined);
@@ -13,8 +13,6 @@ const EditUserContext = React.createContext<IUserEditContextType | undefined>(un
 export const EditUserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [data, setData] = React.useState<IUpdateUser | null>(null);
     const { user } = useAppSelector((state: RootState) => state.user);
-
-    // const [data, setData] = useState<IUser>(user || ({} as IUser));
     const handleSubmit = async () => {};
 
     useEffect(() => {
