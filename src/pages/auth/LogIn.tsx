@@ -8,7 +8,11 @@ import { authService } from '@/shared/services/auth.service';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 
 const LogIn = () => {
-    const { handleSubmit, control } = useForm<IAuth>();
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm<IAuth>();
 
     const toRoute = useNavigate();
 
@@ -31,21 +35,28 @@ const LogIn = () => {
                     <h1>Войти</h1>
                     <form onSubmit={handleSubmit(loginHandler)}>
                         <div className={styles.input}>
-                            <Controller
-                                name='username'
-                                defaultValue=''
-                                control={control}
-                                rules={{ required: 'Имя пользователя' }}
-                                render={({ field }) => <AuthInput label='Имя пользователя' {...field} />}
+                            <AuthInput
+                                label={'Имя пользователя'}
+                                error={errors.username?.message}
+                                {...register('username', {
+                                    required: 'Поле не должно быть пустым',
+                                    minLength: { value: 3, message: 'Минимум должен быть 3 символов' },
+                                    maxLength: { value: 30, message: 'Максимум должен быть 30 символов' },
+                                    pattern: {
+                                        value: /^[A-Za-z0-9_]+$/,
+                                        message: 'Имя пользователя должно содержать только английские буквы, цифры и символ "_"',
+                                    },
+                                })}
                             />
                         </div>
                         <div className={styles.input}>
-                            <Controller
-                                name='password'
-                                defaultValue=''
-                                control={control}
-                                rules={{ required: 'ПАролььь' }}
-                                render={({ field }) => <AuthInput label={'Пароль'} type='password' {...field} />}
+                            <AuthInput
+                                label={'Повторите пароль'}
+                                type='password'
+                                error={errors.password?.message}
+                                {...register('password', {
+                                    required: 'Поле не должно быть пустым',
+                                })}
                             />
                         </div>
                         <div className={`${styles.forgetPassword} df jce`}>Забыли пароль?</div>
