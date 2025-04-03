@@ -10,11 +10,17 @@ const StyledAuthInput = styled.input`
     border-radius: 4px;
     width: 100%;
     height: 40px;
-    background: #333232;
+    background: var(--background-color3);
     margin-top: 6px;
     padding: 0 10px;
     box-sizing: border-box;
     color: var(--white-color);
+`;
+
+const StyledErrorText = styled.p`
+    font-size: 12px;
+    padding-top: 3px;
+    color: red;
 `;
 
 const StyledAuthLabel = styled.label`
@@ -28,7 +34,7 @@ const AuthInput = forwardRef<HTMLInputElement, IAuthInput>(({ label, error, ...p
         <>
             <StyledAuthLabel>{label}</StyledAuthLabel>
             <StyledAuthInput {...props} ref={ref} />
-            <p>{error}</p>
+            <StyledErrorText>{error}</StyledErrorText>
         </>
     );
 });

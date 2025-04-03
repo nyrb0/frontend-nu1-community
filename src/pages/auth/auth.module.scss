@@ -32,6 +32,10 @@
             }
         }
     }
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+    }
 }
 
 .right {
@@ -43,4 +47,17 @@
     box-shadow: 8px 0 14px 0 var(--normal);
     height: 100vh;
     width: 50vw;
+}
+
+.specification {
+    max-width: 400px;
+    width: 100%;
+
+    .back {
+        margin-bottom: 20px;
+        p {
+            font-size: 18px !important;
+            font-weight: 400;
+        }
+    }
 }

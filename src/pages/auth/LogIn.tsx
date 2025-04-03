@@ -56,7 +56,7 @@ const LogIn = () => {
                         </div>
                     </form>
                     <div className={styles.isHaveAcc}>
-                        У вас нету аккаунта?
+                        У вас нету аккаунта?{' '}
                         <span>
                             <Link to={'/auth/regis'}>Создать</Link>
                         </span>

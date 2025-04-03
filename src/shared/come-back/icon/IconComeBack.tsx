@@ -7,15 +7,15 @@ const IconComeBack: React.FC<ISvg> = ({ ...props }) => {
                 <path
                     d='M11 1L4 8L11 15M4 8H20H4Z'
                     stroke='#B0B0B0'
-                    stroke-width='2'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
-                    shape-rendering='crispEdges'
+                    strokeWidth='2'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    shapeRendering='crispEdges'
                 />
             </g>
             <defs>
-                <filter id='filter0_d_48_196' x='-1' y='0' width='26' height='24' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'>
-                    <feFlood flood-opacity='0' result='BackgroundImageFix' />
+                <filter id='filter0_d_48_196' x='-1' y='0' width='26' height='24' filterUnits='userSpaceOnUse' colorInterpolationFilters='sRGB'>
+                    <feFlood floodOpacity='0' result='BackgroundImageFix' />
                     <feColorMatrix in='SourceAlpha' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0' result='hardAlpha' />
                     <feOffset dy='4' />
                     <feGaussianBlur stdDeviation='2' />
