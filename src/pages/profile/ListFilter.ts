@@ -1,4 +1,4 @@
-import { PAGES, ROUTES_PROFILE } from '../routes/router.const';
+import { PAGES } from '@/shared/routes/router.const';
 
 export const listsFilterPosts = [
     { name: 'Посты', path: (s: string) => `${PAGES.PROFILE_LINK}/${s}` },

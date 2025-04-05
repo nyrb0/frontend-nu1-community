@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import TextAreaPost from '../UI/TextAreaPost';
-import IconPerson from '../UI/icon/IconPerson';
+
 import {
     StyledEditModalPost,
     StyledPostButtons,
@@ -13,6 +12,8 @@ import { COLORS } from '@/shared/constants/colors';
 import TagUserBlock from './tag-people/TagUserBlock';
 import { PulicationUserI } from '@/shared/types/publication.types';
 import { postService } from '@/shared/services/post.service';
+import IconPerson from '../UI/input/icon/IconPerson';
+import TextAreaPost from '@/shared/UI/text-area/TextAreaPost';
 
 interface IPostUpdateEdit {
     cancellation: () => void;

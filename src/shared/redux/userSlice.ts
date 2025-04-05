@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { userService } from '../services/user.service';
 import { localUsername } from '@/pages/auth/username-local';
-import { IUser } from '../types/auth.types';
+import { IUser } from '../types/user.types';
 
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
     const username = localUsername.get();

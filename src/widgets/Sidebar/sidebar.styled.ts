@@ -4,7 +4,7 @@ export const StyledSidebar = styled.aside`
     font-weight: 500;
     font-size: 16px;
     box-sizing: border-box;
-    height: 98vh;
+    height: 95vh;
     color: var(--gray1);
     background-color: var(--background-color1);
     width: 300px;
@@ -18,7 +18,7 @@ export const StyledSidebar = styled.aside`
 
 export const StyledSidebarContent = styled.div`
     margin-top: 30px;
-    gap: 30px;
+    gap: 20px;
 `;
 
 export const StyledTitleSocial = styled.p`
@@ -55,7 +55,7 @@ export const StyledSidebarAvatar = styled.div`
         }
         & p:last-child {
             margin-top: 7px;
-            font-size: 10px;
+            font-size: 14px;
         }
     }
 `;

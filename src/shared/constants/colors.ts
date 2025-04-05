@@ -6,6 +6,5 @@ export const COLORS = {
     BLACK: '#000',
     GRAY1: '#a9a9a9',
     TRANSPARENT: 'transparent',
-
     NORMAL: 'var(--normal)',
 };

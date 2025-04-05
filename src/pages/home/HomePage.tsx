@@ -1,7 +1,7 @@
-import PostEdit from '@/shared/profile/post-editor/PostEdit';
 import Stories from './components/Story/Stories';
 import styles from './HomePage.module.scss';
 import Recommended from './components/Recommended';
+import PostEdit from '@/shared/post/post-editor/PostEdit';
 
 const HomePage = () => {
     return (

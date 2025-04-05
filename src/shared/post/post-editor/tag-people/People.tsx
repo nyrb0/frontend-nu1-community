@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import AvatarProfile from '../../AvatarProfile';
 import NoNameAvatar from '@/assets/user_noname.png';
+import AvatarProfile from '@/shared/UI/AvatarProfile';
 
 interface IPeople {
     data: {

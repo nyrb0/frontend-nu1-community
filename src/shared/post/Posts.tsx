@@ -11,7 +11,6 @@ const Posts = () => {
     const getPosts = async () => {
         try {
             const response = await postService.getAllUser(username || '');
-
             setPosts(response);
         } catch (err) {
             throw new Error(err as string);

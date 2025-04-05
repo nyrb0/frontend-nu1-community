@@ -1,5 +1,5 @@
 import { baseUrlAws } from '@/shared/constants/baseUrlAws';
-import AvatarProfile from '../profile/AvatarProfile';
+import AvatarProfile from '../UI/AvatarProfile';
 import { StyledPostImage, StyledPostDo, StyledPostProfile, StyledPostsDescription, StyledPostBackground, StyledPostComment } from './posts.styled';
 import { PulicationUserI } from '@/shared/types/publication.types';
 import HashtagText from './HashTags';

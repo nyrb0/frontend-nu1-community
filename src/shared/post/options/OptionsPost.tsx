@@ -4,7 +4,7 @@ import Modal from '@/shared/UI/Modal/Modal';
 import { useState } from 'react';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import { COLORS } from '@/shared/constants/colors';
-import PostUpdateEdit from '@/shared/profile/post-editor/PostEditUpdate';
+import PostUpdateEdit from '../post-editor/PostEditUpdate';
 
 type TypeisVisibility = { showComments: boolean; showLikes: boolean };
 

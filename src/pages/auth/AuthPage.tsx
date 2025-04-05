@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import style from './auth.module.scss';
-import Nu1 from '@/shared/logo-type/Nu1';
+import Nu1 from '@/shared/UI/logo-type/Nu1';
 
 const AuthPage = () => {
     return (

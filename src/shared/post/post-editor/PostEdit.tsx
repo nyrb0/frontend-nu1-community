@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import TextAreaPost from '../UI/TextAreaPost';
-import IconPerson from '../UI/icon/IconPerson';
-import IconPicture from '../UI/icon/IconPicture';
 import {
     StyledPostButtons,
     StyledPostEditBackgroundInner,
@@ -14,6 +11,9 @@ import { COLORS } from '@/shared/constants/colors';
 import { postService } from '@/shared/services/post.service';
 import TagPeople from './tag-people/TagPeople';
 import TagUserBlock from './tag-people/TagUserBlock';
+import IconPerson from '../UI/input/icon/IconPerson';
+import TextAreaPost from '@/shared/UI/text-area/TextAreaPost';
+import IconPicture from '@/shared/UI/text-area/icon/IconPicture';
 
 const PostEdit: React.FC = () => {
     const [value, setValue] = useState('');

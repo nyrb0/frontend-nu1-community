@@ -1,27 +1,21 @@
-import PostEdit from '@/shared/profile/post-editor/PostEdit';
 import HeaderProfile from './header/HeaderProfile';
-import FilterPosts from '@/shared/profile/FilterPosts';
-import { useState } from 'react';
-import { listsFilterPosts } from '@/shared/profile/ListFilter';
 
-import { authService } from '@/shared/services/auth.service';
-import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
+
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
-import { postService } from '@/shared/services/post.service';
+// import { postService } from '@/shared/services/post.service';
+import IconClose from '@/shared/icons/IconClose';
+import { StyledProfilePageClose } from './profilepage.styled';
+import FilterPosts from './FilterPosts';
+import PostEdit from '@/shared/post/post-editor/PostEdit';
+import { listsFilterPosts } from './ListFilter';
 
 const ProfilePage = () => {
     const [postsType, setPostsType] = useState(listsFilterPosts[0].name);
-    const navigate = useNavigate();
     const location = useLocation();
     const { username } = useParams<{ username: string }>();
-    console.log(username, 'nvfjfbvh');
-
-    const logout = () => {
-        authService.logout();
-        navigate('/auth/login');
-    };
-
     const { user } = useSelector((store: RootState) => store.user);
     const isIditProfileRoute = location.pathname.includes(`/${username}/edit`);
     const isOwner = user?.username === username;
@@ -31,7 +25,8 @@ const ProfilePage = () => {
             <div>
                 <HeaderProfile isOwner={isOwner} />
             </div>
-            {isOwner && !isIditProfileRoute && (
+
+            {!isOwner && !isIditProfileRoute && (
                 <>
                     <PostEdit />
                     <div style={{ marginTop: 35 }}>
@@ -39,9 +34,15 @@ const ProfilePage = () => {
                     </div>
                 </>
             )}
-            <div>
+            {!isOwner && user?.private ? (
                 <Outlet />
-            </div>
+            ) : (
+                <StyledProfilePageClose className='df jcc aic fdc'>
+                    <p>Профиль закрыта</p>
+                    <IconClose />
+                    <p>Подпишитесь чтобы было вам доступно!</p>
+                </StyledProfilePageClose>
+            )}
         </div>
     );
 };

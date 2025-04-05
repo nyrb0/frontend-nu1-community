@@ -10,10 +10,17 @@ export interface IUser extends BaseI {
     description: string;
     role: string;
     tel?: string;
+    speciality?: string;
+    skills: string[];
+    positionRole: string;
+    lastLogin: string;
+    lastActive: string;
+    linkedin: string;
     avatarUrl?: string;
+    headerImageUrl?: string;
     private: boolean;
+    countPost: string;
+    isFollowing: boolean;
 }
-
-export type IUpdateUser = Pick<IUser, 'name' | 'username' | 'email' | 'role' | 'tel' | 'avatarUrl' | 'lastName' | 'private' | 'description'>;
 
 export interface IUserWithBase extends IUser, BaseI {}

@@ -1,4 +1,4 @@
-import AvatarProfile from '@/shared/profile/AvatarProfile';
+import AvatarProfile from '@/shared/UI/AvatarProfile';
 import {
     StyledHeaderEdits,
     StyledHeaderImage,
@@ -11,9 +11,10 @@ import { useProfileQuery } from '@/feature/user/user';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import { COLORS } from '@/shared/constants/colors';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import ComeBack from '@/shared/come-back';
+import ComeBack from '@/shared/UI/come-back';
 import IconsEdit from './icons/IconsEdit';
 import IconsShare from './icons/IconsShare';
+import SubscribeButton from '@/shared/UI/SubscribeButton';
 
 interface IHeaderProfile {
     isOwner?: boolean;
@@ -28,13 +29,14 @@ const HeaderProfile: React.FC<IHeaderProfile> = ({ isOwner }) => {
 
     if (!username) throw new Error('not param username');
     const { data: user } = useProfileQuery({ username });
+    if (!user) return null;
 
     return (
         <div>
             <StyledHeaderImage>
                 <StyledProfileComeBack>
                     <ComeBack toNavigate={'/'}>{username}</ComeBack>
-                    <span className='df jcc'>{33} постов</span>
+                    <span className='df jcc'>{user?.countPost} постов</span>
                 </StyledProfileComeBack>
             </StyledHeaderImage>
             <StyledHeaderEdits className={'df aic jcsb'}>
@@ -45,18 +47,18 @@ const HeaderProfile: React.FC<IHeaderProfile> = ({ isOwner }) => {
                         <p>@{user?.username}</p>
                     </StyledHeaderUsername>
                 </div>
-                {isOwner && (
-                    <StyledProfileHeaderButtons className='df'>
+                <StyledProfileHeaderButtons className='df'>
+                    {!isOwner ? (
                         <PrimaryButton
                             color={COLORS.WHITE}
                             background={COLORS.NORMAL}
                             onClick={() => navigate('edit')}
-                            type='submit'
+                            type='button'
                             className='df aic'
                             style={{ gap: 14 }}
                         >
                             {isLocationEditPage ? (
-                                <div className='df aic' style={{ gap: 10 }}>
+                                <button className='df aic' style={{ gap: 10 }}>
                                     Посмотреть профиль
                                     <svg width='16' height='14' viewBox='0 0 16 14' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                         <path
@@ -64,7 +66,7 @@ const HeaderProfile: React.FC<IHeaderProfile> = ({ isOwner }) => {
                                             fill='white'
                                         />
                                     </svg>
-                                </div>
+                                </button>
                             ) : (
                                 <>
                                     <IconsEdit />
@@ -72,12 +74,14 @@ const HeaderProfile: React.FC<IHeaderProfile> = ({ isOwner }) => {
                                 </>
                             )}
                         </PrimaryButton>
-                        <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL} type='submit' className='df aic' style={{ gap: 14 }}>
-                            <IconsShare />
-                            Поделиться
-                        </PrimaryButton>
-                    </StyledProfileHeaderButtons>
-                )}
+                    ) : (
+                        <SubscribeButton isSubs={true} id={username} />
+                    )}
+                    <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL} type='button' className='df aic' style={{ gap: 14 }}>
+                        <IconsShare />
+                        Поделиться
+                    </PrimaryButton>
+                </StyledProfileHeaderButtons>
             </StyledHeaderEdits>
         </div>
     );

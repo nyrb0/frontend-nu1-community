@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import CommentInput from '../UI/input/CommentInput';
 import IconSend from './icon/IconSend';
 import IconSmile from './icon/IconSmile';
-import AvatarProfile from '@/shared/profile/AvatarProfile';
+import AvatarProfile from '@/shared/UI/AvatarProfile';
 import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import { PulicationUserI } from '@/shared/types/publication.types';
 

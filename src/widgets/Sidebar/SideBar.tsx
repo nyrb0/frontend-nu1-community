@@ -46,7 +46,7 @@ const SideBar = () => {
                         <img src={user?.avatarUrl ? `${baseUrlAws}/${user?.avatarUrl}` : NoNameImage} />{' '}
                         <span>
                             <p>{user?.username}</p>
-                            <p>Fullstack</p>
+                            <p>{user?.positionRole}</p>
                         </span>
                     </div>
                     <IconLogout onClick={logout} />

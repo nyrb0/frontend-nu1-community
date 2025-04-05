@@ -1,7 +1,7 @@
-import SettingsHeading from '@/shared/hending/SettingsHeading';
+import SettingsHeading from '@/shared/UI/hending/SettingsHeading';
 import styles from '../ProfileEditPage.module.scss';
 import FieldsInput from '@/shared/post/UI/input/FieldsInput';
-import AvatarProfile from '@/shared/profile/AvatarProfile';
+import AvatarProfile from '@/shared/UI/AvatarProfile';
 import { IUpdateUser } from '@/shared/types/user.types';
 import FileDownloader from '@/shared/UI/file-ownloader/FileDownloader';
 import { useEditUserContext } from '../context/EditUserContext';

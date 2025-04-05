@@ -1,4 +1,4 @@
-import SettingsHeading from '@/shared/hending/SettingsHeading';
+import SettingsHeading from '@/shared/UI/hending/SettingsHeading';
 import styles from '../ProfileEditPage.module.scss';
 import PublicAndPrivateUI from '@/pages/settings/page/deteils/UI/PublicAndPrivateUI';
 import RegulationTextArea from '@/pages/settings/page/deteils/UI/RegulationTextArea';

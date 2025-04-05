@@ -5,7 +5,7 @@ import Block from './ui/Block';
 
 import styles from './auth.module.scss';
 import { ICategorySpecification } from '@/shared/types/specification.types';
-import ComeBack from '@/shared/come-back';
+import ComeBack from '@/shared/UI/come-back';
 
 interface IRegisSpecification {
     onClose: () => void;

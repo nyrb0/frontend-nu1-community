@@ -1,4 +1,4 @@
-import AvatarProfile from '@/shared/profile/AvatarProfile';
+import AvatarProfile from '@/shared/UI/AvatarProfile';
 
 import PlusIcon from '../icon/icon.svg';
 import styled from 'styled-components';

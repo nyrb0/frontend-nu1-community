@@ -1,4 +1,4 @@
-import AvatarProfile from '@/shared/profile/AvatarProfile';
+import AvatarProfile from '@/shared/UI/AvatarProfile';
 import styled from 'styled-components';
 
 const StyledPerson = styled.div`

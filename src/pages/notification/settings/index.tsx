@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '../NotificationPage.module.scss';
 import Switch from './UI/SwitchUI';
-import ComeBack from '@/shared/come-back';
+import ComeBack from '@/shared/UI/come-back';
 
 type NotificationItem = {
     name: string;

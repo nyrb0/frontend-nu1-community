@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { PAGES, ROUTES_NOTIFICATION, ROUTES_PROFILE, ROUTES_SETTINGS } from './router.const';
-import SideBar from '../UI/Sidebar/SideBar';
+import SideBar from '../../widgets/Sidebar/SideBar';
 import styles from '@/shared/styles/page/appRoutes.module.scss';
 import ProfilePage from '@/pages/profile/ProfilePage';
 import FriendsSidebar from '@/widgets/friends-sidebar/FriendsSidebar';
