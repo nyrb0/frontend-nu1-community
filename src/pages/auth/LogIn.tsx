@@ -2,7 +2,7 @@ import AuthInput from './ui/input';
 import styles from './auth.module.scss';
 import { COLORS } from '@/shared/constants/colors';
 import { Link, useNavigate } from 'react-router-dom';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { IAuth } from '@/shared/types/auth.types';
 import { authService } from '@/shared/services/auth.service';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
@@ -10,6 +10,7 @@ import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 const LogIn = () => {
     const {
         handleSubmit,
+        setError,
         register,
         formState: { errors },
     } = useForm<IAuth>();
@@ -25,6 +26,7 @@ const LogIn = () => {
                 location.reload();
             }
         } catch (err) {
+            setError('root', { message: 'Неправильный пароль или логин' });
             console.log(err);
         }
     };
@@ -59,6 +61,7 @@ const LogIn = () => {
                                 })}
                             />
                         </div>
+                        <p className={styles.error}>{errors.root?.message}</p>
                         <div className={`${styles.forgetPassword} df jce`}>Забыли пароль?</div>
                         <div className={styles.button}>
                             <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL} type='submit'>
