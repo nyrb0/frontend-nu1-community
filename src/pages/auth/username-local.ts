@@ -5,4 +5,7 @@ export const localUsername = {
     get(): string {
         return localStorage.getItem('username') || '';
     },
+    delete() {
+        localStorage.removeItem('username');
+    },
 };

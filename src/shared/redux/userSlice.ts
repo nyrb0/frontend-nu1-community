@@ -6,7 +6,7 @@ import { IUser } from '../types/user.types';
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
     const username = localUsername.get();
     const response = await userService.getProfileUser(username);
-    return response;
+    return response.data;
 });
 
 const initialState: {

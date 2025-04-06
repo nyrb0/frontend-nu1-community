@@ -36,19 +36,19 @@ const HeaderProfile: React.FC<IHeaderProfile> = ({ isOwner }) => {
             <StyledHeaderImage>
                 <StyledProfileComeBack>
                     <ComeBack toNavigate={'/'}>{username}</ComeBack>
-                    <span className='df jcc'>{user?.countPost} постов</span>
+                    <span className='df jcc'>{user?._count.publication} постов</span>
                 </StyledProfileComeBack>
             </StyledHeaderImage>
             <StyledHeaderEdits className={'df aic jcsb'}>
                 <div className={'df aic'}>
                     <AvatarProfile src={user?.avatarUrl ? `${baseUrlAws}/${user?.avatarUrl}` : ''} alt='avatar' />
                     <StyledHeaderUsername>
-                        <p>{user?.name && user.lastName ? `${user?.name} ${user?.lastName}` : 'Неизвестно'}</p>
                         <p>@{user?.username}</p>
+                        <p>{user?.name && user.lastName && `${user?.name} ${user?.lastName}`}</p>
                     </StyledHeaderUsername>
                 </div>
                 <StyledProfileHeaderButtons className='df'>
-                    {!isOwner ? (
+                    {isOwner ? (
                         <PrimaryButton
                             color={COLORS.WHITE}
                             background={COLORS.NORMAL}

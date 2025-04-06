@@ -9,7 +9,7 @@ export const userApi = createApi({
     endpoints: builder => ({
         profile: builder.query<IUser, { username: string }>({
             query: ({ username }) => ({
-                url: `/user/${username}`,
+                url: `/user/username/${username}`,
                 method: 'GET',
             }),
         }),

@@ -19,8 +19,12 @@ export interface IUser extends BaseI {
     avatarUrl?: string;
     headerImageUrl?: string;
     private: boolean;
-    countPost: string;
     isFollowing: boolean;
+    _count: {
+        followers: number;
+        following: number;
+        publication: number;
+    };
 }
 
 export interface IUserWithBase extends IUser, BaseI {}

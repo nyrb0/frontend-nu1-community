@@ -8,7 +8,7 @@ import IconThreePoints from './UI/icon/IconThreePoints';
 import IconLike from './UI/icon/IconLike';
 import IconShare from './UI/icon/IconShare';
 import IconSave from './UI/icon/IconSave';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { likePostService } from './service/likePost.service';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -18,6 +18,7 @@ import { savePostService } from './service/savePost.service';
 import { useNavigate } from 'react-router-dom';
 import PostComment from './comment/PostComment';
 import { postService } from '../services/post.service';
+import { localUsername } from '@/pages/auth/username-local';
 
 dayjs.locale('ru');
 dayjs.extend(relativeTime);
@@ -29,7 +30,7 @@ interface IPost {
 const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
     const [data, setData] = useState<PulicationUserI>(originalData);
     const isFullName = data.user.lastName || data.user.name;
-
+    const user = localUsername.get();
     const navigate = useNavigate();
     const [count, setCount] = useState<{ like: number; comment: number; share: number; save: number }>({
         like: data.countLike,
@@ -80,8 +81,6 @@ const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
 
     const timeAgo = dayjs(data.createdAt).fromNow();
 
-    useEffect(() => {}, []);
-
     return (
         <StyledPostBackground>
             {isVisibleOptions && (
@@ -101,12 +100,15 @@ const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
                 <div className='df aic' onClick={() => navigate(`profile/${data.user.username}`)}>
                     <AvatarProfile width={60} height={60} src={data.user.avatarUrl ? `${baseUrlAws}/${data?.user.avatarUrl}` : ''} />
                     <div>
+                        <p style={!isFullName ? { color: 'var(--white-color)', fontWeight: 600, fontSize: 16 } : {}}>
+                            {data.user.username}
+                            {user === data.user.username && ' •Вы'}
+                        </p>
                         {!isFullName ? null : (
                             <p>
                                 {data.user.lastName} {data.user.name}
                             </p>
                         )}
-                        <p style={!isFullName ? { color: 'var(--white-color)', fontWeight: 600, fontSize: 16 } : {}}>@{data.user.username}</p>
                     </div>
                 </div>
                 <div>

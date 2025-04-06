@@ -1,6 +1,6 @@
 import { StyledSidebar, StyledSidebarAvatar, StyledSidebarContent, StyledSidebarList, StyledTitleSocial } from './sidebar.styled';
 
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import { sidebarLists } from './lists.const';
 import NoNameImage from '@/assets/user_noname.png';
@@ -8,15 +8,17 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { authService } from '@/shared/services/auth.service';
 import IconLogout from './icons/IconLogout';
+import { localUsername } from '@/pages/auth/username-local';
 
 const SideBar = () => {
     const route = useLocation();
-    const navigate = useNavigate();
     const { user } = useSelector((state: RootState) => state.user);
+    console.log(user, 'kvnsdfvb ');
 
     const logout = () => {
         authService.logout();
-        navigate('/auth/login');
+        localUsername.delete();
+        window.location.href = '/auth/login';
     };
     return (
         <StyledSidebar className={'df fdc jcsb'}>

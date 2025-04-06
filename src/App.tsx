@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 import { EnumTokens } from './shared/services/auth-token.service';
 import { fetchUser } from './shared/redux/userSlice';
 import { useAppDispatch } from './shared/hooks/redux';
+import { localUsername } from './pages/auth/username-local';
 
 function App() {
     const [isAuthChecked, setIsAuthChecked] = useState(false);
@@ -17,7 +18,7 @@ function App() {
     const checkAuth = async () => {
         const isAuth = await authService.isAuth();
         const cookie = Cookies.get(EnumTokens.ACCESS_TOKEN) || '';
-        if (!isAuth || cookie.length <= 0) {
+        if (!isAuth || cookie.length <= 0 || !localUsername.get()) {
             navigate('/auth/login');
         } else {
             const isAuthRoute = await route.pathname.includes('/auth');

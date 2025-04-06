@@ -1,7 +1,7 @@
 import AuthInput from './ui/input';
 import styles from './auth.module.scss';
 import { COLORS } from '@/shared/constants/colors';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IAuth } from '@/shared/types/auth.types';
 import { authService } from '@/shared/services/auth.service';
@@ -15,15 +15,12 @@ const LogIn = () => {
         formState: { errors },
     } = useForm<IAuth>();
 
-    const toRoute = useNavigate();
-
     const loginHandler: SubmitHandler<IAuth> = async data => {
         try {
             const response = await authService.auth('login', data);
             if (response.status === 200) {
-                toRoute('/');
                 localStorage.setItem('username', data.username);
-                location.reload();
+                window.location.href = '/';
             }
         } catch (err) {
             setError('root', { message: 'Неправильный пароль или логин' });
