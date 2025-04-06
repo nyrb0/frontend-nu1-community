@@ -5,6 +5,7 @@ import {
     StyledHeaderUsername,
     StyledProfileComeBack,
     StyledProfileHeaderButtons,
+    StylesHeaderDescription,
 } from './headerProfile.styled';
 import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import { useProfileQuery } from '@/feature/user/user';
@@ -83,6 +84,7 @@ const HeaderProfile: React.FC<IHeaderProfile> = ({ isOwner }) => {
                     </PrimaryButton>
                 </StyledProfileHeaderButtons>
             </StyledHeaderEdits>
+            <StylesHeaderDescription>{user.description}</StylesHeaderDescription>
         </div>
     );
 };

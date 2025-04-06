@@ -7,7 +7,7 @@ export interface IUser extends BaseI {
     lastName?: string;
     email?: string;
     identification: boolean;
-    description: string;
+    description?: string;
     role: string;
     tel?: string;
     speciality?: string;
@@ -15,7 +15,7 @@ export interface IUser extends BaseI {
     positionRole: string;
     lastLogin: string;
     lastActive: string;
-    linkedin: string;
+    linkedin?: string;
     avatarUrl?: string;
     headerImageUrl?: string;
     private: boolean;

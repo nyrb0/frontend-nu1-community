@@ -1,17 +1,17 @@
 import { useAppSelector } from '@/shared/hooks/redux';
-import { IUpdateUser } from '@/shared/types/user.types';
+import { IUser } from '@/shared/types/user.types';
 import { RootState } from '@/store';
 import React, { useContext, useEffect } from 'react';
 
 interface IUserEditContextType {
-    data: IUpdateUser | null;
-    setData: React.Dispatch<React.SetStateAction<IUpdateUser | null>>;
+    data: IUser | null;
+    setData: React.Dispatch<React.SetStateAction<IUser | null>>;
 }
 
 const EditUserContext = React.createContext<IUserEditContextType | undefined>(undefined);
 
 export const EditUserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [data, setData] = React.useState<IUpdateUser | null>(null);
+    const [data, setData] = React.useState<IUser | null>(null);
     const { user } = useAppSelector((state: RootState) => state.user);
     const handleSubmit = async () => {};
 
@@ -19,7 +19,7 @@ export const EditUserProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         if (user) {
             setData(user);
         }
-    }, [user]);
+    }, []);
 
     return <EditUserContext.Provider value={{ data, setData }}>{children}</EditUserContext.Provider>;
 };

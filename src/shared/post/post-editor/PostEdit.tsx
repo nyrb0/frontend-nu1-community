@@ -30,7 +30,7 @@ const PostEdit: React.FC = () => {
     const addPost = async (e: any) => {
         e.preventDefault();
         try {
-            if (!value || !files) return;
+            if (!value) return;
             await postService.create({ description: value, imageUrl: files });
             location.reload();
         } catch (err) {

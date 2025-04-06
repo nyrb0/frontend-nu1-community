@@ -8,7 +8,8 @@ import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import MainEditInfo from './components/MainEditInfo';
 import { EditUserProvider, useEditUserContext } from './context/EditUserContext';
 import Additionally from './components/Additionally';
-import { postService } from '@/shared/services/post.service';
+import { userService } from '@/shared/services/user.service';
+import { IUser } from '@/shared/types/user.types';
 
 const Page = () => {
     const { data } = useEditUserContext();
@@ -25,7 +26,8 @@ const Page = () => {
         e.preventDefault();
         if (data && user) {
             const result = comparison(data, user);
-            postService.updatePost(user.username, result);
+
+            userService.updateUser(user.id, result as IUser);
         }
     };
 

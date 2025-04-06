@@ -27,6 +27,7 @@ function App() {
         }
     };
 
+    // надо изменить!!!!!
     useEffect(() => {
         checkAuth();
         dispatch(fetchUser());

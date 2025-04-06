@@ -62,3 +62,13 @@ export const StyledHeaderEdits = styled.div`
     padding: 0 16px 0 58px;
     transform: translateY(-35px);
 `;
+
+export const StylesHeaderDescription = styled.p`
+    max-width: 500px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 0 0 20px 30px;
+
+    transform: translateY(-20px);
+`;

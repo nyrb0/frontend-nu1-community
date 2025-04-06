@@ -7,8 +7,8 @@ class UserService {
         const response = await axiosServiceAuth.get(`${this.BASE_URL}/username/${username}`);
         return response;
     }
-    async updateUser(username: string, body: IUser) {
-        const response = await axiosServiceAuth.patch(`${this.BASE_URL}/username/${username}`, body);
+    async updateUser(userId: string, body: IUser) {
+        const response = await axiosServiceAuth.patch(`${this.BASE_URL}/username/${userId}`, body);
         return response;
     }
     async getAll() {

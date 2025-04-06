@@ -20,7 +20,7 @@ const Stories = () => {
                 modules={[FreeMode]}
                 className='mySwiper'
             >
-                {Array.from({ length: 30 }, (_, i) => (
+                {Array.from({ length: 20 }, (_, i) => (
                     <SwiperSlide key={i} style={{ maxWidth: 80 }}>
                         <StoryBlock src='https://cs13.pikabu.ru/post_img/big/2023/02/13/8/1676296366191520185.png' username='nu1bo' />
                     </SwiperSlide>

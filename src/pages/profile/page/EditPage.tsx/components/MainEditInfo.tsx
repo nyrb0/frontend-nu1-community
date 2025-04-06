@@ -2,7 +2,7 @@ import SettingsHeading from '@/shared/UI/hending/SettingsHeading';
 import styles from '../ProfileEditPage.module.scss';
 import FieldsInput from '@/shared/post/UI/input/FieldsInput';
 import AvatarProfile from '@/shared/UI/AvatarProfile';
-import { IUpdateUser } from '@/shared/types/user.types';
+import { IUser } from '@/shared/types/user.types';
 import FileDownloader from '@/shared/UI/file-ownloader/FileDownloader';
 import { useEditUserContext } from '../context/EditUserContext';
 import { Controller, useForm } from 'react-hook-form';
@@ -10,7 +10,7 @@ import { Controller, useForm } from 'react-hook-form';
 const MainEditInfo = () => {
     const { data, setData } = useEditUserContext();
 
-    const handleChange = (key: keyof IUpdateUser, value: string) => {
+    const handleChange = (key: keyof IUser, value: string) => {
         setData(prev => (prev ? { ...prev, [key]: value } : null));
     };
 
@@ -29,7 +29,7 @@ const MainEditInfo = () => {
                     <Controller
                         name='name'
                         control={control}
-                        defaultValue={data.name}
+                        defaultValue={data.name || ''}
                         rules={{
                             required: 'Имя обязательно',
                             minLength: { value: 2, message: 'Минимум 2 символа' },
@@ -54,7 +54,7 @@ const MainEditInfo = () => {
                     <Controller
                         name='email'
                         control={control}
-                        defaultValue={data.email}
+                        defaultValue={data.email || ''}
                         rules={{
                             required: 'Email обязателен',
                             pattern: {
@@ -81,6 +81,26 @@ const MainEditInfo = () => {
 
                 <div className={styles.column}>
                     <Controller
+                        name='lastName'
+                        control={control}
+                        defaultValue={data.lastName || ''}
+                        rules={{}}
+                        render={({ field }) => (
+                            <FieldsInput
+                                {...field}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                    field.onChange(e);
+                                    handleChange('lastName', e.target.value);
+                                }}
+                                width={350}
+                                placeholder='Фамилия'
+                                type='text'
+                                field='Полная фамия'
+                                errors={errors.lastName?.message as string}
+                            />
+                        )}
+                    />
+                    {/* <Controller
                         name='tel'
                         control={control}
                         defaultValue={data.tel}
@@ -104,7 +124,7 @@ const MainEditInfo = () => {
                                 errors={errors.tel?.message as string}
                             />
                         )}
-                    />
+                    /> */}
                     <FieldsInput
                         value={data?.username}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange('username', e.target.value)}
