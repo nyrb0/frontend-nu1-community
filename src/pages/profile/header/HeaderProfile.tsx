@@ -76,7 +76,7 @@ const HeaderProfile: React.FC<IHeaderProfile> = ({ isOwner }) => {
                             )}
                         </PrimaryButton>
                     ) : (
-                        <SubscribeButton isSubs={true} id={username} />
+                        <SubscribeButton isSubs={user.isFollowing} id={user.id} />
                     )}
                     <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL} type='button' className='df aic' style={{ gap: 14 }}>
                         <IconsShare />

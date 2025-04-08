@@ -29,7 +29,7 @@ const ProfilePage = () => {
         (async () => {
             const response = await userService.getProfileUser(username);
             if (response.status === 200) setUser({ error: null, data: response.data, loading: false });
-            else setUser({ loading: false, error: `Ошибка при полученипользователя ${username}`, data: null });
+            else setUser({ loading: false, error: `Ошибка при получени пользователя ${username}`, data: null });
         })();
     }, []);
 
@@ -43,34 +43,31 @@ const ProfilePage = () => {
 
     return (
         <>
-            <>
-                <HeaderProfile isOwner={isOwner} />
-                {isOwner && !isIditProfileRoute && (
-                    <>
-                        <PostEdit />
-                        <div style={{ marginTop: 35 }}>
-                            <FilterPosts data={postsType} onChange={(value: string) => setPostsType(value)} />
-                        </div>
-                    </>
-                )}
-                {isOwner && <Outlet />}
+            <HeaderProfile isOwner={isOwner} />
+            {isOwner && !isIditProfileRoute && (
+                <>
+                    <PostEdit />
+                    <div style={{ marginTop: 35 }}>
+                        <FilterPosts data={postsType} onChange={(value: string) => setPostsType(value)} />
+                    </div>
+                </>
+            )}
 
-                {user.data.private && !isOwner ? (
-                    <StyledProfilePageClose className='df jcc aic fdc'>
-                        <p>Профиль закрыта</p>
-                        <IconClose />
-                        <p>Подпишитесь чтобы было вам доступно!</p>
-                    </StyledProfilePageClose>
-                ) : (
-                    <Outlet />
-                )}
+            {user.data.private && !isOwner && !user.data.isFollowing ? (
+                <StyledProfilePageClose className='df jcc aic fdc'>
+                    <p>Профиль закрыта</p>
+                    <IconClose />
+                    <p>Подпишитесь чтобы было вам доступно!</p>
+                </StyledProfilePageClose>
+            ) : (
+                <Outlet />
+            )}
 
-                {!user.data._count.publication && (
-                    <h2 className='df jcc' style={{ paddingTop: 40 }}>
-                        Пока нет публикации
-                    </h2>
-                )}
-            </>
+            {!user.data._count.publication && (
+                <h2 className='df jcc' style={{ paddingTop: 40 }}>
+                    Пока нет публикации
+                </h2>
+            )}
         </>
     );
 };

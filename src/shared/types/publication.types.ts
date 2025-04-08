@@ -9,15 +9,20 @@ export interface PulicationUserI extends BaseI {
     imageUrl: string;
     showLikes: boolean;
     showComments: boolean;
-    commentsCount: number;
-    countLike: number;
+    _count: ICountStatisticsPost;
     liked: boolean;
     saved: boolean;
     isEdit: boolean;
-
     isOwner: boolean;
+    isLiked: boolean;
 
     user: Omit<IUser, 'email'>;
+}
+
+export interface ICountStatisticsPost {
+    comments: number;
+    likes: number;
+    saves: number;
 }
 
 export interface IUpdatePublication {

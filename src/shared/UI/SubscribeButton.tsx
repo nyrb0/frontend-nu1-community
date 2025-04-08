@@ -32,27 +32,15 @@ const SubscribeButton = ({ isSubs, w, h, id }: ISubscribeButton) => {
 
     return (
         <>
-            {isSubscription ? (
-                <PrimaryButton
-                    style={{ height: h, width: w, border: '1px solid var(--white-color)' }}
-                    color={COLORS.WHITE}
-                    background={'transparant'}
-                    type='button'
-                    onClick={onHandleSubscription}
-                >
-                    Отписаться
-                </PrimaryButton>
-            ) : (
-                <PrimaryButton
-                    onClick={onHandleSubscription}
-                    style={{ height: h, width: w }}
-                    color={COLORS.WHITE}
-                    background={COLORS.NORMAL}
-                    type='button'
-                >
-                    Подписаться
-                </PrimaryButton>
-            )}
+            <PrimaryButton
+                style={{ height: h, width: w, border: isSubscription ? '1px solid var(--white-color)' : 'none' }}
+                color={COLORS.WHITE}
+                background={isSubscription ? 'transparant' : COLORS.NORMAL}
+                type='button'
+                onClick={onHandleSubscription}
+            >
+                {isSubscription ? 'Отписаться' : 'Подписаться'}
+            </PrimaryButton>
         </>
     );
 };

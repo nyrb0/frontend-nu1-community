@@ -33,10 +33,10 @@ const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
     const user = localUsername.get();
     const navigate = useNavigate();
     const [count, setCount] = useState<{ like: number; comment: number; share: number; save: number }>({
-        like: data.countLike,
-        comment: 0,
+        like: data._count.likes,
+        comment: data._count.comments,
         share: 0,
-        save: 0,
+        save: data._count.saves,
     });
 
     const [isVisibleOptions, setIsVisibleOptions] = useState(false);
