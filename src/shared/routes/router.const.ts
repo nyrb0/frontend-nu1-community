@@ -17,6 +17,8 @@ class Routes {
     SETTINGS = '/settings';
     CHATS = '/chats';
     POST_PAGE = '/post/:postId';
+
+    COMMENTS = '/comments/:postId';
 }
 export const PAGES = new Routes();
 

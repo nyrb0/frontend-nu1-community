@@ -15,6 +15,7 @@ import ProfileEditPage from '@/pages/profile/page/EditPage.tsx/ProfileEditPage';
 import DetailsPage from '@/pages/settings/page/deteils/DetailsPage';
 import SettingsPage from '@/pages/settings/SettingsPage';
 import ChatPage from '@/chat/ChatPage';
+import CommentsPage from '@/pages/comments/CommentsPage';
 
 const AppRouter = () => {
     const route = useLocation();
@@ -51,6 +52,7 @@ const AppRouter = () => {
 
                     <Route path={PAGES.SAVES} element={<SavePage />} />
                     <Route path={PAGES.POST_PAGE} element={<PostPage />} />
+                    <Route path={PAGES.COMMENTS} element={<CommentsPage />} />
 
                     <Route path={PAGES.SETTINGS} element={<SettingsPage />}>
                         <Route path={ROUTES_SETTINGS.DETEILS} element={<DetailsPage />} />
