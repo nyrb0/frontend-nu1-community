@@ -1,3 +1,4 @@
+import { HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 const StyledModalWrapper = styled.div`
@@ -39,15 +40,15 @@ const StyledModalContent = styled.div`
     }
 `;
 
-interface IModal {
-    onClose: () => void;
+interface IModal extends HTMLAttributes<HTMLDivElement> {
+    onClose?: () => void;
     children: React.ReactNode;
 }
 
-const Modal: React.FC<IModal> = ({ onClose, children }) => {
+const Modal: React.FC<IModal> = ({ onClose, children, ...props }) => {
     return (
         <StyledModalWrapper>
-            <StyledModalContent>
+            <StyledModalContent {...props}>
                 <span onClick={onClose}>X</span>
                 {children}
             </StyledModalContent>

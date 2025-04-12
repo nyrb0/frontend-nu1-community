@@ -5,6 +5,7 @@ import IconSmile from './icon/IconSmile';
 import AvatarProfile from '@/shared/UI/AvatarProfile';
 import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import { PulicationUserI } from '@/shared/types/publication.types';
+import Comments from './Comments';
 
 interface IPostComment {
     disabled: boolean;
@@ -13,7 +14,7 @@ interface IPostComment {
 
 const PostComment: FC<IPostComment> = ({ disabled, data }) => {
     const [value, setValue] = useState('');
-
+    const [isVisibleComments, setIsVisibleComments] = useState<boolean>(true);
     const commentHandler = async () => {
         try {
             console.log('');
@@ -25,20 +26,23 @@ const PostComment: FC<IPostComment> = ({ disabled, data }) => {
     };
 
     return (
-        <div className='df aic jcsb'>
-            <div className='df' style={{ gap: 8 }}>
-                <AvatarProfile src={data.user.avatarUrl ? `${baseUrlAws}/${data.user?.avatarUrl}` : ''} width={40} height={40} />
-                <CommentInput
-                    placeholder={!disabled ? 'Автор отключил комментрии' : 'Пишишите свой комментарии...'}
-                    disabled={!disabled}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => disabled && setValue(e.target.value)}
-                />
+        <>
+            <div className='df aic jcsb'>
+                <div className='df' style={{ gap: 8 }}>
+                    <AvatarProfile src={data.user.avatarUrl ? `${baseUrlAws}/${data.user?.avatarUrl}` : ''} width={40} height={40} />
+                    <CommentInput
+                        placeholder={!disabled ? 'Автор отключил комментрии' : 'Пишишите свой комментарии...'}
+                        disabled={!disabled}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => disabled && setValue(e.target.value)}
+                    />
+                </div>
+                <div className={'df'} style={{ gap: 8 }}>
+                    <IconSmile />
+                    <IconSend onClick={() => commentHandler} />
+                </div>
             </div>
-            <div className={'df'} style={{ gap: 8 }}>
-                <IconSmile />
-                <IconSend onClick={() => commentHandler} />
-            </div>
-        </div>
+            {isVisibleComments && <Comments data={data} />}
+        </>
     );
 };
 

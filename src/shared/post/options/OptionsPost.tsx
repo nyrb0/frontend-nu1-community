@@ -44,7 +44,7 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, update, isO
     };
 
     // копирует url поста
-    const copyLink = () => navigator.clipboard.writeText(`${window.location.href}post/${postId}`).catch(console.error);
+    const copyLink = () => navigator.clipboard.writeText(`${location.origin}/post/${postId}`).catch(console.error);
 
     return (
         <>
@@ -102,6 +102,14 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, update, isO
                                 </li>
                                 <li onClick={() => handleToggleVisibility('showLikes')}>
                                     {isVisible.showLikes ? 'Скрывать' : 'Показать'} количество лайков
+                                </li>
+                                <li
+                                    onClick={() => {
+                                        cancellation();
+                                        copyLink();
+                                    }}
+                                >
+                                    Скопировать ссылку
                                 </li>
                                 <li onClick={cancellation}>Отмена</li>
                             </StyledOptionsPost>

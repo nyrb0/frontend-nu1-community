@@ -3,13 +3,8 @@ import AvatarProfile from '../UI/AvatarProfile';
 import { StyledPostImage, StyledPostDo, StyledPostProfile, StyledPostsDescription, StyledPostBackground, StyledPostComment } from './posts.styled';
 import { PulicationUserI } from '@/shared/types/publication.types';
 import HashtagText from './HashTags';
-import IconComment from './UI/icon/IconComment';
 import IconThreePoints from './UI/icon/IconThreePoints';
-import IconLike from './UI/icon/IconLike';
-import IconShare from './UI/icon/IconShare';
-import IconSave from './UI/icon/IconSave';
 import { useState } from 'react';
-import { likePostService } from './service/likePost.service';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/ru';
@@ -19,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import PostComment from './comment/PostComment';
 import { postService } from '../services/post.service';
 import { localUsername } from '@/pages/auth/username-local';
+import ActionsPost from './ActionsPost';
 
 dayjs.locale('ru');
 dayjs.extend(relativeTime);
@@ -32,40 +28,18 @@ const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
     const isFullName = data.user.lastName || data.user.name;
     const user = localUsername.get();
     const navigate = useNavigate();
-    const [count, setCount] = useState<{ like: number; comment: number; share: number; save: number }>({
-        like: data._count.likes,
-        comment: data._count.comments,
-        share: 0,
-        save: data._count.saves,
-    });
 
     const [isVisibleOptions, setIsVisibleOptions] = useState(false);
     const [isVisiblity, setIsVisiblity] = useState({ showComments: data.showComments, showLikes: data.showLikes });
-
-    const handleLike = async () => {
-        const postId = data.id;
-        const isLiked = await likePostService.checkLiked(postId);
-        if (isLiked) {
-            likePostService.unLiked(postId);
-            setCount(prev => ({ ...prev, like: prev.like - 1 }));
-            setData(prev => ({ ...prev, liked: false }));
-        } else {
-            likePostService.liked(postId);
-            setCount(prev => ({ ...prev, like: prev.like + 1 }));
-            setData(prev => ({ ...prev, liked: true }));
-        }
-    };
 
     const handleSave = async () => {
         const postId = data.id;
         const isSaved = await savePostService.checkSaved(postId);
         if (isSaved) {
             savePostService.unSaved(postId);
-            setCount(prev => ({ ...prev, save: prev.save - 1 }));
             data.saved = false;
         } else {
             savePostService.saved(postId);
-            setCount(prev => ({ ...prev, save: prev.save + 1 }));
             data.saved = true;
         }
     };
@@ -125,37 +99,16 @@ const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
             <hr />
 
             <StyledPostsDescription>
-                {data.isEdit && <p className='isEdit df jce'>{'редактировано'}</p>}
+                {data.isEdit && <p className='isEdit df jce'>редактировано</p>}
                 <HashtagText
                     onMentionClick={mention => alert(mention)}
                     data={data.description}
                     onHashtagClick={(hashTags: string) => alert(hashTags)}
                 />
             </StyledPostsDescription>
+            <ActionsPost data={data} isShowComments={isVisiblity.showComments} isShowLikes={isVisiblity.showLikes} />
 
             {data.imageUrl && <StyledPostImage src={data.imageUrl ? `${baseUrlAws}/${data.imageUrl}` : ''} />}
-
-            <StyledPostDo className='df jcsb'>
-                <ul className='df'>
-                    <li>
-                        <IconLike isLiked={data.liked} onClick={handleLike} />
-                        {isVisiblity.showLikes && <span>{count.like} лайки</span>}
-                    </li>
-
-                    {isVisiblity.showComments && (
-                        <li>
-                            <IconComment />
-                            <span>{count.comment} комментарии</span>
-                        </li>
-                    )}
-                    <li>
-                        <IconShare />
-                        <span>{count.share} поделились</span>
-                    </li>
-                </ul>
-
-                <IconSave isSave={data.saved} onClick={handleSave} />
-            </StyledPostDo>
 
             <hr />
 
