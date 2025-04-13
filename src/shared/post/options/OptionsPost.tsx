@@ -16,10 +16,10 @@ interface IOptionsPost {
     setIsVisiblity: (prev: TypeisVisibility) => void;
     onSave: () => void; // сохраниние
     isSaved: boolean; // сохранен ли
-    update: () => void; // обновление поста
+    onUpdate: () => void; // обновление поста
 }
 
-const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, update, isOwner, isVisible, setIsVisiblity, onSave, isSaved }) => {
+const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, onUpdate, isOwner, isVisible, setIsVisiblity, onSave, isSaved }) => {
     const [isDeletePost, setIsDeletePost] = useState(false);
 
     const [isEdit, setIsEdit] = useState(false);
@@ -145,7 +145,7 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, update, isO
                     </>
                 )
             ) : (
-                <PostUpdateEdit postId={postId} update={update} cancellation={cancellation} />
+                <PostUpdateEdit postId={postId} update={onUpdate} cancellation={cancellation} />
             )}
         </>
     );

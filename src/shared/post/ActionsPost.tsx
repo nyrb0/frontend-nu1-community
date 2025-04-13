@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { StyledPostDo } from './posts.styled';
 import { PulicationUserI } from '../types/publication.types';
 import IconLike from './UI/icon/IconLike';
@@ -13,9 +13,10 @@ interface IActionsPost {
     data: PulicationUserI;
     isShowLikes: boolean;
     isShowComments: boolean;
+    onComment?: (state: boolean) => void;
 }
 
-const ActionsPost = ({ data: originalData, isShowLikes, isShowComments }: IActionsPost) => {
+const ActionsPost = ({ data: originalData, isShowLikes, isShowComments, onComment }: IActionsPost) => {
     const [data, setData] = useState<PulicationUserI>(originalData);
     const [count, setCount] = useState<{ like: number; comment: number; share: number; save: number }>({
         like: data._count.likes,
@@ -37,6 +38,7 @@ const ActionsPost = ({ data: originalData, isShowLikes, isShowComments }: IActio
             setData(prev => ({ ...prev, liked: true }));
         }
     };
+
     const handleSave = async () => {
         const postId = data.id;
         const isSaved = await savePostService.checkSaved(postId);
@@ -60,12 +62,10 @@ const ActionsPost = ({ data: originalData, isShowLikes, isShowComments }: IActio
                 </li>
 
                 {isShowComments && (
-                    <Link to={`/post/${data.id}/comments`}>
-                        <li>
-                            <IconComment />
-                            <p>{count.comment} комментарии</p>
-                        </li>
-                    </Link>
+                    <li onClick={() => onComment && onComment(true)}>
+                        <IconComment />
+                        <p>{count.comment} комментарии</p>
+                    </li>
                 )}
                 <li>
                     <IconShare />

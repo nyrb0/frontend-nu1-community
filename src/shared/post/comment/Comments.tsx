@@ -4,14 +4,14 @@ import CommentCard from './CommentCard';
 import { IComment } from '@/shared/types/comment.types';
 import Modal from '@/shared/UI/Modal/Modal';
 import { PulicationUserI } from '@/shared/types/publication.types';
-import Post from '../Post';
 import CommentPost from './CommentByPublication';
 
 interface IComments {
     data: PulicationUserI;
+    onClose: (state: boolean) => void;
 }
 
-const Comments = ({ data }: IComments) => {
+const Comments = ({ data, onClose }: IComments) => {
     const [commentsData, setCommentsData] = useState<IComment[]>([]);
     useEffect(() => {
         (async () => {
@@ -20,14 +20,16 @@ const Comments = ({ data }: IComments) => {
                 setCommentsData(response.data);
             }
         })();
-    });
+    }, []);
     return (
-        <Modal style={{ maxWidth: 800 }} onClose={() => null}>
-            {/* <Post data={data} optionOwner /> */}
+        <Modal position={'flex-end'} style={{ maxWidth: 800, height: '70vh' }} onClose={() => onClose(false)}>
             <CommentPost data={data} />
-            <div className='df fdc'>
+            <div className='df fdc' style={{ marginTop: 20 }}>
                 {commentsData.map(item => (
-                    <CommentCard key={item.id} data={item} />
+                    <div key={item.id}>
+                        <CommentCard data={item} />
+                        <hr />
+                    </div>
                 ))}
             </div>
         </Modal>

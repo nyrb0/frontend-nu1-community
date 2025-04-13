@@ -60,7 +60,7 @@ export const StyledSidebarAvatar = styled.div`
     }
 `;
 
-export const StyledSidebarList = styled.div<{ isroute?: boolean }>`
+export const StyledSidebarList = styled.div`
     transition: color 0.3s ease;
     transition: background 0.6s ease-in-out;
     background-color: ${({ isroute }) => (isroute ? 'var(--normal)' : '')};

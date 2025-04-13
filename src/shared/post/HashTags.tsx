@@ -13,9 +13,14 @@ const StyledHashTag = styled.span`
 
 const StyledMention = styled.span`
     color: #8989ff;
-    font-weight: 500;
+    font-weight: 400;
     cursor: pointer;
 `;
+
+const StyledText = styled.div`
+    font-size: 14px;
+`;
+
 const HashtagText: React.FC<IHashTagText> = ({ data, onHashtagClick, onMentionClick }) => {
     const hashtagRegex = /#(\w+)/g;
     const mentionRegex = /@(\w+)/g;
@@ -38,7 +43,7 @@ const HashtagText: React.FC<IHashTagText> = ({ data, onHashtagClick, onMentionCl
         return part;
     });
 
-    return <p>{processedText}</p>;
+    return <StyledText>{processedText}</StyledText>;
 };
 
 export default HashtagText;

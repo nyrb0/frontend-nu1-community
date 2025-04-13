@@ -21,4 +21,8 @@ export const commentPostService = {
         const response = await axiosServiceAuth.delete(`/comment/like/${commentId}`);
         return response;
     },
+    async checkLikedComment(commentId: string) {
+        const response = await axiosServiceAuth.get(`/comment/check/${commentId}`);
+        return response;
+    },
 };

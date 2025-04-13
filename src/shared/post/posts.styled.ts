@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-const paddingContent = css`
+export const StyledPostPaddingContent = styled.div`
     padding: 0 20px;
 `;
 
@@ -14,7 +14,6 @@ export const StyledPostBackground = styled.div`
 `;
 
 export const StyledPostImage = styled.img`
-    ${paddingContent}
     box-sizing: border-box;
     height: 260px;
     border-radius: 15px;
@@ -25,7 +24,6 @@ export const StyledPostImage = styled.img`
 `;
 
 export const StyledPostProfile = styled.div`
-    ${paddingContent}
     & div {
         gap: 12px;
         & p:first-child {
@@ -52,7 +50,7 @@ export const StyledPostsDescription = styled.div`
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 16px;
-    ${paddingContent}
+
     padding-bottom: 5px;
 
     & .isEdit {
@@ -65,7 +63,6 @@ export const StyledPostsDescription = styled.div`
 
 export const StyledPostDo = styled.ul`
     margin-top: 16px;
-    ${paddingContent}
     font-size: 13px;
     & ul {
         gap: 24px;
@@ -75,9 +72,4 @@ export const StyledPostDo = styled.ul`
         gap: 8px;
         align-items: center;
     }
-`;
-
-export const StyledPostComment = styled.div`
-    margin-top: 20px;
-    ${paddingContent}
 `;

@@ -25,7 +25,7 @@ const FriendsSidebar = () => {
             </StyledFriendsRecomend>
             {data &&
                 data?.map(user => (
-                    <div style={{ paddingTop: 15 }}>
+                    <div style={{ paddingTop: 15 }} key={user.id}>
                         <FriendBlock key={user.id} data={user} />
                     </div>
                 ))}

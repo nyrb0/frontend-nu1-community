@@ -4,29 +4,31 @@ import IconSend from './icon/IconSend';
 import IconSmile from './icon/IconSmile';
 import AvatarProfile from '@/shared/UI/AvatarProfile';
 import { baseUrlAws } from '@/shared/constants/baseUrlAws';
-import { PulicationUserI } from '@/shared/types/publication.types';
 import Comments from './Comments';
+import { PulicationUserI } from '@/shared/types/publication.types';
+import { AnimatePresence } from 'framer-motion';
 
 interface IPostComment {
     disabled: boolean;
     data: PulicationUserI;
+    isVisibleComments: boolean;
+    setIsVisibleComments: (state: boolean) => void;
 }
 
-const PostComment: FC<IPostComment> = ({ disabled, data }) => {
+const PostComment: FC<IPostComment> = ({ disabled, isVisibleComments, data, setIsVisibleComments }) => {
     const [value, setValue] = useState('');
-    const [isVisibleComments, setIsVisibleComments] = useState<boolean>(true);
+
     const commentHandler = async () => {
         try {
-            console.log('');
-
             return '';
         } catch (err) {
-            console.log(err);
+            console.error('У вас ошибка: ', err);
         }
     };
+    console.log('render');
 
     return (
-        <>
+        <div>
             <div className='df aic jcsb'>
                 <div className='df' style={{ gap: 8 }}>
                     <AvatarProfile src={data.user.avatarUrl ? `${baseUrlAws}/${data.user?.avatarUrl}` : ''} width={40} height={40} />
@@ -41,8 +43,8 @@ const PostComment: FC<IPostComment> = ({ disabled, data }) => {
                     <IconSend onClick={() => commentHandler} />
                 </div>
             </div>
-            {isVisibleComments && <Comments data={data} />}
-        </>
+            <AnimatePresence>{isVisibleComments && <Comments data={data} onClose={s => setIsVisibleComments(s)} />}</AnimatePresence>
+        </div>
     );
 };
 

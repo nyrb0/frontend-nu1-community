@@ -8,5 +8,12 @@ export interface IComment {
     parentId: null | string;
     createdAt: string;
     user: IUser;
-    isLiked: boolean;
+    liked: boolean;
+
+    isEdit: boolean;
+
+    _count: {
+        likes: number;
+        replies: number;
+    };
 }
