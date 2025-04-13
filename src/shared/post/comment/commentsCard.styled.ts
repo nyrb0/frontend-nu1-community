@@ -10,8 +10,22 @@ export const StyledCommentsBlock = styled.div`
 `;
 
 export const StyledUsername = styled.p`
+    gap: 5px;
     font-weight: 700;
     font-size: 14px;
     color: var(--whit-color);
     padding-bottom: 5px;
+`;
+
+export const StyledIconArrowDown = styled.div`
+    z-index: 999;
+    position: absolute;
+    top: -50px;
+    right: 50%;
+    left: 50%;
+`;
+
+export const StyledComments = styled.div`
+    margin-top: 20px;
+    gap: 20px;
 `;

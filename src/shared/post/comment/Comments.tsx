@@ -5,6 +5,8 @@ import { IComment } from '@/shared/types/comment.types';
 import Modal from '@/shared/UI/Modal/Modal';
 import { PulicationUserI } from '@/shared/types/publication.types';
 import CommentByPublication from './CommentByPublication';
+import IconArrowDown from './icon/IconArrowDown';
+import { StyledComments, StyledIconArrowDown } from './commentsCard.styled';
 
 interface IComments {
     data: PulicationUserI;
@@ -36,15 +38,19 @@ const Comments = ({ data, onClose }: IComments) => {
     };
     return (
         <Modal position={'flex-end'} style={{ maxWidth: 800, height: '70vh' }} onClose={() => onClose(false)}>
+            <h2 className='df jcc'>{data._count.comments} комментарии</h2>
+            <StyledIconArrowDown>
+                <IconArrowDown />
+            </StyledIconArrowDown>
             <CommentByPublication data={data} />
-            <div className='df fdc' style={{ marginTop: 20 }}>
+            <StyledComments className='df fdc'>
                 {commentsData.map(item => (
                     <div key={item.id}>
                         <CommentCard data={item} onDelete={() => onDelete(item.id)} />
                         <hr />
                     </div>
                 ))}
-            </div>
+            </StyledComments>
         </Modal>
     );
 };

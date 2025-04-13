@@ -58,16 +58,15 @@ const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
                     setIsVisiblity={setIsVisiblity}
                 />
             )}
-
-            <hr />
-
             <StyledPostPaddingContent>
                 <HeaderUserPost
                     data={data}
                     isVisibleOptions={isVisibleOptions}
                     onSetVisibleOptions={(state: boolean) => setIsVisibleOptions(state)}
                 />
-
+            </StyledPostPaddingContent>
+            <hr />
+            <StyledPostPaddingContent>
                 <StyledPostsDescription>
                     {data.isEdit && <p className='isEdit df jce'>редактировано</p>}
                     <HashtagText

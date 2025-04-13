@@ -39,7 +39,25 @@ const ActionsComment = ({ data }: IActionsComment) => {
                     <IconComment />
                     <p>{count.comment} ответы</p>
                 </li>
-                <li style={{ fontWeight: 700 }}>ответить</li>
+                <li style={{ fontWeight: 600 }}>
+                    ответить
+                    <svg
+                        style={{ transform: 'translateY(2px)' }}
+                        width='14'
+                        height='8'
+                        viewBox='0 0 20 13'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                    >
+                        <path
+                            d='M9 7L14 12M14 12L19 7M14 12V4.19691C14 3.07899 14 2.5192 13.7822 2.0918C13.5905 1.71547 13.2839 1.40973 12.9076 1.21799C12.4798 1 11.9201 1 10.8 1H1'
+                            stroke='white'
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                        />
+                    </svg>
+                </li>
             </ul>
         </StyledPostDo>
     );

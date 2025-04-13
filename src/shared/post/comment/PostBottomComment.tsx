@@ -19,7 +19,8 @@ interface IPostComment {
 const PostComment: FC<IPostComment> = ({ disabled, isVisibleComments, data, setIsVisibleComments }) => {
     const [value, setValue] = useState('');
 
-    const commentHandler = async () => {
+    const commentHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         try {
             const response = await commentPostService.createComment(data.id, { text: value });
             if (response.status === 200) {
@@ -30,11 +31,10 @@ const PostComment: FC<IPostComment> = ({ disabled, isVisibleComments, data, setI
             console.error('У вас ошибка: ', err);
         }
     };
-    console.log('render');
 
     return (
         <div>
-            <div className='df aic jcsb'>
+            <form className='df aic jcsb' onSubmit={commentHandler}>
                 <div className='df' style={{ gap: 8 }}>
                     <AvatarProfile src={data.user.avatarUrl ? `${baseUrlAws}/${data.user?.avatarUrl}` : ''} width={40} height={40} />
                     <CommentInput
@@ -46,9 +46,11 @@ const PostComment: FC<IPostComment> = ({ disabled, isVisibleComments, data, setI
                 </div>
                 <div className={'df'} style={{ gap: 8 }}>
                     <IconSmile />
-                    <IconSend onClick={commentHandler} />
+                    <button type='submit'>
+                        <IconSend />
+                    </button>
                 </div>
-            </div>
+            </form>
             <AnimatePresence>{isVisibleComments && <Comments data={data} onClose={s => setIsVisibleComments(s)} />}</AnimatePresence>
         </div>
     );

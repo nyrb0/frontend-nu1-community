@@ -25,6 +25,11 @@ const StyledModalContent = styled(motion.div)`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     box-sizing: border-box;
+    scrollbar-width: none;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
     & span {
         position: absolute;
         top: 8px;
