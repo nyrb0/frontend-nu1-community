@@ -23,6 +23,7 @@ export interface ICountStatisticsPost {
     comments: number;
     likes: number;
     saves: number;
+    shares: number;
 }
 
 export interface IUpdatePublication {

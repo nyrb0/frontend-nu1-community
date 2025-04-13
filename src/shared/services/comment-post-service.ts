@@ -1,6 +1,10 @@
 import { axiosServiceAuth } from './api/http';
 
 export const commentPostService = {
+    async createComment(postId: string, body: { text: string }) {
+        const response = await axiosServiceAuth.post(`/comment/do/${postId}`, body);
+        return response;
+    },
     async getAll(postId: string) {
         const response = await axiosServiceAuth.get(`/comment/do/${postId}`);
         return response;

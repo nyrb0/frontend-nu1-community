@@ -1,10 +1,18 @@
-import { PulicationUserI } from '@/shared/types/publication.types';
+import { ICountStatisticsPost, PulicationUserI } from '@/shared/types/publication.types';
 import { StyledPostsDescription } from '../posts.styled';
 import HashtagText from '../HashTags';
 import ActionsPost from '../ActionsPost';
 import HeaderUserPost from '../HeaderUserPost';
+import { useState } from 'react';
 
-const CommentPost = ({ data }: { data: PulicationUserI }) => {
+const CommentByPublication = ({ data }: { data: PulicationUserI }) => {
+    // const [count, setCount] = useState<ICountStatisticsPost>({
+    //     likes: data._count.likes,
+    //     comments: data._count.comments,
+    //     shares: 0,
+    //     saves: data._count.saves,
+    // });
+
     return (
         <div style={{ position: 'relative' }}>
             <HeaderUserPost data={data} />
@@ -23,4 +31,4 @@ const CommentPost = ({ data }: { data: PulicationUserI }) => {
     );
 };
 
-export default CommentPost;
+export default CommentByPublication;

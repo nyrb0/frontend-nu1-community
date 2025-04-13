@@ -7,6 +7,7 @@ import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import Comments from './Comments';
 import { PulicationUserI } from '@/shared/types/publication.types';
 import { AnimatePresence } from 'framer-motion';
+import { commentPostService } from '@/shared/services/comment-post-service';
 
 interface IPostComment {
     disabled: boolean;
@@ -20,7 +21,11 @@ const PostComment: FC<IPostComment> = ({ disabled, isVisibleComments, data, setI
 
     const commentHandler = async () => {
         try {
-            return '';
+            const response = await commentPostService.createComment(data.id, { text: value });
+            if (response.status === 200) {
+                setValue('');
+                data = { ...data, _count: { ...data._count, comments: data._count.comments + 1 } };
+            }
         } catch (err) {
             console.error('У вас ошибка: ', err);
         }
@@ -35,12 +40,13 @@ const PostComment: FC<IPostComment> = ({ disabled, isVisibleComments, data, setI
                     <CommentInput
                         placeholder={!disabled ? 'Автор отключил комментрии' : 'Пишишите свой комментарии...'}
                         disabled={!disabled}
+                        value={value}
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => disabled && setValue(e.target.value)}
                     />
                 </div>
                 <div className={'df'} style={{ gap: 8 }}>
                     <IconSmile />
-                    <IconSend onClick={() => commentHandler} />
+                    <IconSend onClick={commentHandler} />
                 </div>
             </div>
             <AnimatePresence>{isVisibleComments && <Comments data={data} onClose={s => setIsVisibleComments(s)} />}</AnimatePresence>

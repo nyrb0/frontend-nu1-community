@@ -7,7 +7,6 @@ import IconShare from './UI/icon/IconShare';
 import IconSave from './UI/icon/IconSave';
 import { likePostService } from './service/likePost.service';
 import { savePostService } from './service/savePost.service';
-import { Link } from 'react-router-dom';
 
 interface IActionsPost {
     data: PulicationUserI;
