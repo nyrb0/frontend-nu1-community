@@ -7,9 +7,10 @@ import { commentPostService } from '@/shared/services/comment-post-service';
 
 interface IActionsComment {
     data: IComment;
+    onUploadReplay?: () => void;
 }
 
-const ActionsComment = ({ data }: IActionsComment) => {
+const ActionsComment = ({ data, onUploadReplay }: IActionsComment) => {
     const [count, setCount] = useState({ like: data._count.likes, comment: data._count.replies });
     const [liked, setLiked] = useState(data.liked);
 
@@ -35,7 +36,7 @@ const ActionsComment = ({ data }: IActionsComment) => {
                     <IconLike isLiked={liked} onClick={handleLike} />
                     <p>{count.like} лайки</p>
                 </li>
-                <li>
+                <li onClick={() => data._count.replies && onUploadReplay && onUploadReplay()}>
                     <IconComment />
                     <p>{count.comment} ответы</p>
                 </li>

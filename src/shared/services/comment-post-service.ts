@@ -29,4 +29,8 @@ export const commentPostService = {
         const response = await axiosServiceAuth.get(`/comment/check/${commentId}`);
         return response;
     },
+    async getAllReplayById(body: { publicationId: string; parentId: string | null }) {
+        const response = await axiosServiceAuth.get(`/comment/replay?postId=${body.publicationId}&parentId=${body.publicationId}`);
+        return response;
+    },
 };

@@ -6,7 +6,7 @@ import { useState } from 'react';
 import 'dayjs/locale/ru';
 import OptionsPost from './options/OptionsPost';
 import { savePostService } from './service/savePost.service';
-import PostComment from './comment/PostBottomComment';
+import PostBottomComment from './comment/PostBottomComment';
 import { postService } from '../services/post.service';
 import ActionsPost from './ActionsPost';
 import HeaderUserPost from './HeaderUserPost';
@@ -87,7 +87,7 @@ const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
             <hr />
 
             <StyledPostPaddingContent style={{ marginTop: 20 }}>
-                <PostComment
+                <PostBottomComment
                     isVisibleComments={isVisibleComments}
                     setIsVisibleComments={state => setIsVisibleComments(state)}
                     disabled={isVisiblity.showComments}

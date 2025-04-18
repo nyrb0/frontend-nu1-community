@@ -7,6 +7,7 @@ import { PulicationUserI } from '@/shared/types/publication.types';
 import CommentByPublication from './CommentByPublication';
 import IconArrowDown from './icon/IconArrowDown';
 import { StyledComments, StyledIconArrowDown } from './commentsCard.styled';
+import PostBottomComment from './PostBottomComment';
 
 interface IComments {
     data: PulicationUserI;
@@ -36,6 +37,7 @@ const Comments = ({ data, onClose }: IComments) => {
             console.error('Ошибка при удалении поста', error);
         }
     };
+
     return (
         <Modal position={'flex-end'} style={{ maxWidth: 800, height: '70vh' }} onClose={() => onClose(false)}>
             <h2 className='df jcc'>{data._count.comments} комментарии</h2>
@@ -45,7 +47,7 @@ const Comments = ({ data, onClose }: IComments) => {
             <CommentByPublication data={data} />
             <StyledComments className='df fdc'>
                 {commentsData.map(item => (
-                    <div key={item.id}>
+                    <div key={item.id} style={{ position: 'relative' }}>
                         <CommentCard data={item} onDelete={() => onDelete(item.id)} />
                         <hr />
                     </div>

@@ -1,9 +1,8 @@
-import { ICountStatisticsPost, PulicationUserI } from '@/shared/types/publication.types';
+import { PulicationUserI } from '@/shared/types/publication.types';
 import { StyledPostsDescription } from '../posts.styled';
 import HashtagText from '../HashTags';
 import ActionsPost from '../ActionsPost';
 import HeaderUserPost from '../HeaderUserPost';
-import { useState } from 'react';
 
 const CommentByPublication = ({ data }: { data: PulicationUserI }) => {
     // const [count, setCount] = useState<ICountStatisticsPost>({
