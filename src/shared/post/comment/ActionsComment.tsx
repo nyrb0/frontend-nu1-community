@@ -4,6 +4,7 @@ import { IComment } from '@/shared/types/comment.types';
 import IconComment from '../UI/icon/IconComment';
 import IconLike from '../UI/icon/IconLike';
 import { commentPostService } from '@/shared/services/comment-post-service';
+import { useCommentsContext } from './context/useCommentsContext';
 
 interface IActionsComment {
     data: IComment;
@@ -13,6 +14,7 @@ interface IActionsComment {
 const ActionsComment = ({ data, onUploadReplay }: IActionsComment) => {
     const [count, setCount] = useState({ like: data._count.likes, comment: data._count.replies });
     const [liked, setLiked] = useState(data.liked);
+    const { setIdReplay } = useCommentsContext();
 
     const handleLike = async () => {
         const commentId = data.id;
@@ -29,6 +31,17 @@ const ActionsComment = ({ data, onUploadReplay }: IActionsComment) => {
         }
     };
 
+    const LoadedCommentsReplayId = async (publicationId: string, parentId: string) => {
+        try {
+            const response = await commentPostService.getAllReplayById({ publicationId, parentId });
+            if (response.status === 200) {
+                setIdReplay(response.data);
+            }
+        } catch (err) {
+            console.error('Ошибка при запросе комментарии', err);
+        }
+    };
+
     return (
         <StyledPostDo>
             <ul className='df'>
@@ -40,7 +53,7 @@ const ActionsComment = ({ data, onUploadReplay }: IActionsComment) => {
                     <IconComment />
                     <p>{count.comment} ответы</p>
                 </li>
-                <li style={{ fontWeight: 600 }}>
+                <li style={{ fontWeight: 600 }} onClick={() => setIdReplay(data)}>
                     ответить
                     <svg
                         style={{ transform: 'translateY(2px)' }}

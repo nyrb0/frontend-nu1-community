@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Comments from './Comments';
 import { PulicationUserI } from '@/shared/types/publication.types';
 import { AnimatePresence } from 'framer-motion';
-import FormComment from './UI/FormComment';
+import FormComment from './UI/form/FormComment';
 
 interface IPostComment {
     disabled: boolean;

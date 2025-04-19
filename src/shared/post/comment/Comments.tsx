@@ -6,8 +6,10 @@ import Modal from '@/shared/UI/Modal/Modal';
 import { PulicationUserI } from '@/shared/types/publication.types';
 import CommentByPublication from './CommentByPublication';
 import IconArrowDown from './icon/IconArrowDown';
-import { StyledComments, StyledIconArrowDown } from './commentsCard.styled';
-import PostBottomComment from './PostBottomComment';
+import { StyledComments, StyledIconArrowDown, StyledModalComment, StyledModalComments } from './commentsCard.styled';
+import FormComment from './UI/form/FormComment';
+import { useCommentsContext } from './context/useCommentsContext';
+import ReplayCommentPerson from './UI/replay/ReplayCommentPerson';
 
 interface IComments {
     data: PulicationUserI;
@@ -16,6 +18,8 @@ interface IComments {
 
 const Comments = ({ data, onClose }: IComments) => {
     const [commentsData, setCommentsData] = useState<IComment[]>([]);
+
+    const { idReplay, setIdReplay } = useCommentsContext();
 
     useEffect(() => {
         (async () => {
@@ -30,29 +34,44 @@ const Comments = ({ data, onClose }: IComments) => {
         try {
             const response = await commentPostService.deleteCommentById(id);
             if (response.status === 200) {
-                const result = await commentsData.filter(item => item.id !== id);
+                const result = commentsData.filter(item => item.id !== id);
                 setCommentsData(result);
             }
         } catch (error) {
-            console.error('Ошибка при удалении поста', error);
+            console.error('Ошибка при удалении комментарии', error);
         }
     };
 
+    console.log('render');
     return (
-        <Modal position={'flex-end'} style={{ maxWidth: 800, height: '70vh' }} onClose={() => onClose(false)}>
-            <h2 className='df jcc'>{data._count.comments} комментарии</h2>
-            <StyledIconArrowDown>
-                <IconArrowDown />
-            </StyledIconArrowDown>
-            <CommentByPublication data={data} />
-            <StyledComments className='df fdc'>
-                {commentsData.map(item => (
-                    <div key={item.id} style={{ position: 'relative' }}>
-                        <CommentCard data={item} onDelete={() => onDelete(item.id)} />
-                        <hr />
-                    </div>
-                ))}
-            </StyledComments>
+        <Modal
+            position={'flex-end'}
+            style={{ maxWidth: 800 }}
+            onClose={() => {
+                onClose(false);
+                setIdReplay(null);
+            }}
+        >
+            <StyledModalComments>
+                <h2 className='df jcc'>{data._count.comments} комментарии</h2>
+                <StyledIconArrowDown>
+                    <IconArrowDown />
+                </StyledIconArrowDown>
+                <CommentByPublication data={data} />
+                <StyledComments className='df fdc'>
+                    {commentsData.map(item => (
+                        <div key={item.id} style={{ position: 'relative' }}>
+                            <CommentCard data={item} onDelete={() => onDelete(item.id)} />
+                            <hr />
+                        </div>
+                    ))}
+                </StyledComments>
+            </StyledModalComments>
+            <StyledModalComment>
+                {idReplay && <ReplayCommentPerson className='replay_comment' username={idReplay.user?.username} text={idReplay.text} />}
+
+                <FormComment parentId={idReplay?.id} data={data} disabled />
+            </StyledModalComment>
         </Modal>
     );
 };

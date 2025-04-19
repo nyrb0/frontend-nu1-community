@@ -18,18 +18,11 @@ const StyledModalContent = styled(motion.div)`
     height: auto;
     max-width: 300px;
     z-index: 1000;
-    padding: 20px 30px;
     background-color: var(--background-color1);
     border-radius: 8px;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
-    box-sizing: border-box;
-    scrollbar-width: none;
-    overflow-y: scroll;
-    &::-webkit-scrollbar {
-        display: none;
-    }
     & span {
         position: absolute;
         top: 8px;

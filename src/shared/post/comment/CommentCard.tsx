@@ -26,7 +26,13 @@ const CommentBlock = ({ data, onDelete, handleUploadReplayComment }: ICommentCar
                         <IconLanguageStack />
                     </StyledUsername>
                     {data.isEdit && <p className='isEdit df jce'>редактировано</p>}
-                    <HashtagText onMentionClick={mention => alert(mention)} data={data.text} onHashtagClick={(hashTags: string) => alert(hashTags)} />
+                    <div>
+                        <HashtagText
+                            onMentionClick={mention => alert(mention)}
+                            data={data.text}
+                            onHashtagClick={(hashTags: string) => alert(hashTags)}
+                        />
+                    </div>
                     <div className='df aie'>
                         <ActionsComment data={data} onUploadReplay={handleUploadReplayComment} />
                     </div>

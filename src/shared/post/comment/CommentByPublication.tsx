@@ -1,8 +1,9 @@
 import { PulicationUserI } from '@/shared/types/publication.types';
-import { StyledPostsDescription } from '../posts.styled';
+import { StyledPostImage, StyledPostsDescription } from '../posts.styled';
 import HashtagText from '../HashTags';
 import ActionsPost from '../ActionsPost';
 import HeaderUserPost from '../HeaderUserPost';
+import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 
 const CommentByPublication = ({ data }: { data: PulicationUserI }) => {
     // const [count, setCount] = useState<ICountStatisticsPost>({
@@ -22,6 +23,7 @@ const CommentByPublication = ({ data }: { data: PulicationUserI }) => {
                     data={data.description}
                     onHashtagClick={(hashTags: string) => alert(hashTags)}
                 />
+                {data.imageUrl && <StyledPostImage src={data.imageUrl ? `${baseUrlAws}/${data.imageUrl}` : ''} />}
             </StyledPostsDescription>
             <div>
                 <ActionsPost data={data} isShowComments={data.showComments} isShowLikes={data.showLikes} />

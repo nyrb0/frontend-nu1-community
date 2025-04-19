@@ -1,14 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface IHashTagText {
     data?: string;
-    onHashtagClick: (hashtag: string) => void;
-    onMentionClick: (mation: string) => void;
+    onHashtagClick?: (hashtag: string) => void;
+    onMentionClick?: (mation: string) => void;
 }
 
 const StyledHashTag = styled.span`
     color: var(--normal);
-    font-weight: 500;
+    font-weight: 300;
 `;
 
 const StyledMention = styled.span`
@@ -18,24 +19,42 @@ const StyledMention = styled.span`
 `;
 
 const StyledText = styled.div`
-    font-size: 14px;
+    font-size: 12.5px;
+    font-weight: 300;
+    word-break: break-all;
+    width: 98%;
 `;
 
 const HashtagText: React.FC<IHashTagText> = ({ data, onHashtagClick, onMentionClick }) => {
     const hashtagRegex = /#(\w+)/g;
     const mentionRegex = /@(\w+)/g;
+    const navigate = useNavigate();
+
+    const handleHashTag = (part: any) => {
+        if (onHashtagClick) {
+            onHashtagClick(part);
+        }
+        alert(part);
+    };
+    const handleMention = (part: any) => {
+        const username = part.split('@').join('');
+        if (onHashtagClick) {
+            onHashtagClick(part);
+        }
+        navigate(`/profile/${username}`);
+    };
 
     const processedText = data?.split(/(\s+)/).map((part, index) => {
         if (part.match(hashtagRegex)) {
             return (
-                <StyledHashTag key={index} onClick={() => onHashtagClick(part)}>
+                <StyledHashTag key={index} onClick={() => handleHashTag(part)}>
                     {part}
                 </StyledHashTag>
             );
         }
         if (part.match(mentionRegex)) {
             return (
-                <StyledMention key={index} onClick={() => onMentionClick(part)}>
+                <StyledMention key={index} onClick={() => handleMention(part)}>
                     {part}
                 </StyledMention>
             );

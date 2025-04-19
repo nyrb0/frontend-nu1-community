@@ -1,26 +1,31 @@
 import AvatarProfile from '@/shared/UI/AvatarProfile';
-import IconSmile from '../icon/IconSmile';
-import IconSend from '../icon/IconSend';
+import IconSmile from '../../icon/IconSmile';
+import IconSend from '../../icon/IconSend';
 import { commentPostService } from '@/shared/services/comment-post-service';
 import { PulicationUserI } from '@/shared/types/publication.types';
 import { useState } from 'react';
-import CommentInput from '../../UI/input/CommentInput';
+import CommentInput from '../../../UI/input/CommentInput';
 import { baseUrlAws } from '@/shared/constants/baseUrlAws';
+import { useCommentsContext } from '../../context/useCommentsContext';
 
 interface IFormComment {
     data: PulicationUserI;
-    disabled: boolean;
+    disabled?: boolean;
+    parentId?: string;
 }
 
-const FormComment = ({ data, disabled }: IFormComment) => {
+const FormComment = ({ data, disabled, parentId }: IFormComment) => {
     const [value, setValue] = useState('');
-
+    const { setIdReplay } = useCommentsContext();
     const commentHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const response = await commentPostService.createComment(data.id, { text: value });
+            const response = await commentPostService.createComment(data.id, { text: value, parentId });
             if (response.status === 200) {
                 setValue('');
+                if (setIdReplay) {
+                    setIdReplay(null);
+                }
             }
         } catch (err) {
             console.error('У вас ошибка: ', err);
@@ -28,7 +33,7 @@ const FormComment = ({ data, disabled }: IFormComment) => {
     };
     return (
         <form className='df aic jcsb' onSubmit={commentHandler}>
-            <div className='df' style={{ gap: 8 }}>
+            <div className='df jcsb' style={{ gap: 8 }}>
                 <AvatarProfile src={data.user.avatarUrl ? `${baseUrlAws}/${data.user?.avatarUrl}` : ''} width={40} height={40} />
                 <CommentInput
                     placeholder={!disabled ? 'Автор отключил комментрии' : 'Пишишите свой комментарии...'}
@@ -37,9 +42,9 @@ const FormComment = ({ data, disabled }: IFormComment) => {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => disabled && setValue(e.target.value)}
                 />
             </div>
-            <div className={'df'} style={{ gap: 8 }}>
+            <div className={'df'}>
                 <IconSmile />
-                <button type='submit'>
+                <button type='submit' style={{ width: '100%' }}>
                     <IconSend />
                 </button>
             </div>

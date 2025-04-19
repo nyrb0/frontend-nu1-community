@@ -44,7 +44,8 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, onUpdate, i
     };
 
     // копирует url поста
-    const copyLink = () => navigator.clipboard.writeText(`${location.origin}/post/${postId}`).catch(console.error);
+    const linkPost = `${location.origin}/post/${postId}`;
+    const copyLink = () => navigator.clipboard.writeText(linkPost).catch(console.error);
 
     return (
         <>
@@ -138,7 +139,7 @@ const OptionsPost: React.FC<IOptionsPost> = ({ postId, cancellation, onUpdate, i
                             >
                                 Скопировать ссылку
                             </li>
-                            <li>Перейти к публикации</li>
+                            <li onClick={() => window.open(linkPost, '_blank')}>Перейти к публикации</li>
                             <li onClick={cancellation}>Отмена</li>
                         </StyledOptionsPost>
                         <StyledWrapperOptionPost onClick={cancellation} />

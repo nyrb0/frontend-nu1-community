@@ -10,6 +10,7 @@ import PostBottomComment from './comment/PostBottomComment';
 import { postService } from '../services/post.service';
 import ActionsPost from './ActionsPost';
 import HeaderUserPost from './HeaderUserPost';
+import { ProviderComments } from './comment/context/useCommentsContext';
 
 interface IPost {
     data: PulicationUserI;
@@ -69,30 +70,28 @@ const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
             <StyledPostPaddingContent>
                 <StyledPostsDescription>
                     {data.isEdit && <p className='isEdit df jce'>редактировано</p>}
-                    <HashtagText
-                        onMentionClick={mention => alert(mention)}
-                        data={data.description}
-                        onHashtagClick={(hashTags: string) => alert(hashTags)}
-                    />
+                    <HashtagText data={data.description} />
                 </StyledPostsDescription>
+                {data.imageUrl && <StyledPostImage src={data.imageUrl ? `${baseUrlAws}/${data.imageUrl}` : ''} />}
                 <ActionsPost
                     data={data}
                     onComment={state => setIsVisibleComments(state)}
                     isShowComments={isVisiblity.showComments}
                     isShowLikes={isVisiblity.showLikes}
                 />
-                {data.imageUrl && <StyledPostImage src={data.imageUrl ? `${baseUrlAws}/${data.imageUrl}` : ''} />}
             </StyledPostPaddingContent>
 
             <hr />
 
             <StyledPostPaddingContent style={{ marginTop: 20 }}>
-                <PostBottomComment
-                    isVisibleComments={isVisibleComments}
-                    setIsVisibleComments={state => setIsVisibleComments(state)}
-                    disabled={isVisiblity.showComments}
-                    data={data}
-                />
+                <ProviderComments>
+                    <PostBottomComment
+                        isVisibleComments={isVisibleComments}
+                        setIsVisibleComments={state => setIsVisibleComments(state)}
+                        disabled={isVisiblity.showComments}
+                        data={data}
+                    />
+                </ProviderComments>
             </StyledPostPaddingContent>
         </StyledPostBackground>
     );
