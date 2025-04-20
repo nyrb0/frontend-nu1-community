@@ -8,7 +8,23 @@ class UserService {
         return response;
     }
     async updateUser(userId: string, body: IUser) {
-        const response = await axiosServiceAuth.patch(`${this.BASE_URL}/username/${userId}`, body);
+        const formData = new FormData();
+        if (body.description) formData.append('description', body.description);
+        if (body.username) formData.append('username', body.username);
+        if (body.name) formData.append('name', body.name);
+        if (body.lastName) formData.append('lastName', body.lastName);
+        if (body.email) formData.append('email', body.email);
+        if (body.headerImageUrl) formData.append('headerImageUrl', body.headerImageUrl);
+        if (body.avatarUrl) formData.append('avatarUrl', body.avatarUrl);
+
+        // if (body.avatarUrl instanceof File) {
+        //     if (body.avatarUrl) formData.append('avatarUrl', body.avatarUrl);
+        // }
+        // if (body.headerImageUrl instanceof File) {
+        //     formData.append('headerImage', body.headerImageUrl);
+        // }
+
+        const response = await axiosServiceAuth.patch(`${this.BASE_URL}/username/${userId}`, formData);
         return response;
     }
     async getAll() {

@@ -4,7 +4,7 @@ import { RootState } from '@/store';
 import React, { useContext, useEffect } from 'react';
 
 interface IUserEditContextType {
-    data: IUser | null;
+    data: (IUser & { avatarFile?: File }) | null;
     setData: React.Dispatch<React.SetStateAction<IUser | null>>;
 }
 
@@ -13,7 +13,6 @@ const EditUserContext = React.createContext<IUserEditContextType | undefined>(un
 export const EditUserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [data, setData] = React.useState<IUser | null>(null);
     const { user } = useAppSelector((state: RootState) => state.user);
-    const handleSubmit = async () => {};
 
     useEffect(() => {
         if (user) {

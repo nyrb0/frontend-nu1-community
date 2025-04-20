@@ -5,7 +5,6 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { Link } from 'react-router-dom';
 import { localUsername } from '@/pages/auth/username-local';
 import { PulicationUserI } from '../types/publication.types';
-import { baseUrlAws } from '../constants/baseUrlAws';
 import IconThreePoints from './UI/icon/IconThreePoints';
 dayjs.locale('ru');
 dayjs.extend(relativeTime);
@@ -24,7 +23,7 @@ const HeaderUserPost = ({ data, isVisibleOptions, onSetVisibleOptions }: IHeader
     return (
         <StyledPostProfile className='df aic jcsb'>
             <Link className='df aic' to={`profile/${data.user.username}`}>
-                <AvatarProfile width={60} height={60} src={data.user.avatarUrl ? `${baseUrlAws}/${data?.user.avatarUrl}` : ''} />
+                <AvatarProfile width={60} height={60} src={data.user.avatarUrl} />
                 <div style={{ paddingLeft: 10 }}>
                     <div className='df aic' style={!isFullName ? { color: 'var(--white-color)', fontWeight: 600, fontSize: 16 } : {}}>
                         <p className='df aic'>

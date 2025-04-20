@@ -72,7 +72,8 @@ const Post: React.FC<IPost> = ({ data: originalData, optionOwner }) => {
                     {data.isEdit && <p className='isEdit df jce'>редактировано</p>}
                     <HashtagText data={data.description} />
                 </StyledPostsDescription>
-                {data.imageUrl && <StyledPostImage src={data.imageUrl ? `${baseUrlAws}/${data.imageUrl}` : ''} />}
+
+                <div className='df jcc'>{data.imageUrl && <StyledPostImage src={data.imageUrl ? `${baseUrlAws}/${data.imageUrl}` : ''} />}</div>
                 <ActionsPost
                     data={data}
                     onComment={state => setIsVisibleComments(state)}

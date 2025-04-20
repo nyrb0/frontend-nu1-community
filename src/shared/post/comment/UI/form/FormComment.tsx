@@ -34,7 +34,7 @@ const FormComment = ({ data, disabled, parentId }: IFormComment) => {
     return (
         <form className='df aic jcsb' onSubmit={commentHandler}>
             <div className='df jcsb' style={{ gap: 8 }}>
-                <AvatarProfile src={data.user.avatarUrl ? `${baseUrlAws}/${data.user?.avatarUrl}` : ''} width={40} height={40} />
+                <AvatarProfile src={data.user.avatarUrl} width={40} height={40} />
                 <CommentInput
                     placeholder={!disabled ? 'Автор отключил комментрии' : 'Пишишите свой комментарии...'}
                     disabled={!disabled}

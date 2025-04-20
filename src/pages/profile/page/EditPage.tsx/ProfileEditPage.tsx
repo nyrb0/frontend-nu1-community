@@ -17,7 +17,9 @@ const Page = () => {
 
     const comparison = (a: Record<string, any>, b: Record<string, any>) => {
         return Object.keys(a).reduce((acc, key) => {
-            if (a[key] !== b[key]) acc[key] = a[key];
+            if (key === 'avatarFile') {
+                acc['avatarUrl'] = acc['avatarUrl'] = a[key];
+            } else if (a[key] !== b[key]) acc[key] = a[key];
             return acc;
         }, {} as Record<string, any>);
     };
@@ -26,6 +28,7 @@ const Page = () => {
         e.preventDefault();
         if (data && user) {
             const result = comparison(data, user);
+            console.log(result);
 
             userService.updateUser(user.id, result as IUser);
         }

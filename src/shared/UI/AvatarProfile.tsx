@@ -6,16 +6,22 @@ interface IAvatarProfile extends React.ImgHTMLAttributes<HTMLImageElement> {
     width?: number;
     height?: number;
     src?: string;
-    url?: string;
+    selectedUrl?: string;
 }
 const StyledHeaderAvatar = styled.img<IAvatarProfile>`
     border-radius: 50%;
     width: ${({ width }) => `${width || 60}px`};
     height: ${({ height }) => `${height || 60}px`};
+    object-fit: cover;
 `;
-const AvatarProfile: React.FC<IAvatarProfile> = ({ src, width, height, url, ...props }) => {
+const AvatarProfile: React.FC<IAvatarProfile> = ({ width, height, selectedUrl, src, ...props }) => {
     return (
-        <StyledHeaderAvatar width={width} height={height} src={url ? `${baseUrlAws}/${url}` : src || NoNameAvatar} {...props}></StyledHeaderAvatar>
+        <StyledHeaderAvatar
+            width={width}
+            height={height}
+            src={selectedUrl ? selectedUrl : src ? `${baseUrlAws}/${src}` : NoNameAvatar}
+            {...props}
+        ></StyledHeaderAvatar>
     );
 };
 

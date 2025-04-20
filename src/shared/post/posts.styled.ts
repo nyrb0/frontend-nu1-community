@@ -15,10 +15,10 @@ export const StyledPostBackground = styled.div`
 
 export const StyledPostImage = styled.img`
     box-sizing: border-box;
-    height: 260px;
+    height: 100%;
     border-radius: 15px;
-    width: 100%;
-    max-height: 260px;
+
+    max-height: 400px;
     height: 100%;
     object-fit: cover;
 `;

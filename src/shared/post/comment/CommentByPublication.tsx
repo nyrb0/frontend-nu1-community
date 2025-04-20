@@ -18,12 +18,14 @@ const CommentByPublication = ({ data }: { data: PulicationUserI }) => {
             <HeaderUserPost data={data} />
             <StyledPostsDescription>
                 {data.isEdit && <p className='isEdit df jce'>редактировано</p>}
-                <HashtagText
-                    onMentionClick={mention => alert(mention)}
-                    data={data.description}
-                    onHashtagClick={(hashTags: string) => alert(hashTags)}
-                />
-                {data.imageUrl && <StyledPostImage src={data.imageUrl ? `${baseUrlAws}/${data.imageUrl}` : ''} />}
+                <div style={{ marginBottom: 10 }}>
+                    <HashtagText
+                        onMentionClick={mention => alert(mention)}
+                        data={data.description}
+                        onHashtagClick={(hashTags: string) => alert(hashTags)}
+                    />
+                </div>
+                <div className='df jcc'>{data.imageUrl && <StyledPostImage src={data.imageUrl ? `${baseUrlAws}/${data.imageUrl}` : ''} />}</div>
             </StyledPostsDescription>
             <div>
                 <ActionsPost data={data} isShowComments={data.showComments} isShowLikes={data.showLikes} />

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import IconFile from './icon/IconFile';
+import { useEditUserContext } from '@/pages/profile/page/EditPage.tsx/context/EditUserContext';
+import { useState } from 'react';
 
 const StyledLabel = styled.label`
     border: 1px dashed #cbd5e1;
@@ -23,6 +25,14 @@ const StyledLabel = styled.label`
 `;
 
 const FileDownloader: React.FC<{ maxSize: number }> = ({ maxSize }) => {
+    const { data, setData } = useEditUserContext();
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files[0]) {
+            const selectedFile = event.target.files[0];
+            setData(prev => (prev ? { ...prev, avatarFile: selectedFile } : null));
+        }
+    };
     return (
         <>
             <StyledLabel htmlFor='filedownloader' className={'df jcsb fdc'}>
@@ -34,7 +44,7 @@ const FileDownloader: React.FC<{ maxSize: number }> = ({ maxSize }) => {
                     <p>Поддерживаемый формат: SVG, JPG, PNG (по {maxSize} МБ каждый).</p>
                 </div>
             </StyledLabel>
-            <input type='file' id='filedownloader' style={{ display: 'none' }} />
+            <input type='file' id='filedownloader' onChange={handleFileChange} style={{ display: 'none' }} />
         </>
     );
 };
