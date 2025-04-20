@@ -35,7 +35,7 @@ export const StyledSidebarAvatar = styled.div`
         transform: scale(0.9);
     }
     & img {
-        object-fit: contain;
+        object-fit: cover;
         border-radius: 50%;
         width: 50px;
         height: 50px;

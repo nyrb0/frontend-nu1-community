@@ -42,7 +42,7 @@ const HeaderProfile: React.FC<IHeaderProfile> = ({ isOwner }) => {
             </StyledHeaderImage>
             <StyledHeaderEdits className={'df aic jcsb'}>
                 <div className={'df aic'}>
-                    <AvatarProfile src={user?.avatarUrl ? `${baseUrlAws}/${user?.avatarUrl}` : ''} alt='avatar' />
+                    <AvatarProfile src={user.avatarUrl} alt='avatar' />
                     <StyledHeaderUsername>
                         <p>@{user?.username}</p>
                         <p>{user?.name && user.lastName && `${user?.name} ${user?.lastName}`}</p>

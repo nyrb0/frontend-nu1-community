@@ -25,7 +25,7 @@ const FriendBlock = ({ data }: { data: IUser }) => {
     const navigate = useNavigate();
     return (
         <div className='df aic jcsb'>
-            <AvatarProfile src={``} width={40} height={40} alt='avatar' onClick={() => navigate(`/profile/${data.username}`)} />
+            <AvatarProfile src={data.avatarUrl} width={40} height={40} alt='avatar' onClick={() => navigate(`/profile/${data.username}`)} />
             <StyledUsernameAndName onClick={() => navigate(`/profile/${data.username}`)}>
                 <p>{data.username}</p>
                 <p>

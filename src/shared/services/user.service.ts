@@ -24,7 +24,11 @@ class UserService {
         //     formData.append('headerImage', body.headerImageUrl);
         // }
 
-        const response = await axiosServiceAuth.patch(`${this.BASE_URL}/username/${userId}`, formData);
+        const response = await axiosServiceAuth.patch(`${this.BASE_URL}/username/${userId}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
         return response;
     }
     async getAll() {
