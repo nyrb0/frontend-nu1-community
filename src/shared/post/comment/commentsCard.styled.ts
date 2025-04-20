@@ -33,7 +33,7 @@ export const StyledComments = styled.div`
 export const StyledModalComments = styled.div`
     overflow-y: scroll;
     scrollbar-width: none;
-    height: 70vh;
+    height: 80vh;
     &::-webkit-scrollbar {
         display: none;
     }
@@ -58,4 +58,9 @@ export const StyledModalComment = styled.div`
         top: -20px;
         z-index: 9;
     }
+`;
+
+export const StyledCommentTimeAgo = styled.p`
+    font-weight: 300;
+    font-size: 10px;
 `;

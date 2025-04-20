@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { listsLinkProfileEdit } from './category-filter-edit-profile';
-import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
+import { Link } from 'react-router-dom';
 
 const StyledUl = styled.ul`
     font-size: 14px;
@@ -14,13 +12,11 @@ const StyledUl = styled.ul`
 `;
 
 const CategoryEditProfile = () => {
-    const location = useLocation();
-    const { user } = useSelector((state: RootState) => state.user);
     return (
         <StyledUl className={'df jcsb'}>
             {listsLinkProfileEdit.map(link => (
                 <li key={link.name}>
-                    <Link to={link.path(user?.username ?? '')}>{link.name}</Link>
+                    <Link to={link.path()}>{link.name}</Link>
                 </li>
             ))}
         </StyledUl>

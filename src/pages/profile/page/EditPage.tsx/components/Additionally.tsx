@@ -3,12 +3,12 @@ import styles from '../ProfileEditPage.module.scss';
 import PublicAndPrivateUI from '@/pages/settings/page/deteils/UI/PublicAndPrivateUI';
 import RegulationTextArea from '@/pages/settings/page/deteils/UI/RegulationTextArea';
 import { useEditUserContext } from '../context/EditUserContext';
-import { IUpdateUser } from '@/shared/types/user.types';
+import { IUser } from '@/shared/types/user.types';
 
 const Additionally = () => {
     const { data, setData } = useEditUserContext();
 
-    const handleChange = (key: keyof IUpdateUser, value: string | boolean) => {
+    const handleChange = (key: keyof IUser, value: string | boolean) => {
         setData(prev => (prev ? { ...prev, [key]: value } : null));
     };
     if (!data) return;

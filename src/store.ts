@@ -10,4 +10,4 @@ export const store = configureStore({
     middleware: getdefault => getdefault().concat(userApi.middleware),
 });
 export type RootState = ReturnType<typeof store.getState>;
-export type useAppDispatch = typeof store.dispatch;
+export type AppDispatch = typeof store.dispatch;

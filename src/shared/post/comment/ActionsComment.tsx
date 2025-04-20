@@ -9,9 +9,10 @@ import { useCommentsContext } from './context/useCommentsContext';
 interface IActionsComment {
     data: IComment;
     onUploadReplay?: () => void;
+    isVisibleReplay?: boolean;
 }
 
-const ActionsComment = ({ data, onUploadReplay }: IActionsComment) => {
+const ActionsComment = ({ data, onUploadReplay, isVisibleReplay = true }: IActionsComment) => {
     const [count, setCount] = useState({ like: data._count.likes, comment: data._count.replies });
     const [liked, setLiked] = useState(data.liked);
     const { setIdReplay } = useCommentsContext();
@@ -31,16 +32,16 @@ const ActionsComment = ({ data, onUploadReplay }: IActionsComment) => {
         }
     };
 
-    const LoadedCommentsReplayId = async (publicationId: string, parentId: string) => {
-        try {
-            const response = await commentPostService.getAllReplayById({ publicationId, parentId });
-            if (response.status === 200) {
-                setIdReplay(response.data);
-            }
-        } catch (err) {
-            console.error('Ошибка при запросе комментарии', err);
-        }
-    };
+    // const LoadedCommentsReplayId = async (publicationId: string, parentId: string) => {
+    //     try {
+    //         const response = await commentPostService.getAllReplayById({ publicationId, parentId });
+    //         if (response.status === 200) {
+    //             setIdReplay(response.data);
+    //         }
+    //     } catch (err) {
+    //         console.error('Ошибка при запросе комментарии', err);
+    //     }
+    // };
 
     return (
         <StyledPostDo>
@@ -49,10 +50,12 @@ const ActionsComment = ({ data, onUploadReplay }: IActionsComment) => {
                     <IconLike isLiked={liked} onClick={handleLike} />
                     <p>{count.like} лайки</p>
                 </li>
-                <li onClick={() => data._count.replies && onUploadReplay && onUploadReplay()}>
-                    <IconComment />
-                    <p>{count.comment} ответы</p>
-                </li>
+                {isVisibleReplay && (
+                    <li onClick={() => data._count.replies && onUploadReplay && onUploadReplay()}>
+                        <IconComment />
+                        <p>{count.comment} ответы</p>
+                    </li>
+                )}
                 <li style={{ fontWeight: 600 }} onClick={() => setIdReplay(data)}>
                     ответить
                     <svg

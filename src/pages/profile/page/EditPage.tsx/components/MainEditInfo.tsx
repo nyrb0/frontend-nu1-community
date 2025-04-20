@@ -136,7 +136,7 @@ const MainEditInfo = () => {
                 </div>
 
                 <div className={`${styles.files} df`}>
-                    <AvatarProfile selectedUrl={data.avatarFile && URL.createObjectURL(data.avatarFile)} url={data.avatarUrl} />
+                    <AvatarProfile selectedUrl={data.avatarFile && URL.createObjectURL(data.avatarFile)} src={data.avatarUrl} />
                     <FileDownloader maxSize={2} />
                 </div>
             </div>

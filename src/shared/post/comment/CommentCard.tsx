@@ -1,5 +1,5 @@
 import { IComment } from '@/shared/types/comment.types';
-import { StyledCommentsBlock, StyledUsername } from './commentsCard.styled';
+import { StyledCommentsBlock, StyledCommentTimeAgo, StyledUsername } from './commentsCard.styled';
 import ActionsComment from './ActionsComment';
 import HashtagText from '../HashTags';
 import AvatarProfile from '@/shared/UI/AvatarProfile';
@@ -8,14 +8,21 @@ import { useState } from 'react';
 import IconDelete from './icon/IconDelete';
 import IconLanguageStack from '@/shared/icons/IconLanguageStack';
 import { commentPostService } from '@/shared/services/comment-post-service';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.locale('ru');
+dayjs.extend(relativeTime);
 
 interface ICommentCard {
     data: IComment;
     onDelete?: () => void;
     handleUploadReplayComment?: () => void;
+    isVisibleReplay?: boolean;
 }
 
-const CommentBlock = ({ data, onDelete, handleUploadReplayComment }: ICommentCard) => {
+const CommentBlock = ({ data, onDelete, handleUploadReplayComment, isVisibleReplay }: ICommentCard) => {
+    const timeAgo = dayjs(data.createdAt).fromNow();
     return (
         <StyledCommentsBlock className={'df jcsb'} style={{ height: '100%' }}>
             <div className='df'>
@@ -33,13 +40,14 @@ const CommentBlock = ({ data, onDelete, handleUploadReplayComment }: ICommentCar
                             onHashtagClick={(hashTags: string) => alert(hashTags)}
                         />
                     </div>
-                    <div className='df aie'>
-                        <ActionsComment data={data} onUploadReplay={handleUploadReplayComment} />
+                    <div className='df aie ' style={{ width: '100%' }}>
+                        <ActionsComment isVisibleReplay={isVisibleReplay} data={data} onUploadReplay={handleUploadReplayComment} />
                     </div>
                 </div>
             </div>
-            <div>
+            <div className='df fdc jcsb aie'>
                 <IconDelete onClick={onDelete} />
+                <StyledCommentTimeAgo>{timeAgo}</StyledCommentTimeAgo>
             </div>
         </StyledCommentsBlock>
     );
@@ -49,20 +57,20 @@ const CommentCard = ({ data, onDelete }: ICommentCard) => {
     const [commentsReplayData, setCommentsReplayData] = useState<IComment[]>([]);
     const [isVisibleReplay, setIsVisibleReplay] = useState(false);
 
-    const onDeleteReplay = async (id: string) => {
-        try {
-            const response = await commentPostService.deleteCommentById(id);
-            if (response.status === 200) {
-                const result = commentsReplayData.filter(item => item.id !== id);
-                setCommentsReplayData(result);
-            }
-        } catch (error) {
-            console.error('Ошибка при удалении поста', error);
-        }
-    };
+    // const onDeleteReplay = async (id: string) => {
+    //     try {
+    //         const response = await commentPostService.deleteCommentById(id);
+    //         if (response.status === 200) {
+    //             const result = commentsReplayData.filter(item => item.id !== id);
+    //             setCommentsReplayData(result);
+    //         }
+    //     } catch (error) {
+    //         console.error('Ошибка при удалении поста', error);
+    //     }
+    // };
 
     const onUploadRaplay = async () => {
-        const body = { publicationId: data.publicationId, parentId: data.parentId };
+        const body = { publicationId: data.publicationId, parentId: data.id };
 
         try {
             const response = await commentPostService.getAllReplayById(body);
@@ -78,7 +86,11 @@ const CommentCard = ({ data, onDelete }: ICommentCard) => {
     return (
         <>
             <CommentBlock data={data} handleUploadReplayComment={() => onUploadRaplay()} onDelete={onDelete} />
-            {isVisibleReplay && commentsReplayData.map(item => <CommentBlock key={item.id} data={item} />)}
+            <div className='df jce'>
+                <div style={{ width: '95%', marginTop: 5 }}>
+                    {isVisibleReplay && commentsReplayData.map(item => <CommentBlock isVisibleReplay={false} key={item.id} data={item} />)}
+                </div>
+            </div>
         </>
     );
 };

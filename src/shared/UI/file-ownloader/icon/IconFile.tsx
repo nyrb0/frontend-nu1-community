@@ -1,13 +1,4 @@
 import { ISvg } from '@/shared/types/svg.types';
-import styled from 'styled-components';
-
-const StyledCircle = styled.svg`
-    border-radius: 123px;
-    width: 48px;
-    height: 48px;
-    background-color: var(--normal);
-    opacity: 0.5;
-`;
 
 const IconFile: React.FC<ISvg> = ({ ...props }) => {
     return (

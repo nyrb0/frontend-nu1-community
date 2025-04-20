@@ -1,12 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import AddStory from './AddStory';
-import StoryBlock from './StoryBlock';
-
 import { FreeMode } from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
+import StoryBlock from './StoryBlock';
+import AddStory from './AddStory';
+import 'swiper/swiper-bundle.css';
 
 const Stories = () => {
     return (

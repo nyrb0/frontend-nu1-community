@@ -71,5 +71,6 @@ export const StyledPostDo = styled.ul`
         display: flex;
         gap: 8px;
         align-items: center;
+        cursor: pointer;
     }
 `;

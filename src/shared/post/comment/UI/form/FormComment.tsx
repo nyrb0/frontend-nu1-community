@@ -5,7 +5,6 @@ import { commentPostService } from '@/shared/services/comment-post-service';
 import { PulicationUserI } from '@/shared/types/publication.types';
 import { useState } from 'react';
 import CommentInput from '../../../UI/input/CommentInput';
-import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import { useCommentsContext } from '../../context/useCommentsContext';
 
 interface IFormComment {

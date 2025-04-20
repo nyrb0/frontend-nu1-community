@@ -38,8 +38,8 @@ const HashtagText: React.FC<IHashTagText> = ({ data, onHashtagClick, onMentionCl
     };
     const handleMention = (part: any) => {
         const username = part.split('@').join('');
-        if (onHashtagClick) {
-            onHashtagClick(part);
+        if (onMentionClick) {
+            onMentionClick(part);
         }
         navigate(`/profile/${username}`);
     };

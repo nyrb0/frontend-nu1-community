@@ -30,7 +30,7 @@ export const commentPostService = {
         return response;
     },
     async getAllReplayById(body: { publicationId: string; parentId: string | null }) {
-        const response = await axiosServiceAuth.get(`/comment/replay?postId=${body.publicationId}&parentId=${body.publicationId}`);
+        const response = await axiosServiceAuth.get(`/comment/replay?postId=${body.publicationId}&parentId=${body.parentId}`);
         return response;
     },
 };

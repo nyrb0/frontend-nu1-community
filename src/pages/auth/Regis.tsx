@@ -31,7 +31,7 @@ const Regis = () => {
 
     const password = watch('password');
 
-    const regisHandler: SubmitHandler<IFormData> = async (data, event) => {
+    const regisHandler: SubmitHandler<IFormData> = async data => {
         try {
             clearErrors();
             // проверяем полю positionRole, speciality

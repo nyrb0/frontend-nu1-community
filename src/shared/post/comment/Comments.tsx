@@ -42,7 +42,6 @@ const Comments = ({ data, onClose }: IComments) => {
         }
     };
 
-    console.log('render');
     return (
         <Modal
             position={'flex-end'}

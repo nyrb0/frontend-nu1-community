@@ -25,7 +25,7 @@ const PostUpdateEdit: React.FC<IPostUpdateEdit> = ({ cancellation, postId, updat
     const [value, setValue] = useState('');
     const [data, setData] = useState<PulicationUserI>();
 
-    const [isVisibleTagPeople, setIsVisibleTagPeople] = useState(false);
+    // const [isVisibleTagPeople, setIsVisibleTagPeople] = useState(false);
     const [tagArrayUsername, setTagArrayUsername] = useState<string[]>([]);
 
     const addPost = async (e: any) => {
@@ -64,7 +64,7 @@ const PostUpdateEdit: React.FC<IPostUpdateEdit> = ({ cancellation, postId, updat
                                 />
                             </div>
                             <StyledPostEditTextArea className='df aic'>
-                                <IconPerson onClick={() => setIsVisibleTagPeople(true)} />
+                                <IconPerson onClick={() => null} />
                             </StyledPostEditTextArea>
                         </StyledPostEditBackgroundInner>
                         <div className='df' style={{ gap: 10, marginTop: 5 }}>

@@ -1,4 +1,3 @@
-import { TextareaHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 const StyledTextArea = styled.textarea`

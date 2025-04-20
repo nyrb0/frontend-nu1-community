@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import IconFile from './icon/IconFile';
 import { useEditUserContext } from '@/pages/profile/page/EditPage.tsx/context/EditUserContext';
-import { useState } from 'react';
 
 const StyledLabel = styled.label`
     border: 1px dashed #cbd5e1;
@@ -25,7 +24,7 @@ const StyledLabel = styled.label`
 `;
 
 const FileDownloader: React.FC<{ maxSize: number }> = ({ maxSize }) => {
-    const { data, setData } = useEditUserContext();
+    const { setData } = useEditUserContext();
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {

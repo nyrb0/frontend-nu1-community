@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import IconAnswer from '../../../pages/settings/page/icon/IconAnswer';
-import styles from '../DetailsPage.module.scss';
 
 interface ISettingsHeading {
     heading: string;
