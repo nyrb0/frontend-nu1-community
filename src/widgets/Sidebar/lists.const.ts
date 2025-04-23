@@ -40,9 +40,14 @@ export const sidebarLists: { label: string; icon: string; link: string }[] = [
         link: PAGES.VACANCY,
     },
     {
-        label: 'Подписки',
+        label: 'Мероприятия',
         icon: SubsIcon,
-        link: PAGES.SUBSCRIPTIONS,
+        link: PAGES.EVENTS,
+    },
+    {
+        label: 'Компании',
+        icon: SubsIcon,
+        link: PAGES.COMPANIES,
     },
     {
         label: 'Профиль',

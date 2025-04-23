@@ -9,7 +9,7 @@ interface IHashTagText {
 
 const StyledHashTag = styled.span`
     color: var(--normal);
-    font-weight: 300;
+    font-weight: 600;
 `;
 
 const StyledMention = styled.span`
@@ -26,7 +26,7 @@ const StyledText = styled.div`
 `;
 
 const HashtagText: React.FC<IHashTagText> = ({ data, onHashtagClick, onMentionClick }) => {
-    const hashtagRegex = /#(\w+)/g;
+    const hashtagRegex = /#([a-zA-Zа-яА-ЯёЁ0-9_]+)/g;
     const mentionRegex = /@(\w+)/g;
     const navigate = useNavigate();
 

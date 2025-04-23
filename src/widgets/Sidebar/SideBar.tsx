@@ -1,5 +1,4 @@
 import { StyledSidebar, StyledSidebarAvatar, StyledSidebarContent, StyledSidebarList, StyledTitleSocial } from './sidebar.styled';
-
 import { Link, useLocation } from 'react-router-dom';
 import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import { sidebarLists } from './lists.const';
@@ -56,7 +55,9 @@ const SideBar = () => {
                                     />
                                 </svg>
                             </div>
-                            <p>{user?.positionRole}</p>
+                            <p>
+                                {user?.speciality} ({user?.positionRole})
+                            </p>
                         </span>
                     </div>
                     <IconLogout onClick={logout} />

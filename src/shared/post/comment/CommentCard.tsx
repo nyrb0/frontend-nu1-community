@@ -3,13 +3,13 @@ import { StyledCommentsBlock, StyledCommentTimeAgo, StyledUsername } from './com
 import ActionsComment from './ActionsComment';
 import HashtagText from '../HashTags';
 import AvatarProfile from '@/shared/UI/AvatarProfile';
-import { baseUrlAws } from '@/shared/constants/baseUrlAws';
 import { useState } from 'react';
 import IconDelete from './icon/IconDelete';
 import IconLanguageStack from '@/shared/icons/IconLanguageStack';
 import { commentPostService } from '@/shared/services/comment-post-service';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { localUsername } from '@/pages/auth/username-local';
 
 dayjs.locale('ru');
 dayjs.extend(relativeTime);
@@ -23,14 +23,15 @@ interface ICommentCard {
 
 const CommentBlock = ({ data, onDelete, handleUploadReplayComment, isVisibleReplay }: ICommentCard) => {
     const timeAgo = dayjs(data.createdAt).fromNow();
+    console.log(data.user);
     return (
         <StyledCommentsBlock className={'df jcsb'} style={{ height: '100%' }}>
             <div className='df'>
-                <AvatarProfile width={60} height={60} src={data.user.avatarUrl ? `${baseUrlAws}/${data?.user.avatarUrl}` : ''} />
+                <AvatarProfile width={60} height={60} src={data.user.avatarUrl} />
                 <div style={{ marginLeft: 10 }}>
                     <StyledUsername className={'df aic'}>
-                        {data.user.username}
                         <IconLanguageStack />
+                        {data.user.username} <span>{data.user.username === localUsername.get() && ' •Вы'}</span>
                     </StyledUsername>
                     {data.isEdit && <p className='isEdit df jce'>редактировано</p>}
                     <div>

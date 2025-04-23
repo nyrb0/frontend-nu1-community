@@ -23,7 +23,7 @@ const StyledModalContent = styled(motion.div)`
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
-    & span {
+    & .close-comment {
         position: absolute;
         top: 8px;
         right: 8px;
@@ -56,7 +56,9 @@ const Modal: React.FC<IModal> = ({ onClose, children, position = 'center', ...pr
                 exit={{ opacity: 0, transform: 'translateY(600px)' }}
                 transition={{ duration: 0.5, y: -50, ease: 'easeInOut' }}
             >
-                <span onClick={onClose}>X</span>
+                <span className='close-comment' onClick={onClose}>
+                    X
+                </span>
                 {children}
             </StyledModalContent>
         </StyledModalWrapper>

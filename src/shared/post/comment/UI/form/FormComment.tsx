@@ -6,6 +6,8 @@ import { PulicationUserI } from '@/shared/types/publication.types';
 import { useState } from 'react';
 import CommentInput from '../../../UI/input/CommentInput';
 import { useCommentsContext } from '../../context/useCommentsContext';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
 
 interface IFormComment {
     data: PulicationUserI;
@@ -16,6 +18,7 @@ interface IFormComment {
 const FormComment = ({ data, disabled, parentId }: IFormComment) => {
     const [value, setValue] = useState('');
     const { setIdReplay } = useCommentsContext();
+    const { user } = useSelector((state: RootState) => state.user);
     const commentHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
@@ -33,7 +36,7 @@ const FormComment = ({ data, disabled, parentId }: IFormComment) => {
     return (
         <form className='df aic jcsb' onSubmit={commentHandler}>
             <div className='df jcsb' style={{ gap: 8 }}>
-                <AvatarProfile src={data.user.avatarUrl} width={40} height={40} />
+                <AvatarProfile src={user?.avatarUrl} width={40} height={40} />
                 <CommentInput
                     placeholder={!disabled ? 'Автор отключил комментрии' : 'Пишишите свой комментарии...'}
                     disabled={!disabled}

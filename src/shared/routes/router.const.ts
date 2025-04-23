@@ -11,8 +11,10 @@ class Routes {
     MESSAGE = '/message';
     SAVES = '/saves';
     GROUPS = '/groups';
-    SUBSCRIPTIONS = '/subscriptions';
+    SUBSCRIPTIONS = '/events';
+    EVENTS = '/subscriptions';
     VACANCY = '/vacancy';
+    COMPANIES = '/companies';
     OTHER = '/other';
     SETTINGS = '/settings';
     CHATS = '/chats';

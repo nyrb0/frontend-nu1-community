@@ -15,6 +15,11 @@ export const StyledUsername = styled.p`
     font-size: 14px;
     color: var(--whit-color);
     padding-bottom: 5px;
+
+    & span {
+        font-weight: 300;
+        font-size: 12px;
+    }
 `;
 
 export const StyledIconArrowDown = styled.div`
@@ -38,7 +43,7 @@ export const StyledModalComments = styled.div`
         display: none;
     }
 
-    padding: 20px 30px 80px 30px;
+    padding: 20px 30px 150px 30px;
     box-sizing: border-box;
 `;
 
