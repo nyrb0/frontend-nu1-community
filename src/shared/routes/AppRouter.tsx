@@ -15,6 +15,7 @@ import SettingsPage from '@/pages/settings/SettingsPage';
 import CommentsPage from '@/pages/comments/CommentsPage';
 import SideBar from '@/widgets/Sidebar/SideBar';
 import Posts from '../post/Posts';
+import VacancyPage from '@/pages/vanancy';
 
 const AppRouter = () => {
     const route = useLocation();
@@ -46,6 +47,7 @@ const AppRouter = () => {
                     <Route path={PAGES.SAVES} element={<SavePage />} />
                     <Route path={PAGES.POST_PAGE} element={<PostPage />} />
                     <Route path={PAGES.COMMENTS} element={<CommentsPage />} />
+                    <Route path={PAGES.VACANCY} element={<VacancyPage />} />
                     <Route path={PAGES.SETTINGS} element={<SettingsPage />}>
                         <Route path={ROUTES_SETTINGS.DETEILS} element={<DetailsPage />} />
                     </Route>

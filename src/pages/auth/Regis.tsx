@@ -1,58 +1,27 @@
 import AuthInput from './ui/input';
 import styles from './auth.module.scss';
-
 import { COLORS } from '@/shared/constants/colors';
 import { Link } from 'react-router-dom';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { IRegisAuth } from '@/shared/types/auth.types';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
-import { authService } from '@/shared/services/auth.service';
-import { useState } from 'react';
 import RegisSpecification from './RegisSpecification';
 import Block from './ui/Block';
-
-interface IFormData extends IRegisAuth {
-    repeatPassword: string;
-}
+import { ROLES } from '@/shared/types/roles';
+import { motion } from 'framer-motion';
+import { useRegis } from './hooks/useRegis';
 
 const Regis = () => {
     const {
-        handleSubmit,
-        register,
-        setError,
+        roles,
+        setRoles,
+        isVisibilitySpecification,
         clearErrors,
-        formState: { errors },
-        watch,
-    } = useForm<IFormData>();
-
-    const [isVisibilitySpecification, setIsVisibilitySpecification] = useState(false);
-    const [roles, setRoles] = useState<{ positionRole: string; speciality: string }>({ positionRole: '', speciality: '' });
-    console.log(roles, 'njffbhbvhf');
-
-    const password = watch('password');
-
-    const regisHandler: SubmitHandler<IFormData> = async data => {
-        try {
-            clearErrors();
-            // проверяем полю positionRole, speciality
-            if (!roles.positionRole || !roles.speciality) {
-                setError('speciality', { type: 'manual', message: 'Выберите специальность' });
-                setError('positionRole', { type: 'manual', message: 'Выберите позицию' });
-                return;
-            }
-            data = { ...data, speciality: roles.speciality, positionRole: roles.positionRole };
-            const { repeatPassword, ...body } = data;
-            if (data) {
-                const response = await authService.auth('regis', body);
-                if (response.status === 200) {
-                    localStorage.setItem('username', data.username);
-                    window.location.href = '/';
-                }
-            }
-        } catch (err) {
-            console.log('Ошибка при регистрации', err);
-        }
-    };
+        setIsVisibilitySpecification,
+        handlerRegister,
+        register,
+        handleSubmit,
+        errors,
+        password,
+    } = useRegis();
     return (
         <div className={`${styles.auth}`}>
             <div className={`${styles.right} df jcc`}>
@@ -60,10 +29,11 @@ const Regis = () => {
                     <div>
                         <h1>Регистрация</h1>
 
-                        <form onSubmit={handleSubmit(regisHandler)}>
+                        <form onSubmit={handleSubmit(handlerRegister)}>
                             <div className={styles.input}>
                                 <AuthInput
-                                    label={'Имя пользователя'}
+                                    placeholder='придумайте уникальный nickName'
+                                    label={'Никнэйм'}
                                     error={errors.username?.message}
                                     {...register('username', {
                                         required: 'Поле не должно быть пустым',
@@ -78,6 +48,7 @@ const Regis = () => {
                             </div>
                             <div className={styles.input}>
                                 <AuthInput
+                                    placeholder='ваш email'
                                     label={'Email'}
                                     error={errors.email?.message}
                                     {...register('email', {
@@ -91,6 +62,7 @@ const Regis = () => {
                             </div>
                             <div className={styles.input}>
                                 <AuthInput
+                                    placeholder='придумайте пароль'
                                     label='Пароль'
                                     type='password'
                                     error={errors.password?.message}
@@ -113,6 +85,7 @@ const Regis = () => {
                             </div>
                             <div className={styles.input}>
                                 <AuthInput
+                                    placeholder='повторите пароль'
                                     label={'Повторите пароль'}
                                     type='password'
                                     error={errors.repeatPassword?.message}
@@ -122,19 +95,61 @@ const Regis = () => {
                                     })}
                                 />
                             </div>
-                            <div className={styles.input}>
-                                <Block error={errors.speciality?.message} onClick={() => setIsVisibilitySpecification(true)}>
-                                    {roles.speciality ? roles.speciality : 'Ваша специальность'}
-                                </Block>
+                            {roles.role === ROLES.USER && (
+                                <motion.div
+                                    initial={{ opacity: 0, transform: 'translateY(-25px)' }}
+                                    animate={{ opacity: 1, transform: 'translateY(0)' }}
+                                    transition={{ duration: 0.5 }}
+                                >
+                                    <div className={styles.input}>
+                                        <Block error={errors.speciality?.message} onClick={() => setIsVisibilitySpecification(true)}>
+                                            {roles.speciality ? roles.speciality : 'Ваша специальность'}
+                                        </Block>
+                                    </div>
+                                    <div className={styles.input}>
+                                        <Block
+                                            error={errors.positionRole?.message}
+                                            style={{ scale: 1 }}
+                                            onClick={() => setIsVisibilitySpecification(true)}
+                                        >
+                                            {roles.positionRole ? roles.positionRole : 'Ваша позиция'}
+                                        </Block>
+                                    </div>
+                                </motion.div>
+                            )}
+                            <div className={styles.input} style={{ marginTop: 20 }}>
+                                <PrimaryButton
+                                    type={'button'}
+                                    onClick={() => setRoles(prev => ({ ...prev, role: ROLES.USER }))}
+                                    radius='5px'
+                                    style={{ height: 40 }}
+                                    color={COLORS.WHITE}
+                                    background={ROLES.USER === roles.role ? COLORS.NORMAL : COLORS.BACKGROUND_1}
+                                >
+                                    Пользователь
+                                </PrimaryButton>
                             </div>
                             <div className={styles.input}>
-                                <Block error={errors.positionRole?.message} style={{ scale: 1 }} onClick={() => setIsVisibilitySpecification(true)}>
-                                    {roles.positionRole ? roles.positionRole : 'Ваша позиция'}
-                                </Block>
+                                <PrimaryButton
+                                    type={'button'}
+                                    onClick={() =>
+                                        setRoles(prev => {
+                                            clearErrors();
+                                            setRoles(prev => ({ ...prev, speciality: null, positionRole: null }));
+                                            return { ...prev, role: ROLES.COMPANY };
+                                        })
+                                    }
+                                    radius='5px'
+                                    style={{ height: 40 }}
+                                    color={COLORS.WHITE}
+                                    background={ROLES.COMPANY === roles.role ? COLORS.NORMAL : COLORS.BACKGROUND_1}
+                                >
+                                    Организация
+                                </PrimaryButton>
                             </div>
 
                             <div className={styles.button}>
-                                <PrimaryButton type={'submit'} color={COLORS.WHITE} background={COLORS.NORMAL}>
+                                <PrimaryButton color={COLORS.WHITE} background={COLORS.NORMAL}>
                                     Войти
                                 </PrimaryButton>
                             </div>

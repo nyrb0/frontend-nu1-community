@@ -9,8 +9,8 @@ export interface IRegisAuth {
     username: string;
     password: string;
     email: string;
-    speciality: string;
-    positionRole: string;
+    speciality: string | null;
+    positionRole: string | null;
 }
 
 export interface IAuthResponse {

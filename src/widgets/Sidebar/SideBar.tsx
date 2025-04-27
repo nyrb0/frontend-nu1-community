@@ -8,6 +8,7 @@ import { RootState } from '@/store';
 import { authService } from '@/shared/services/auth.service';
 import IconLogout from './icons/IconLogout';
 import { localUsername } from '@/pages/auth/username-local';
+import { ROLES } from '@/shared/types/roles';
 
 const SideBar = () => {
     const route = useLocation();
@@ -56,7 +57,7 @@ const SideBar = () => {
                                 </svg>
                             </div>
                             <p>
-                                {user?.speciality} ({user?.positionRole})
+                                {user?.speciality} {ROLES.USER === user?.role ? `(${user?.positionRole})` : 'организация'}
                             </p>
                         </span>
                     </div>
