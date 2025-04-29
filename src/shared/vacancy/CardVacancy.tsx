@@ -18,11 +18,12 @@ interface ICardVacancy {
 }
 const CardVacancy = ({ data }: ICardVacancy) => {
     return (
-        <StyledCardVacancy>
+        <StyledCardVacancy to={`${data.id}`}>
             <StyledVacancyCompany className='df aic'>
                 <AvatarProfile width={40} height={40} />
-                {data.user?.name} {data.user?.lastName}
-                <IconVerified /> <StyledVacancyTop>Удаленно</StyledVacancyTop>
+                {data.user?.name}
+                {data.user?.identification && <IconVerified />}
+                <StyledVacancyTop>Удаленно</StyledVacancyTop>
                 <StyledVacancyTop>Опыт от 1-3года</StyledVacancyTop>
             </StyledVacancyCompany>
             <StyledVacancyTitle>

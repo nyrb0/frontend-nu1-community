@@ -14,6 +14,7 @@ class Routes {
     SUBSCRIPTIONS = '/events';
     EVENTS = '/subscriptions';
     VACANCY = '/vacancy';
+    VACANCY_ID = '/vacancy/:vacancyId';
     COMPANIES = '/companies';
     OTHER = '/other';
     SETTINGS = '/settings';

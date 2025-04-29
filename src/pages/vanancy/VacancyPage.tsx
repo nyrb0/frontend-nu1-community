@@ -1,13 +1,24 @@
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import { StyledVacancyButtonCreate } from './index.styled';
 import CardVacancy from '@/shared/vacancy/CardVacancy';
-import { arrayVacancy } from './vacancy.const';
+import { useEffect, useState } from 'react';
+import { IVacancy } from '@/shared/types/vacancy.types';
+import { vacancyService } from '@/shared/services/vacancy.service';
 
 const VacancyPage = () => {
+    const [data, setData] = useState<IVacancy[] | null>(null);
+
+    useEffect(() => {
+        (async () => {
+            const response = await vacancyService.getAll();
+            setData(response.data);
+        })();
+    }, []);
+
     return (
         <>
             <div className='df fdc' style={{ gap: 10 }}>
-                {arrayVacancy.map(card => (
+                {data?.map(card => (
                     <CardVacancy data={card} />
                 ))}
             </div>

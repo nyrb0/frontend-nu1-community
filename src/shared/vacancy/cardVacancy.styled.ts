@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const StyledCardVacancy = styled.div`
+export const StyledCardVacancy = styled(Link)`
     background-color: var(--background-color1);
+    width: 100%;
     height: 180px;
     border-radius: 8px;
     padding: 10px;
@@ -32,6 +34,7 @@ export const StyledVacancyTop = styled.p`
     justify-content: center;
     align-items: center;
     padding: 5px 10px;
+    /* background-color: var(--background-color2); */
     background-color: var(--background-color2);
     border-radius: 7px;
     width: auto;
@@ -63,5 +66,35 @@ export const StyledVacancyCardBtn = styled.div`
         gap: 5px;
         width: 130px;
         height: 30px;
+    }
+`;
+
+export const StyledInfoVacancy = styled.div`
+    .createdAt {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        font-size: 12px;
+    }
+    background-color: var(--background-color1);
+    width: 100%;
+    max-height: 250px;
+    height: 100%;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+`;
+
+export const StyledVacancyDetail = styled.div`
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    gap: 5px;
+    margin: 7px 0;
+    & p {
+        font-size: 15px;
+    }
+    & span {
+        font-weight: 700;
     }
 `;
