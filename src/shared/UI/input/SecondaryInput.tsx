@@ -29,7 +29,7 @@ const StyledAuthLabel = styled.label`
     color: var(--white-color);
 `;
 
-const AuthInput = forwardRef<HTMLInputElement, IAuthInput>(({ label, error, ...props }, ref) => {
+const InputSecondary = forwardRef<HTMLInputElement, IAuthInput>(({ label, error, ...props }, ref) => {
     return (
         <>
             <StyledAuthLabel>{label}</StyledAuthLabel>
@@ -39,4 +39,4 @@ const AuthInput = forwardRef<HTMLInputElement, IAuthInput>(({ label, error, ...p
     );
 });
 
-export default AuthInput;
+export default InputSecondary;

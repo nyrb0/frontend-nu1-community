@@ -1,6 +1,6 @@
 import SettingsHeading from '@/shared/UI/hending/SettingsHeading';
 import styles from '../ProfileEditPage.module.scss';
-import FieldsInput from '@/shared/post/UI/input/FieldsInput';
+import FieldsInput from '@/shared/UI/input/FieldsInput';
 import AvatarProfile from '@/shared/UI/AvatarProfile';
 import { IUser } from '@/shared/types/user.types';
 import FileDownloader from '@/shared/UI/file-ownloader/FileDownloader';

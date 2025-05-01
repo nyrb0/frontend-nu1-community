@@ -45,7 +45,7 @@ const Comments = ({ data, onClose }: IComments) => {
     return (
         <Modal
             position={'flex-end'}
-            style={{ maxWidth: 800 }}
+            maxWidth={800}
             onClose={() => {
                 onClose(false);
                 setIdReplay(null);

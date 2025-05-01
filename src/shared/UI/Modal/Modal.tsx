@@ -42,14 +42,16 @@ interface IModal extends HTMLAttributes<HTMLDivElement> {
     onClose?: () => void;
     children: React.ReactNode;
     position?: 'center' | 'flex-end' | 'flex-start';
+    maxWidth?: number | string;
 }
 
-const Modal: React.FC<IModal> = ({ onClose, children, position = 'center', ...props }) => {
+const Modal: React.FC<IModal> = ({ onClose, children, maxWidth, position = 'center', ...props }) => {
     return (
         <StyledModalWrapper position={position} onClick={onClose}>
             <StyledModalContent
                 onClick={(e: any) => e.stopPropagation()}
                 {...props}
+                style={{ maxWidth }}
                 key='box'
                 initial={{ opacity: 0, transform: 'translateY(600px)' }}
                 animate={{ opacity: 1, transform: 'translateY(0)' }}

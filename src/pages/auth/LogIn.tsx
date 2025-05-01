@@ -1,4 +1,4 @@
-import AuthInput from './ui/input';
+import AuthInput from '../../shared/UI/input/SecondaryInput';
 import styles from './auth.module.scss';
 import { COLORS } from '@/shared/constants/colors';
 import { Link } from 'react-router-dom';

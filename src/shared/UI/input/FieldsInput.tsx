@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import IconEmail from './icon/IconEmail';
-import IconPerson from './icon/IconPerson';
+import IconEmail from '../../post/UI/input/icon/IconEmail';
+import IconPerson from '../../post/UI/input/icon/IconPerson';
 import 'react-phone-input-2/lib/style.css';
 import { forwardRef } from 'react';
 

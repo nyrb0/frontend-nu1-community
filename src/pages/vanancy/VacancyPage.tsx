@@ -4,9 +4,11 @@ import CardVacancy from '@/shared/vacancy/CardVacancy';
 import { useEffect, useState } from 'react';
 import { IVacancy } from '@/shared/types/vacancy.types';
 import { vacancyService } from '@/shared/services/vacancy.service';
+import CreateVacancy from './UI/create-vacancy/CreateVacancy';
 
 const VacancyPage = () => {
     const [data, setData] = useState<IVacancy[] | null>(null);
+    const [isCreate, setIsCreate] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -17,13 +19,14 @@ const VacancyPage = () => {
 
     return (
         <>
+            {isCreate && <CreateVacancy onClose={() => setIsCreate(false)} />}
             <div className='df fdc' style={{ gap: 10 }}>
                 {data?.map(card => (
                     <CardVacancy data={card} />
                 ))}
             </div>
             <StyledVacancyButtonCreate className={'df jcc'}>
-                <PrimaryButton>Создать вакансию</PrimaryButton>
+                <PrimaryButton onClick={() => setIsCreate(true)}>Создать вакансию</PrimaryButton>
             </StyledVacancyButtonCreate>
         </>
     );
