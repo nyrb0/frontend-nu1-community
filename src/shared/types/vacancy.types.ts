@@ -17,6 +17,7 @@ export interface IVacancy extends BaseI {
 
     salaryFrom: string;
     salaryTo: string;
+    experience: number;
     minExperience: number;
     maxExperience: number;
 

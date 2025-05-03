@@ -31,11 +31,11 @@ const StyledAuthLabel = styled.label`
 
 const InputSecondary = forwardRef<HTMLInputElement, IAuthInput>(({ label, error, ...props }, ref) => {
     return (
-        <>
+        <div>
             <StyledAuthLabel>{label}</StyledAuthLabel>
             <StyledAuthInput {...props} ref={ref} />
             <StyledErrorText>{error}</StyledErrorText>
-        </>
+        </div>
     );
 });
 

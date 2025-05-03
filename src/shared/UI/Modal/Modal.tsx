@@ -24,9 +24,17 @@ const StyledModalContent = styled(motion.div)`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     & .close-comment {
+        background-color: var(--background-color3);
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        width: 30px;
+        height: 30px;
         position: absolute;
-        top: 8px;
-        right: 8px;
+        top: -20px;
+        right: -15px;
         font-size: 12px;
         opacity: 0.7;
         cursor: pointer;

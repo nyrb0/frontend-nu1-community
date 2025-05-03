@@ -7,10 +7,10 @@ interface ITextAreaPost extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 
 const StyledTextAreaPost = styled.textarea`
     background-color: transparent;
+    color: var(--white-color);
     width: ${props => (props.width ? props.width : '100%')};
     min-height: 120px;
     height: ${props => (props.height ? props.height : '120px')};
-    color: var(--white-color);
     font-weight: 500;
     border-radius: 7px;
     padding: 10px;

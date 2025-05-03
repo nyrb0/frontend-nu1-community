@@ -1,0 +1,41 @@
+:global {
+    .ql-toolbar {
+        background-color: var(--background-color1);
+        border-radius: 8px 8px 0 0;
+    }
+
+    .ql-editor.ql-blank::before {
+        color: var(--white-color);
+        opacity: 0.6;
+        font-size: 14px;
+        content: attr(data-placeholder);
+    }
+
+    .ql-container {
+        border-radius: 0 0 8px 8px;
+        min-height: 200px;
+        max-height: 350px;
+
+        overflow-y: scroll;
+        font-size: 16px;
+        background-color: var(--background-color2);
+    }
+    .quill {
+        margin-bottom: 40px;
+    }
+
+    .ql-editor {
+        padding: 12px;
+        line-height: 1.6;
+        font-size: 14px;
+    }
+
+    .ql-toolbar button {
+        border-radius: 4px;
+        margin-right: 4px;
+    }
+
+    .ql-toolbar .ql-active {
+        background: #ddd;
+    }
+}
