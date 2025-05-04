@@ -6,6 +6,10 @@ import 'react-quill/dist/quill.snow.css';
 import TextEdit from '@/shared/UI/text-editor/TextEdit';
 import CustomSelect from '@/shared/UI/select/CustomSelect';
 import CustomCheckbox from '@/shared/UI/check-box/CustomCheckBox';
+import { POSITION } from '@/shared/types/roles';
+import { vacancyService } from '@/shared/services/vacancy.service';
+import { ICraeteVacancy } from '@/shared/types/vacancy.types';
+import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 
 interface ICreateVacancy {
     onClose: () => void;
@@ -76,49 +80,62 @@ const experience = [
     },
 ];
 
-type FormValue = {
-    description: string;
-    position: string;
-    timeWork: string;
-    experience: number | null;
-    remote: boolean;
-    office: boolean;
-    hybrid: boolean;
-};
+interface FormValue extends Omit<ICraeteVacancy, 'id'> {}
 const CreateVacancy = ({ onClose }: ICreateVacancy) => {
     const [value, setValue] = useState<FormValue>({
+        title: '',
         description: '',
-        position: '',
+        location: '',
+        position: ['JUNIOR_PLUS'],
         timeWork: '',
         experience: null,
         remote: false,
         office: false,
         hybrid: false,
+        salaryFrom: 10000,
+        salaryTo: 10000,
     });
 
     const handleOnChange = (value: string, name: keyof FormValue) => {
         setValue(prev => ({ ...prev, [name]: value }));
     };
+    console.log(value);
+    const handleCreateVacancy = async (e: any) => {
+        e.preventDefault();
+        try {
+            const response = await vacancyService.create(value);
+            if (response.status === 200) alert('создано');
+        } catch (err) {
+            console.error('Ошибка при создании вакансии', err);
+        }
+    };
+
+    const position = Object.keys(POSITION).map(item => ({ label: POSITION[item as POSITION], value: item }));
     const filterExperience = experience.map(item => ({ label: item.title, value: item.id }));
 
     return (
         <Modal maxWidth={800} onClose={onClose} position={'flex-end'}>
-            <div className={`${styles.vacancy} df fdc`}>
+            <form className={`${styles.vacancy} df fdc`} onSubmit={handleCreateVacancy}>
                 <h2 className='df jcc'>Создание вакансии</h2>
-                <InputSecondary label='Название:' placeholder='Какого специалиста ищите?' />
-                <InputSecondary label='Название:' placeholder='Выберите название' />
-                <InputSecondary label='Локация' placeholder='Ваша локация' />
-                <TextEdit placeholder='Описание вакансии' value={value.description} onChange={value => handleOnChange(value, 'description')} />
-                <CustomSelect
-                    value={value.position}
-                    label='Позиция'
-                    onChange={value => handleOnChange(value as string, 'position')}
-                    options={[
-                        { label: 'Frontend', value: 'frontend' },
-                        { label: 'Backend', value: 'backend' },
-                        { label: 'Fullstack', value: 'fullstack' },
-                    ]}
+                <InputSecondary
+                    label='Название:'
+                    placeholder='Какого специалиста ищите?'
+                    onChange={value => handleOnChange(value.target.value, 'title')}
                 />
+                <InputSecondary label='Локация' placeholder='Ваша локация' onChange={value => handleOnChange(value.target.value, 'location')} />
+                <TextEdit placeholder='Описание вакансии' value={value.description} onChange={value => handleOnChange(value, 'description')} />
+                {/* <CustomSelect
+                    value={value.position}
+                    label='Уровень разработчика'
+                    onChange={value => handleOnChange(value as string, 'position')}
+                    options={position}
+                /> */}
+                <div className={`${styles.formats} df fdc`}>
+                    <p>Формат работы</p>
+                    <CustomCheckbox checked={value.office} onChange={value => setValue(prev => ({ ...prev, office: value }))} label='Офис' />
+                    <CustomCheckbox checked={value.remote} onChange={value => setValue(prev => ({ ...prev, remote: value }))} label='Удаленка' />
+                    <CustomCheckbox checked={value.hybrid} onChange={value => setValue(prev => ({ ...prev, hybrid: value }))} label='Гибрид' />
+                </div>
                 <CustomSelect
                     value={value.timeWork}
                     label='Робочий график'
@@ -131,19 +148,8 @@ const CreateVacancy = ({ onClose }: ICreateVacancy) => {
                     onChange={value => handleOnChange(value as string, 'experience')}
                     options={filterExperience}
                 />
-                <div className={`${styles.formats} df fdc`}>
-                    <p>Формат работы</p>
-                    <CustomCheckbox checked={value.office} onChange={value => setValue(prev => ({ ...prev, office: value }))} label='Офис' />
-                    <CustomCheckbox checked={value.remote} onChange={value => setValue(prev => ({ ...prev, remote: value }))} label='Удаленка' />
-                    <CustomCheckbox checked={value.hybrid} onChange={value => setValue(prev => ({ ...prev, hybrid: value }))} label='Гибрид' />
-                </div>
-                <div className={`${styles.formats} df fdc`}>
-                    <p>Уровень разработчика</p>
-                    <CustomCheckbox checked={value.office} onChange={value => setValue(prev => ({ ...prev, office: value }))} label='junior' />
-                    <CustomCheckbox checked={value.remote} onChange={value => setValue(prev => ({ ...prev, remote: value }))} label='Удаленка' />
-                    <CustomCheckbox checked={value.hybrid} onChange={value => setValue(prev => ({ ...prev, hybrid: value }))} label='Гибрид' />
-                </div>
-            </div>
+                <PrimaryButton type={'submit'}>Создать</PrimaryButton>
+            </form>
         </Modal>
     );
 };

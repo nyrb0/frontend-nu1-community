@@ -1,29 +1,29 @@
-import { IVacancy } from '../types/vacancy.types';
+import { ICraeteVacancy, IUpdateVacancy, IVacancy } from '../types/vacancy.types';
 import { axiosServiceAuth } from './api/http';
 
 export const vacancyService = {
     async getAll() {
-        const response = await axiosServiceAuth.get('/vacancy/getAll');
+        const response = await axiosServiceAuth.get<IVacancy[]>('/vacancy/getAll');
         return response;
     },
     async getAllCompany(userId: string) {
-        const response = await axiosServiceAuth.get(`/vacancy/getAll/${userId}`);
+        const response = await axiosServiceAuth.get<IVacancy[]>(`/vacancy/getAll/${userId}`);
         return response;
     },
     async getById(vacancyId: string) {
-        const response = await axiosServiceAuth.get(`/vacancy/${vacancyId}`);
+        const response = await axiosServiceAuth.get<IVacancy>(`/vacancy/${vacancyId}`);
         return response;
     },
-    async create() {
-        const response = await axiosServiceAuth.post(`/vacancy`);
+    async create(body: ICraeteVacancy) {
+        const response = await axiosServiceAuth.post<IVacancy>(`/vacancy`, body);
         return response;
     },
-    async updateVacancy(vacancyId: string, body: IVacancy) {
-        const response = await axiosServiceAuth.patch(`/vacancy/${vacancyId}`, body);
+    async updateVacancy(vacancyId: string, body: IUpdateVacancy) {
+        const response = await axiosServiceAuth.patch<IVacancy>(`/vacancy/${vacancyId}`, body);
         return response;
     },
     async deleteVacancy(vacancyId: string) {
-        const response = await axiosServiceAuth.delete(`/vacancy/${vacancyId}`);
+        const response = await axiosServiceAuth.delete<IVacancy>(`/vacancy/${vacancyId}`);
         return response;
     },
     async saveVacancy(vacancyId: string) {

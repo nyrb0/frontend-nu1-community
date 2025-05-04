@@ -26,9 +26,6 @@ const StyledModalContent = styled(motion.div)`
     & .close-comment {
         background-color: var(--background-color3);
         z-index: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         border-radius: 4px;
         width: 30px;
         height: 30px;
@@ -66,7 +63,7 @@ const Modal: React.FC<IModal> = ({ onClose, children, maxWidth, position = 'cent
                 exit={{ opacity: 0, transform: 'translateY(600px)' }}
                 transition={{ duration: 0.5, y: -50, ease: 'easeInOut' }}
             >
-                <span className='close-comment' onClick={onClose}>
+                <span className='close-comment df jcc aic' onClick={onClose}>
                     X
                 </span>
                 {children}

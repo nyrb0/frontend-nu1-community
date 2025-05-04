@@ -14,12 +14,39 @@ export interface IVacancy extends BaseI {
     isArchived: boolean;
     userId: string;
     salary: string;
-
     salaryFrom: string;
     salaryTo: string;
     experience: number;
-    minExperience: number;
-    maxExperience: number;
-
     user: Pick<IUser, 'username' | 'avatarUrl' | 'lastName' | 'name' | 'identification'>;
+}
+
+export interface ICraeteVacancy {
+    title: string;
+    position: string[];
+    location: string;
+    description: string;
+    remote: boolean;
+    office: boolean;
+    hybrid: boolean;
+    timeWork: string;
+    salaryFrom: number | null;
+    salaryTo: number | null;
+    experience: number | null;
+}
+
+export interface IUpdateVacancy {
+    id: string;
+    title: string;
+    position: string[];
+    location: string;
+    description: string;
+    remote: boolean;
+    office: boolean;
+    hybrid: boolean;
+    timeWork: string;
+    isArchived: boolean;
+    salary: string;
+    salaryFrom: string | null;
+    salaryTo: string | null;
+    experience: number;
 }
