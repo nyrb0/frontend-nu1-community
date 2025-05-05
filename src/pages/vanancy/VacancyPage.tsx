@@ -22,7 +22,7 @@ const VacancyPage = () => {
             {isCreate && <CreateVacancy onClose={() => setIsCreate(false)} />}
             <div className='df fdc' style={{ gap: 10 }}>
                 {data?.map(card => (
-                    <CardVacancy data={card} />
+                    <CardVacancy key={card.id} data={card} />
                 ))}
             </div>
             <StyledVacancyButtonCreate className={'df jcc'}>

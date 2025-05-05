@@ -4,6 +4,7 @@
     overflow-y: scroll;
     scrollbar-width: none;
     padding-bottom: 150px;
+    box-sizing: border-box;
     &::-webkit-scrollbar {
         display: none;
     }
@@ -14,5 +15,11 @@
             padding-bottom: 5px;
         }
         gap: 5px;
+    }
+
+    .btn {
+        width: 100px !important;
+        height: 50px;
+        align-self: center;
     }
 }

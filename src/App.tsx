@@ -37,7 +37,36 @@ function App() {
         return <AuthRoutes />;
     }
 
-    return <AppRouter />;
+    return (
+        <div style={{ position: 'relative' }}>
+            <div
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100vw',
+                    height: '100vh',
+                    zIndex: -2,
+                    backgroundImage: `url(https://99px.ru/sstorage/53/2018/01/tmb_217765_738343.jpg)`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+            />
+            <div
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100vw',
+                    height: '100vh',
+                    zIndex: -1,
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                }}
+            />
+
+            <AppRouter />
+        </div>
+    );
 }
 
 export default App;

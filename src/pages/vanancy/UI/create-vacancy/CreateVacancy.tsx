@@ -157,7 +157,9 @@ const CreateVacancy = ({ onClose }: ICreateVacancy) => {
                     onChange={value => handleOnChange(value as string, 'experience')}
                     options={filterExperience}
                 />
-                <PrimaryButton type={'submit'}>Создать</PrimaryButton>
+                <div className={styles.btn}>
+                    <PrimaryButton type={'submit'}>Создать</PrimaryButton>
+                </div>
             </form>
         </Modal>
     );
