@@ -1,3 +1,4 @@
+import { experience } from '@/pages/vanancy/constants-vacancy.const';
 import IconEyes from '../icons/IconEyes';
 import IconLocation from '../icons/IconLocation';
 import IconVerified from '../icons/IconVerified';
@@ -13,6 +14,7 @@ import {
     StyledVacancyTitle,
     StyledVacancyTop,
 } from './cardVacancy.styled';
+import dayjs from 'dayjs';
 
 interface ICardVacancy {
     data: IVacancy;
@@ -35,6 +37,8 @@ const CardVacancy = ({ data }: ICardVacancy) => {
         office: 'Офис',
         hybrid: 'Гибрид',
     };
+    const formattedDate = dayjs(data.createdAt).format('DD.MM.YY HH:mm');
+
     return (
         <StyledCardVacancy to={`${data.id}`}>
             <StyledVacancyCompany className='df aic'>
@@ -46,7 +50,7 @@ const CardVacancy = ({ data }: ICardVacancy) => {
                     .map(item => (
                         <StyledVacancyTop key={item}>{formatName[item as keyof typeof format]}</StyledVacancyTop>
                     ))}
-                <StyledVacancyTop>Опыт от 1-3года</StyledVacancyTop>
+                <StyledVacancyTop>{experience.find(item => item.id === data.experience)?.title}</StyledVacancyTop>
             </StyledVacancyCompany>
             <StyledVacancyTitle>
                 {data.title} ( {POSITION[data.position as POSITION]} )
@@ -59,7 +63,7 @@ const CardVacancy = ({ data }: ICardVacancy) => {
             </div>
 
             <StyledVacancyCardBtn className='df aie jcsb'>
-                <p>Опубликовано 12.04.24</p>
+                <p>{formattedDate}</p>
                 <PrimaryButton className='df aic'>
                     Посмотреть
                     <IconEyes />

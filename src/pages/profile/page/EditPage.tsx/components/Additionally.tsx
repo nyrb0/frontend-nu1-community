@@ -1,7 +1,7 @@
 import SettingsHeading from '@/shared/UI/hending/SettingsHeading';
 import styles from '../ProfileEditPage.module.scss';
 import PublicAndPrivateUI from '@/pages/settings/page/deteils/UI/PublicAndPrivateUI';
-import RegulationTextArea from '@/pages/settings/page/deteils/UI/RegulationTextArea';
+import RegulationTextArea from '@/shared/UI/text-area/RegulationTextArea';
 import { useEditUserContext } from '../context/EditUserContext';
 import { IUser } from '@/shared/types/user.types';
 

@@ -10,21 +10,12 @@ import { POSITION } from '@/shared/types/roles';
 import { vacancyService } from '@/shared/services/vacancy.service';
 import { ICraeteVacancy } from '@/shared/types/vacancy.types';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
+import { experience, timeWork } from '../../constants-vacancy.const';
 
 interface ICreateVacancy {
     onClose: () => void;
 }
 
-const timeWork = [
-    { label: '6/1', value: '6/1' },
-    { label: '5/2', value: '5/2' },
-    { label: '4/4', value: '4/4' },
-    { label: '4/3', value: '4/3' },
-    { label: '3/3', value: '3/3' },
-    { label: '3/2', value: '3/2' },
-    { label: '2/2', value: '2/2' },
-    { label: '2/1', value: '2/1' },
-];
 // const experience = [
 //     {
 //         id: 0,
@@ -57,28 +48,6 @@ const timeWork = [
 //         maxExperience: 6,
 //     },
 // ];
-const experience = [
-    {
-        id: 0,
-        title: 'Нет опыта',
-    },
-    {
-        id: 1,
-        title: 'От 6 мес до 2 лет',
-    },
-    {
-        id: 2,
-        title: 'От 2 года до 4 лет',
-    },
-    {
-        id: 3,
-        title: 'От 4 года до 6 лет',
-    },
-    {
-        id: 5,
-        title: 'Более 6 лет',
-    },
-];
 
 interface FormValue extends Omit<ICraeteVacancy, 'id'> {}
 const CreateVacancy = ({ onClose }: ICreateVacancy) => {

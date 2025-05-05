@@ -25,18 +25,28 @@ const StyledLength = styled.p`
     font-size: 12px;
 `;
 
+const StyledArea = styled.div`
+    background-color: var(--background-color1);
+    padding: 20px;
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 10px;
+`;
+
 interface IRegulationTextArea extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-    maxWidth?: number;
-    maxHeight?: number;
+    maxWidth?: number | string;
+    maxHeight?: number | string;
     value: string | undefined;
+    children?: React.ReactNode;
 }
 
-const RegulationTextArea: React.FC<IRegulationTextArea> = ({ value, maxWidth, maxHeight = 300, ...props }) => {
+const RegulationTextArea: React.FC<IRegulationTextArea> = ({ value, maxWidth, children, maxHeight = 300, ...props }) => {
     return (
-        <div style={{ position: 'relative', marginBottom: 20 }}>
+        <StyledArea>
             <StyledTextArea {...props} style={{ maxWidth, minWidth: maxWidth, maxHeight }} />
             <StyledLength>{value?.length || 0}/300</StyledLength>
-        </div>
+            {children}
+        </StyledArea>
     );
 };
 

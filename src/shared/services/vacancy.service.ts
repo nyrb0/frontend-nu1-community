@@ -26,12 +26,16 @@ export const vacancyService = {
         const response = await axiosServiceAuth.delete<IVacancy>(`/vacancy/${vacancyId}`);
         return response;
     },
-    async saveVacancy(vacancyId: string) {
+    async save(vacancyId: string) {
         const response = await axiosServiceAuth.post(`/vacancy/save/${vacancyId}`);
         return response;
     },
-    async unsaveVacancy(vacancyId: string) {
+    async unsave(vacancyId: string) {
         const response = await axiosServiceAuth.delete(`/vacancy/save/${vacancyId}`);
+        return response;
+    },
+    async checkSaved(vacancyId: string) {
+        const response = await axiosServiceAuth.get(`/vacancy/check/${vacancyId}`);
         return response;
     },
 };

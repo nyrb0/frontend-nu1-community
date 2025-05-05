@@ -1,6 +1,6 @@
 import styles from './DetailsPage.module.scss';
 import { useState } from 'react';
-import RegulationTextArea from './UI/RegulationTextArea';
+import RegulationTextArea from '../../../../shared/UI/text-area/RegulationTextArea';
 import SettingsHeading from '../../../../shared/UI/hending/SettingsHeading';
 import PublicAndPrivateUI from './UI/PublicAndPrivateUI';
 import FileDownloader from '@/shared/UI/file-ownloader/FileDownloader';

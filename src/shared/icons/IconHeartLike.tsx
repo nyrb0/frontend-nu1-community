@@ -1,6 +1,13 @@
-const IconHeartLike = ({ isLike }: { isLike: boolean }) => {
+import { ISvg } from '../types/svg.types';
+
+interface ILike extends ISvg {
+    isLike: boolean;
+}
+
+const IconHeartLike = ({ isLike, ...props }: ILike) => {
     return (
         <svg
+            {...props}
             aria-label={`${isLike ? 'Не нравиться' : 'Нравиться'}`}
             fill={`${isLike ? 'red' : 'var(--white-color)'}`}
             height='24'

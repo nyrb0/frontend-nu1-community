@@ -3,9 +3,26 @@ import { POSITION } from '../types/roles';
 import { IVacancy } from '../types/vacancy.types';
 import AvatarProfile from '../UI/AvatarProfile';
 import { StyledClickForVacancy, StyledInfoVacancy, StyledVacancyDetail, StyledVacancyTop } from './cardVacancy.styled';
-import IconIdentification from '../UI/text-area/icon/IconIdentification';
 import IconVerified from '../icons/IconVerified';
 import IconHeartLike from '../icons/IconHeartLike';
+import { experience } from '@/pages/vanancy/constants-vacancy.const';
+import { vacancyService } from '../services/vacancy.service';
+import { useState } from 'react';
+
+const SaveVacancy = ({ saved, vacancyId }: { saved: boolean; vacancyId: string }) => {
+    const [isSave, setIsSave] = useState(saved);
+    const handleLike = async () => {
+        const isSaved = await vacancyService.checkSaved(vacancyId);
+        if (isSaved.data) {
+            await vacancyService.unsave(vacancyId);
+            setIsSave(true);
+        } else {
+            await vacancyService.save(vacancyId);
+            setIsSave(false);
+        }
+    };
+    return <IconHeartLike isLike={isSave} onClick={handleLike} />;
+};
 
 const CardInfo = ({ info }: { info: IVacancy }) => {
     const format = {
@@ -33,7 +50,7 @@ const CardInfo = ({ info }: { info: IVacancy }) => {
                     <AvatarProfile width={40} height={40} src={info.user.avatarUrl} />
                     <p>{info.user.name} </p> {info.user.identification && <IconVerified />}
                 </div>
-                <IconHeartLike isLike />
+                <SaveVacancy vacancyId={info.id} saved={info.saved} />
             </div>
             <hr />
             <h2>
@@ -49,6 +66,9 @@ const CardInfo = ({ info }: { info: IVacancy }) => {
             </StyledVacancyDetail>
             <StyledVacancyDetail>
                 <span>График работы: </span> <p>{info.timeWork}</p>
+            </StyledVacancyDetail>
+            <StyledVacancyDetail>
+                <span>Опыт работы: </span> <p>{experience.find(item => item.id === info.experience)?.title}</p>
             </StyledVacancyDetail>
             <StyledVacancyDetail>
                 <span>Рабочие часы: </span> <p>{info.hourInDay}</p>

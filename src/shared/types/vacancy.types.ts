@@ -17,6 +17,7 @@ export interface IVacancy extends BaseI {
     salaryFrom: string;
     salaryTo: string;
     hourInDay: number;
+    saved: boolean;
     experience: number;
     user: Pick<IUser, 'username' | 'avatarUrl' | 'lastName' | 'name' | 'identification'>;
 }
