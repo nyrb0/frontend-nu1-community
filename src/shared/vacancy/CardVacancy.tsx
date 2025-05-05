@@ -1,6 +1,7 @@
 import IconEyes from '../icons/IconEyes';
 import IconLocation from '../icons/IconLocation';
 import IconVerified from '../icons/IconVerified';
+import { POSITION } from '../types/roles';
 import { IVacancy } from '../types/vacancy.types';
 import AvatarProfile from '../UI/AvatarProfile';
 import PrimaryButton from '../UI/Buttons/PrimeryButton';
@@ -27,7 +28,7 @@ const CardVacancy = ({ data }: ICardVacancy) => {
                 <StyledVacancyTop>Опыт от 1-3года</StyledVacancyTop>
             </StyledVacancyCompany>
             <StyledVacancyTitle>
-                {data.title} ( {data.position} )
+                {data.title} ( {POSITION[data.position as POSITION]} )
             </StyledVacancyTitle>
             <div className='df jcsb' style={{ marginTop: 10 }}>
                 <StyledVacancySquare>{data.salary || 'Договорная'}</StyledVacancySquare>

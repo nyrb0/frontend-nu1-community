@@ -7,6 +7,12 @@ const StyledButton = styled.button`
     font-size: 20px;
     color: var(--color-white);
     cursor: pointer;
+
+    svg {
+        background-color: var(--background-color1);
+        padding: 5px 10px 3px 10px;
+        border-radius: 8px;
+    }
 `;
 
 interface IComeBack {

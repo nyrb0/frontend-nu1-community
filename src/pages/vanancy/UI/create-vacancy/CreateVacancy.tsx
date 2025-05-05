@@ -84,9 +84,10 @@ interface FormValue extends Omit<ICraeteVacancy, 'id'> {}
 const CreateVacancy = ({ onClose }: ICreateVacancy) => {
     const [value, setValue] = useState<FormValue>({
         title: '',
+        hourInDay: null,
         description: '',
         location: '',
-        position: ['JUNIOR_PLUS'],
+        position: '',
         timeWork: '',
         experience: null,
         remote: false,
@@ -104,7 +105,10 @@ const CreateVacancy = ({ onClose }: ICreateVacancy) => {
         e.preventDefault();
         try {
             const response = await vacancyService.create(value);
-            if (response.status === 200) alert('создано');
+            if (response.status === 200) {
+                alert('создано');
+                onClose();
+            }
         } catch (err) {
             console.error('Ошибка при создании вакансии', err);
         }
@@ -123,13 +127,18 @@ const CreateVacancy = ({ onClose }: ICreateVacancy) => {
                     onChange={value => handleOnChange(value.target.value, 'title')}
                 />
                 <InputSecondary label='Локация' placeholder='Ваша локация' onChange={value => handleOnChange(value.target.value, 'location')} />
+                <InputSecondary
+                    label='Рабочий час'
+                    placeholder='Укажите рабочий час'
+                    onChange={value => setValue(prev => ({ ...prev, hourInDay: parseInt(value.target.value) }))}
+                />
                 <TextEdit placeholder='Описание вакансии' value={value.description} onChange={value => handleOnChange(value, 'description')} />
-                {/* <CustomSelect
+                <CustomSelect
                     value={value.position}
                     label='Уровень разработчика'
                     onChange={value => handleOnChange(value as string, 'position')}
                     options={position}
-                /> */}
+                />
                 <div className={`${styles.formats} df fdc`}>
                     <p>Формат работы</p>
                     <CustomCheckbox checked={value.office} onChange={value => setValue(prev => ({ ...prev, office: value }))} label='Офис' />

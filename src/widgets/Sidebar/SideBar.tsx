@@ -61,6 +61,7 @@ const SideBar = () => {
                             </p>
                         </span>
                     </div>
+
                     <IconLogout onClick={logout} />
                 </StyledSidebarAvatar>
             </div>

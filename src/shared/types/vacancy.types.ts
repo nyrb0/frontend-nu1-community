@@ -16,18 +16,20 @@ export interface IVacancy extends BaseI {
     salary: string;
     salaryFrom: string;
     salaryTo: string;
+    hourInDay: number;
     experience: number;
     user: Pick<IUser, 'username' | 'avatarUrl' | 'lastName' | 'name' | 'identification'>;
 }
 
 export interface ICraeteVacancy {
     title: string;
-    position: string[];
+    position: string;
     location: string;
     description: string;
     remote: boolean;
     office: boolean;
     hybrid: boolean;
+    hourInDay: number | null;
     timeWork: string;
     salaryFrom: number | null;
     salaryTo: number | null;
@@ -37,10 +39,11 @@ export interface ICraeteVacancy {
 export interface IUpdateVacancy {
     id: string;
     title: string;
-    position: string[];
+    position: string;
     location: string;
     description: string;
     remote: boolean;
+    hourInDay: number;
     office: boolean;
     hybrid: boolean;
     timeWork: string;

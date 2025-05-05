@@ -33,9 +33,8 @@ export const StyledVacancyTop = styled.p`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px 10px;
-    /* background-color: var(--background-color2); */
-    background-color: var(--background-color2);
+    padding: 5px 12px;
+    background-color: var(--normal);
     border-radius: 7px;
     width: auto;
     max-width: 200px;
@@ -78,23 +77,36 @@ export const StyledInfoVacancy = styled.div`
     }
     background-color: var(--background-color1);
     width: 100%;
-    max-height: 250px;
+    max-height: 400px;
     height: 100%;
     border-radius: 8px;
     padding: 10px;
     box-sizing: border-box;
+    h2 {
+        padding-bottom: 5px;
+    }
 `;
 
 export const StyledVacancyDetail = styled.div`
     display: flex;
     align-items: center;
-    font-size: 17px;
+    font-size: 16px;
     gap: 5px;
     margin: 7px 0;
     & p {
-        font-size: 15px;
+        font-size: 14px;
+        font-weight: 600;
     }
     & span {
-        font-weight: 700;
+        font-weight: 300;
     }
+`;
+
+export const StyledClickForVacancy = styled.div`
+    font-size: 12px;
+    width: auto;
+    font-weight: 600;
+    background-color: var(--normal);
+    padding: 10px 10px;
+    border-radius: 10px;
 `;
