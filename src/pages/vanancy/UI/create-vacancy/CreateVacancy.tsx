@@ -49,9 +49,8 @@ interface ICreateVacancy {
 //     },
 // ];
 
-interface FormValue extends Omit<ICraeteVacancy, 'id'> {}
 const CreateVacancy = ({ onClose }: ICreateVacancy) => {
-    const [value, setValue] = useState<FormValue>({
+    const [value, setValue] = useState<ICraeteVacancy>({
         title: '',
         hourInDay: null,
         description: '',
@@ -66,7 +65,7 @@ const CreateVacancy = ({ onClose }: ICreateVacancy) => {
         salaryTo: 10000,
     });
 
-    const handleOnChange = (value: string, name: keyof FormValue) => {
+    const handleOnChange = (value: string, name: keyof ICraeteVacancy) => {
         setValue(prev => ({ ...prev, [name]: value }));
     };
     console.log(value);

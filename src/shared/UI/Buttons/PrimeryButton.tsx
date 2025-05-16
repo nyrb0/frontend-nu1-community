@@ -22,9 +22,9 @@ interface IStyledPrimaryButton extends React.ButtonHTMLAttributes<HTMLButtonElem
     children: React.ReactNode;
 }
 
-const PrimaryButton: React.FC<IStyledPrimaryButton> = ({ children, radius = '8px', background, color = '#fff', ...props }) => {
+const PrimaryButton: React.FC<IStyledPrimaryButton> = ({ children, type = 'button', radius = '8px', background, color = '#fff', ...props }) => {
     return (
-        <StyledPrimaryButton background={background} borderadios={radius} color={color} {...props}>
+        <StyledPrimaryButton background={background} type={type} borderadios={radius} color={color} {...props}>
             {children}
         </StyledPrimaryButton>
     );

@@ -4,7 +4,7 @@ import { COLORS } from '@/shared/constants/colors';
 import { Link } from 'react-router-dom';
 import PrimaryButton from '@/shared/UI/Buttons/PrimeryButton';
 import RegisSpecification from './RegisSpecification';
-import Block from './ui/Block';
+import Block from './ui/BlockArrow';
 import { ROLES } from '@/shared/types/roles';
 import { motion } from 'framer-motion';
 import { useRegis } from './hooks/useRegis';

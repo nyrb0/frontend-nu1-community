@@ -9,12 +9,13 @@ interface IBlock extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const StyledButton = styled.button`
     color: var(--white-color);
     font-size: 16px;
-    background-color: var(--background-color3);
+
+    background-color: var(--background-color1);
     width: 100%;
     height: 40px;
     padding: 10px;
     box-sizing: border-box;
-    margin-top: 12px;
+    margin-top: 5px;
     border-radius: 7px;
     scale: 0.97;
     transition: scale 0.4s ease-in-out;
@@ -26,7 +27,7 @@ const StyledButton = styled.button`
     &:hover {
         scale: 1;
         & svg {
-            transform: translateX(35px);
+            transform: translateX(30px);
         }
     }
 `;
@@ -37,7 +38,7 @@ const StyledErrorText = styled.p`
     color: red;
 `;
 
-const Block: React.FC<IBlock> = ({ error, children, type = 'button', isVisibilityArrow = true, ...props }) => {
+const BlockArrow: React.FC<IBlock> = ({ error, children, type = 'button', isVisibilityArrow = true, ...props }) => {
     return (
         <>
             <StyledButton {...props} className={'df jcsb aic'} type={type}>
@@ -53,4 +54,4 @@ const Block: React.FC<IBlock> = ({ error, children, type = 'button', isVisibilit
     );
 };
 
-export default Block;
+export default BlockArrow;

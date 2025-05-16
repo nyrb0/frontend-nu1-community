@@ -1,7 +1,7 @@
 import { specificationService } from '@/shared/services/specificationArray';
 
 import { useEffect, useState } from 'react';
-import Block from './ui/Block';
+import Block from './ui/BlockArrow';
 
 import styles from './auth.module.scss';
 import { ICategorySpecification } from '@/shared/types/specification.types';
