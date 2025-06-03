@@ -10,10 +10,12 @@ import { EditUserProvider, useEditUserContext } from './context/EditUserContext'
 import Additionally from './components/Additionally';
 import { userService } from '@/shared/services/user.service';
 import { IUser } from '@/shared/types/user.types';
+import { useNavigate } from 'react-router-dom';
 
 const Page = () => {
     const { data } = useEditUserContext();
     const { user } = useSelector((state: RootState) => state.user);
+    const navigate = useNavigate();
 
     const comparison = (a: Record<string, any>, b: Record<string, any>) => {
         return Object.keys(a).reduce((acc, key) => {
@@ -29,8 +31,10 @@ const Page = () => {
         if (data && user) {
             const result = comparison(data, user);
             console.log(result);
-
-            userService.updateUser(user.id, result as IUser);
+            const response = await userService.updateUser(user.id, result as IUser);
+            if (response.status === 200) {
+                navigate(-1);
+            }
         }
     };
 
@@ -45,7 +49,9 @@ const Page = () => {
                         Отмена
                     </PrimaryButton>
 
-                    <PrimaryButton radius='34px'>Сохранить</PrimaryButton>
+                    <PrimaryButton radius='34px' type='submit'>
+                        Сохранить
+                    </PrimaryButton>
                 </div>
             </form>
 
