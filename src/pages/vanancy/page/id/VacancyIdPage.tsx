@@ -40,6 +40,7 @@ const VacancyIdPage = () => {
             }
         })();
     }, []);
+
     if (!data) return <div>Ошибка</div>;
 
     return (

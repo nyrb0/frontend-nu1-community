@@ -35,7 +35,6 @@ const AppRouter = () => {
                 </div>
             )}
             <div className={`${styles.routes} `} style={{ width: '100%' }}>
-                {/* style={isAuthRoute ? { maxWidth: 696, width: '100%' } : {}} */}
                 <Routes>
                     <Route path={PAGES.HOME} element={<HomePage />} />
                     <Route path={PAGES.NOTIFICATION} element={<NotificationPage />} />

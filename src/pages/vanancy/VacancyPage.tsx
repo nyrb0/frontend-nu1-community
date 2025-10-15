@@ -7,13 +7,14 @@ import { vacancyService } from '@/shared/services/vacancy.service';
 import CreateVacancy from './UI/create-vacancy/CreateVacancy';
 import HeaderVacancy from './UI/HeaderVacancy';
 import { useAppSelector } from '@/shared/hooks/redux';
+import { ROLES } from '@/shared/types/roles';
 
 const VacancyPage = () => {
     const [data, setData] = useState<IVacancy[] | null>(null);
     const [isCreate, setIsCreate] = useState(false);
     const [vacancyType, setVacancyType] = useState(false);
 
-    const user = useAppSelector(state => state.user);
+    const { user } = useAppSelector(state => state.user);
 
     useEffect(() => {
         (async () => {
@@ -21,7 +22,7 @@ const VacancyPage = () => {
                 const response = await vacancyService.getAll();
                 setData(response.data);
             } else {
-                const response = await vacancyService.getAllCompany(user?.user?.id || '');
+                const response = await vacancyService.getAllCompany(user?.id || '');
                 setData(response.data);
             }
         })();
@@ -37,7 +38,7 @@ const VacancyPage = () => {
                 ))}
             </div>
             <StyledVacancyButtonCreate className={'df jcc'}>
-                <PrimaryButton onClick={() => setIsCreate(true)}>Создать вакансию</PrimaryButton>
+                {user?.role === ROLES.COMPANY && <PrimaryButton onClick={() => setIsCreate(true)}>Создать вакансию</PrimaryButton>}
             </StyledVacancyButtonCreate>
         </>
     );

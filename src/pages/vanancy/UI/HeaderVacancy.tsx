@@ -7,6 +7,7 @@ const StyledHeader = styled.header`
     border-radius: 8px;
     gap: 10px;
     padding: 5px 0;
+    margin-bottom: 10px;
 
     button {
         transition: background 0.4s ease-in;
